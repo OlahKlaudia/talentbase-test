@@ -33,10 +33,9 @@ public class HeaderPage extends TalentbasePage {
     }
 
     public WebElement getHeaderIsVisible(){
-
         return headerisvisible;
     }
-    public void headerVisibility(){
+    public void headerItemsVisibility(){
         talentbaselogomenuitem.isDisplayed();
         partnersandinvestoritem.isDisplayed();
         homemenuitem.isDisplayed();
