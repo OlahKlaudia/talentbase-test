@@ -1,11 +1,10 @@
-package landingtest;
+package tests.landingtest;
 
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
-import landingpage.HeaderPage;
-import landingpage.PageContentPage;
-import mainbase.utils.TalentbaseTestBase;
+import pages.landingpage.PageContentPage;
+import mainbase.base.TalentbaseTestBase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
-package landingpage;
+package pages.landingpage;
 
-import mainbase.utils.TalentbasePage;
+import mainbase.base.TalentbasePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

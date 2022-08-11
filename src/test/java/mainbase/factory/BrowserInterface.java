@@ -1,4 +1,4 @@
-package mainbase.interfaces;
+package mainbase.factory;
 
 import mainbase.browserenum.BrowserEnum;
 import org.openqa.selenium.WebDriver;

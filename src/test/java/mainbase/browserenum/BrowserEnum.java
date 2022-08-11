@@ -6,7 +6,8 @@ public enum BrowserEnum {
     EDGE("edge"),
     CHROME_HEADLESS("chromeheadless"),
     EDGE_HEADLESS("edgeheadless"),
-    FIREFOX_HEADLESS("firefoxheadless");
+    FIREFOX_HEADLESS("firefoxheadless") ;
+
     public final String browserName;
 
     BrowserEnum(String browserName) {

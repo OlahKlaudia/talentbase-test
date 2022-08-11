@@ -35,7 +35,7 @@ public class TestBase {
     public static WebDriver getDriver() {
         return driver.get();
     }
-    public void removeDriver() {
+    public static void removeDriver() {
         driver.remove();
     }
     public static BrowserEnum getBrowserEnum(String browser) {
@@ -55,6 +55,6 @@ public class TestBase {
     }
     @AfterEach
     public void afterTest() {
-        getDriver().close();
+//        getDriver().close();
     }
 }
