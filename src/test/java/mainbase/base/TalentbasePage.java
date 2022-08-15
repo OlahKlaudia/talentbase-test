@@ -6,6 +6,7 @@ public class TalentbasePage extends BasePage {
 
     public static final String TALENTBASE_URL = "https://dev.thetalentbase.com/";
 
+
     public TalentbasePage(WebDriver driver) {
         super(driver);
     }

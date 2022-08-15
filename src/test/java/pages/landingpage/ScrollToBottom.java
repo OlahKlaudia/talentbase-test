@@ -24,12 +24,12 @@ public class ScrollToBottom extends TalentbasePage {
     }
     @Override
     protected void isLoaded() throws Error {
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.visibilityOf(websiteTermsFooterLink));
+//        wait.until(ExpectedConditions.visibilityOf(websiteTermsFooterLink));
+        wait.until(ExpectedConditions.visibilityOfAllElements(footer));
+
     }
     public void waitFooterVisibility() {
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
-
     }
 }

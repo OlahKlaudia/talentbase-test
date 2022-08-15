@@ -5,6 +5,7 @@ import mainbase.base.TalentbasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.linkspages.*;
 
 public class FooterSection extends TalentbasePage {
@@ -114,35 +115,38 @@ public class FooterSection extends TalentbasePage {
 //                return financialExpertsFooterLink;
             case whyUsLink:
                 navigateFooterLinksPage().waitFooterVisibility();
+//                action.moveToElement(whyUsFooterLink).click().perform();
                 whyUsFooterLink.click();
                 return new AboutPage(driver);
             case clients:
                 navigateFooterLinksPage().waitFooterVisibility();
-                clientsFooterLink.click();
+             action.moveToElement(clientsFooterLink).click().perform();
+//                clientsFooterLink.click();
                 return new AboutPage(driver);
             case partnersAndInvestors:
                 navigateFooterLinksPage().waitFooterVisibility();
-                partnersAndInvestorsFooterLink.click();
+                action.moveToElement(partnersAndInvestorsFooterLink).click().perform();
+//                partnersAndInvestorsFooterLink.click();
                 return new PartnersAndInvestorsPage(driver);
             case contactus:
                 navigateFooterLinksPage().waitFooterVisibility();
-                contactUsFooterLink.click();
+                action.moveToElement(contactUsFooterLink).click().perform();
                 return new ContactPage(driver);
             case support:
                 navigateFooterLinksPage().waitFooterVisibility();
-                supportFooterLink.click();
+                action.moveToElement(supportFooterLink).click().perform();
                 return new ContactPage(driver);
             case faq:
                 navigateFooterLinksPage().waitFooterVisibility();
-                faqFooterLink.click();
+                action.moveToElement(faqFooterLink).click().perform();
                 return new ContactPage(driver);
             case ourPolicy:
                 navigateFooterLinksPage().waitFooterVisibility();
-                ourPolicyFooterLink.click();
+                action.moveToElement(ourPolicyFooterLink).click().perform();
                 return new OurPolicyPage(driver);
             case websiteTerms:
                 navigateFooterLinksPage().waitFooterVisibility();
-                websiteTermsFooterLink.click();
+                action.moveToElement(websiteTermsFooterLink).click().perform();
                 return new WebsiteTermsPage(driver);
         }
         return null;
