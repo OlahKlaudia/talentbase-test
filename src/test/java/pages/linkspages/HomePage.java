@@ -3,7 +3,8 @@ package pages.linkspages;
 import mainbase.base.TalentbasePage;
 import org.openqa.selenium.WebDriver;
 import pages.landingpage.FooterSection;
-import pages.landingpage.ScrollToBottom;
+import pages.landingpage.WaitFooterElement;
+import pages.landingpage.SrollToBottom;
 
 public class HomePage extends TalentbasePage {
     private static final String HOME_PAGE = "https://dev.thetalentbase.com/";
@@ -25,7 +26,8 @@ public class HomePage extends TalentbasePage {
     public FooterSection footerSection(){
         return new FooterSection(driver);
     }
-    public ScrollToBottom scrollDown(){
-        return new ScrollToBottom(driver);
+    public WaitFooterElement scrollDown(){
+        return new WaitFooterElement(driver);
     }
+    public SrollToBottom waiting(){return new SrollToBottom(driver);}
 }

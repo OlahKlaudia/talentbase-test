@@ -10,12 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ScrollToBottom extends TalentbasePage {
+public class WaitFooterElement extends TalentbasePage {
     @FindBy(css = ".footer")
     private WebElement footer;
-    @FindBy(css = "footer a[href='/termsOfService']")
+    @FindBy(css = "footer a[href='/contact'] p")
     private WebElement websiteTermsFooterLink;
-    public ScrollToBottom(WebDriver driver) {
+    public WaitFooterElement(WebDriver driver) {
         super(driver);
     }
     @Override
@@ -26,8 +26,7 @@ public class ScrollToBottom extends TalentbasePage {
     protected void isLoaded() throws Error {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 //        wait.until(ExpectedConditions.visibilityOf(websiteTermsFooterLink));
-        wait.until(ExpectedConditions.visibilityOfAllElements(footer));
-
+        wait.until(ExpectedConditions.elementToBeClickable(websiteTermsFooterLink));
     }
     public void waitFooterVisibility() {
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();

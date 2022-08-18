@@ -2,8 +2,12 @@ package pages.linkspages;
 
 import mainbase.base.TalentbasePage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class ContactPage extends TalentbasePage {
+    @FindBy(css = "a[href='/contact']")
+    private WebElement contactMenuItem;
     private static final String CONTACT_PAGE = "/contact";
 
     @Override
@@ -18,5 +22,8 @@ public class ContactPage extends TalentbasePage {
 
     public ContactPage(WebDriver driver) {
         super(driver);
+    }
+    public void navigateContactPage() {
+        contactMenuItem.click();
     }
 }

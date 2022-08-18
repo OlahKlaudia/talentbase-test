@@ -2,69 +2,51 @@ package pages.registrationpage;
 
 import mainbase.base.TalentbasePage;
 import mainbase.browserenum.FooterElementsEnum;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.linkspages.ApplyAsTalentPage;
 import pages.linkspages.OurPolicyPage;
 import pages.linkspages.SignInPage;
 import pages.linkspages.WebsiteTermsPage;
 
-public class RegistrationHireTalentPage extends TalentbasePage {
+import java.time.Duration;
 
-    @FindBy(css = "input[name='username']")
-    private WebElement usernameInput;
-
-    @FindBy(css = "input[name='email']")
-    private WebElement emailInput;
-
-    @FindBy(css = "input[name='password']")
-    private WebElement passwordInput;
-
-    @FindBy(css = ".MuiFormControl-root:nth-child(1) .MuiSvgIcon-root")
-    private WebElement checkboxSelect;
-
-    @FindBy(css = "p:nth-child(1) a[href='/register']")
-    private WebElement signUpAsTalentLink;
-
-    @FindBy(css = "p:nth-child(1) a[href='/login']")
-    private WebElement signInLink;
-
-    @FindBy(css = "p:nth-child(2) a[href='/termsOfService']")
-    private WebElement termsOfServiceLink;
-
-    @FindBy(css = "p:nth-child(2) a[href='/privacyPolicy']")
-    private WebElement privacyPolicyLink;
-
-    @FindBy(css = "button[type='submit']")
-    private WebElement registerCorporationButton;
-
-    @FindBy(css = ".MuiFormHelperText-root")
-    private WebElement usernameErrorMessage;
-
-    @FindBy(css = "div:nth-child(2) .MuiFormHelperText-root")
-    private WebElement emailErrorMessage;
-    private static final String SHORT_USERNAME="test";
-    private static final String LONG_USERNAME="mSLsbjtFEnwbhVxZTJgNhq4pe7t6pnciex3XFSYOYWDAjXKRn5y";
-    private static final String INVALID_USERNAME="test12#";
-    private static final String CONTAINS_SPACES_USERNAME="test username";
-    private static final String INVALID_EMAIL="test+talentbase @digitalarcher.dev";
+public class RegistrationHireTalentPage extends WebelementsPage {
 
     public RegistrationHireTalentPage(WebDriver driver) {
         super(driver);
     }
-    public String getUsernameErrorMessage(){
+
+    @Override
+    protected void load() {
+
+    }
+    @Override
+    protected void isLoaded() throws Error {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.elementToBeClickable(signInLink));
+    }
+
+
+    public String getUsernameErrorMessage() {
         return usernameErrorMessage.getText();
     }
-    public String getEmailErrorMessage(){
+
+    public String getEmailErrorMessage() {
         return emailErrorMessage.getText();
+    }
+
+    public String getPasswordErrorMessage() {
+        return passwordErrorMessage.getText();
     }
 
     public void verifyUserIsAllBlank() {
         usernameInput.clear();
         emailInput.clear();
         passwordInput.clear();
+
     }
 
     public void verifyCheckboxSelectedButtonDisable() {
@@ -73,43 +55,71 @@ public class RegistrationHireTalentPage extends TalentbasePage {
         passwordInput.clear();
         action.moveToElement(checkboxSelect).click().perform();
     }
+
     public void verifyShortUsername() {
         usernameInput.sendKeys(SHORT_USERNAME);
+
     }
+
     public void verifyLongUsername() {
-        usernameInput.clear();
+        usernameInput.sendKeys(DELETE);
         usernameInput.sendKeys(LONG_USERNAME);
     }
+
     public void verifyInvalidUsername() {
-        usernameInput.clear();
+        usernameInput.sendKeys(DELETE);
         usernameInput.sendKeys(INVALID_USERNAME);
     }
+
     public void verifyUsernameWithSpaces() {
-        usernameInput.clear();
+        usernameInput.sendKeys(DELETE);
         usernameInput.sendKeys(CONTAINS_SPACES_USERNAME);
     }
+
     public void verifyInvalidEmail() {
-        usernameInput.clear();
+        usernameInput.sendKeys(DELETE);
         emailInput.sendKeys(INVALID_EMAIL);
     }
+
+    public void shortPassword() {
+        emailInput.sendKeys(Keys.DELETE);
+        passwordInput.sendKeys(WRONG_PASSWORD);
+    }
+
+    public void longPassword() {
+        passwordInput.sendKeys(Keys.DELETE);
+        passwordInput.sendKeys(LONG_PASSWORD);
+    }
+
+    public void buttonIsDisableWithoutSelectCheckbox() {
+        usernameInput.clear();
+        emailInput.clear();
+        passwordInput.clear();
+        usernameInput.sendKeys(USERNAME);
+        emailInput.sendKeys(EMAIL);
+        passwordInput.sendKeys(PASSWORD);
+    }
+
     public String getColor() {
         wait.until(ExpectedConditions.visibilityOf(registerCorporationButton));
         return registerCorporationButton.getCssValue("background-color");
     }
 
-    public Object verifyButtonsFuncionality(FooterElementsEnum element) {
+    public TalentbasePage verifyButtonsFunctionality(FooterElementsEnum element) {
         switch (element) {
-            case partnersAndInvestors:
-                signUpAsTalentLink.click();
+            case whyUsLink:
+                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+                action.moveToElement(signUpAsTalentLink).click().perform();
                 return new ApplyAsTalentPage(driver);
-            case contactus:
-                signInLink.click();
+            case clients:
+                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+                action.moveToElement(signInLink).click().perform();
                 return new SignInPage(driver);
-            case ourPolicy:
-                privacyPolicyLink.click();
+            case partnersAndInvestors:
+                action.moveToElement(privacyPolicyLink).click().perform();
                 return new OurPolicyPage(driver);
-            case websiteTerms:
-                termsOfServiceLink.click();
+            case contactus:
+                action.moveToElement(termsOfServiceLink).click().perform();
                 return new WebsiteTermsPage(driver);
         }
         return null;

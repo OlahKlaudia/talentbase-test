@@ -14,20 +14,23 @@ public class HeaderSectionPage extends TalentbasePage {
     @FindBy(css = ".navbar-stack a img")
     private WebElement talentbaselogomenuitem;
 
-    @FindBy(css = ".navbar-stack a:nth-child(2)")
+    @FindBy(css = ".navbar-stack a[href='/']")
     private WebElement homemenuitem;
 
-    @FindBy(css = ".navbar-stack a:nth-child(3)")
+    @FindBy(css = ".navbar-stack a[href='/partners']")
     private WebElement partnersandinvestoritem;
 
-    @FindBy(css = ".navbar-stack a:nth-child(4)")
+    @FindBy(css = ".navbar-stack a[href='/work']")
     private WebElement lookingforworkitem;
 
-    @FindBy(css = ".navbar-stack a:nth-child(5)")
+    @FindBy(css = ".navbar-stack a[href='/about']")
     private WebElement aboutitem;
 
-    @FindBy(css = ".navbar-stack a:nth-child(6)")
+    @FindBy(css = ".navbar-stack a[href='/contact']")
     private WebElement contactitem;
+
+    @FindBy(css = ".navbar-stack a[href='/blog']")
+    private WebElement blogitem;
 
     public HeaderSectionPage(WebDriver driver) {
         super(driver);
@@ -39,24 +42,27 @@ public class HeaderSectionPage extends TalentbasePage {
 
     public WebElement getHeaderElements(FooterElementsEnum element) {
         switch (element) {
-//            case designers:
-//                homemenuitem.click();
-//                return homemenuitem;
-//            case support:
-//                talentbaselogomenuitem.click();
-//                return talentbaselogomenuitem;
-//            case developers:
-//                partnersandinvestoritem.click();
-//                return partnersandinvestoritem;
-//            case financialExperts:
-//                lookingforworkitem.click();
-//                return lookingforworkitem;
             case whyUsLink:
+                homemenuitem.click();
+                return homemenuitem;
+            case clients:
+                talentbaselogomenuitem.click();
+                return talentbaselogomenuitem;
+            case partnersAndInvestors:
+                partnersandinvestoritem.click();
+                return partnersandinvestoritem;
+            case contactus:
+                lookingforworkitem.click();
+                return lookingforworkitem;
+            case support:
                 aboutitem.click();
                 return aboutitem;
-            case contactus:
+            case faq:
                 contactitem.click();
                 return contactitem;
+            case ourPolicy:
+                blogitem.click();
+                return blogitem;
         }
         return null;
     }

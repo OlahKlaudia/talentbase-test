@@ -1,9 +1,14 @@
 package pages.linkspages;
 
 import mainbase.base.TalentbasePage;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class PartnersAndInvestorsPage extends TalentbasePage {
+    @FindBy(css = "a[href='/partners']")
+    private WebElement partnersAndInvestorsMenuItem;
     private static final String PARTNER_INVESTORS = "/partners";
 
     @Override
@@ -18,5 +23,9 @@ public class PartnersAndInvestorsPage extends TalentbasePage {
 
     public PartnersAndInvestorsPage(WebDriver driver) {
         super(driver);
+    }
+    public void navigatePartnersAndInvestors() {
+        partnersAndInvestorsMenuItem.click();
+        action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
     }
 }
