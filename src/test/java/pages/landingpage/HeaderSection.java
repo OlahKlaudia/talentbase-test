@@ -1,12 +1,15 @@
 package pages.landingpage;
 
-import mainbase.browserenum.FooterElementsEnum;
+import io.qameta.allure.Step;
+import mainbase.mainenum.FooterElementsEnum;
 import mainbase.base.TalentbasePage;
+import mainbase.mainenum.HeaderElementsEnum;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.linkspages.*;
 
-public class HeaderSectionPage extends TalentbasePage {
+public class HeaderSection extends TalentbasePage {
 
     @FindBy(css = "#app-header")
     private WebElement headerisvisible;
@@ -32,37 +35,39 @@ public class HeaderSectionPage extends TalentbasePage {
     @FindBy(css = ".navbar-stack a[href='/blog']")
     private WebElement blogitem;
 
-    public HeaderSectionPage(WebDriver driver) {
+    public HeaderSection(WebDriver driver) {
         super(driver);
     }
 
+    @Step("Return header webelement,and assert header is visible.")
     public WebElement getHeaderIsVisible() {
         return headerisvisible;
     }
 
-    public WebElement getHeaderElements(FooterElementsEnum element) {
+    @Step("Click header menu item,return webelement,and assert header elements are visible.")
+    public TalentbasePage getHeaderElements(HeaderElementsEnum element) {
         switch (element) {
-            case whyUsLink:
+            case home:
                 homemenuitem.click();
-                return homemenuitem;
-            case clients:
+                return new HomePage(driver);
+            case talentbaseLogo:
                 talentbaselogomenuitem.click();
-                return talentbaselogomenuitem;
+                return new HomePage(driver);
             case partnersAndInvestors:
                 partnersandinvestoritem.click();
-                return partnersandinvestoritem;
-            case contactus:
+                return new PartnersAndInvestorsPage(driver);
+            case lookingForWork:
                 lookingforworkitem.click();
-                return lookingforworkitem;
-            case support:
+                return new LookingForWorkPage(driver);
+            case about:
                 aboutitem.click();
-                return aboutitem;
-            case faq:
+                return new AboutPage(driver);
+            case contact:
                 contactitem.click();
-                return contactitem;
-            case ourPolicy:
+                return new ContactPage(driver);
+            case blog:
                 blogitem.click();
-                return blogitem;
+                return new BlogPage(driver);
         }
         return null;
     }

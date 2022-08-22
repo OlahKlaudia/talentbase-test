@@ -1,5 +1,6 @@
 package pages.linkspages;
 
+import io.qameta.allure.Step;
 import mainbase.base.TalentbasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,6 +24,7 @@ public class ContactPage extends TalentbasePage {
     public ContactPage(WebDriver driver) {
         super(driver);
     }
+    @Step("Navigate to Contact Page.")
     public void navigateContactPage() {
         contactMenuItem.click();
     }

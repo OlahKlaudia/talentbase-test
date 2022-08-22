@@ -2,36 +2,45 @@ package tests.landingtest;
 
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import io.qameta.allure.Step;
+import org.junit.jupiter.api.BeforeEach;
 import pages.landingpage.PageContentPage;
 import mainbase.base.TalentbaseTestBase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 @Epic("Talentbase")
 @Feature("Talentbase landing page")
 public class VerifyPageContentTest extends TalentbaseTestBase {
-        private static final String HIRE_TALENT = "https://dev.thetalentbase.com/hire-talent";
-        private static final String WHY_US = "https://dev.thetalentbase.com/about";
-        @DisplayName("Page content functionality Test")
-        @Step("Page content items functionality")
-        @Test
-        public void pageContentTest() {
+    @BeforeEach
+    public void navigateTalentbasePage() {
+        navigateToTalentbasePage();
+    }
 
-            navigateToTalentbasePage();
-            PageContentPage pageContent = new PageContentPage(getDriver());
+    public PageContentPage pageContent() {
+        return new PageContentPage(getDriver());
+    }
 
-            pageContent.navigateUpperHireTalentPage();
-            assertTrue(getDriver().getCurrentUrl().contains(HIRE_TALENT), "Not found Hire Talent page in the Talentbase site");
-            getDriver().get(HOME_PAGE);
+    @DisplayName("Page content functionality Test")
+    @Test
+    public void upperHireTalentButtonTest() {
+        pageContent().navigateUpperHireTalentPage();
+        assertThat("Not found Hire Talent page in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(HIRE_TALENT));
+        getDriver().get(HOME_PAGE);
+    }
 
-            pageContent.navigateWhyUsPage();
-            assertTrue(getDriver().getCurrentUrl().contains(WHY_US), "Not found why us page in the Talentbase site");
-            getDriver().get(HOME_PAGE);
+    @Test
+    public void whyUsLinkTest() {
+        pageContent().navigateWhyUsPage();
+        assertThat("Not found Why us page in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(WHY_US));
+        getDriver().get(HOME_PAGE);
+    }
 
-            pageContent.navigateLowerHireTalentPage();
-            assertTrue(getDriver().getCurrentUrl().contains(HIRE_TALENT), "Not found Hire Talent page in the Talentbase site");
-        }
+    @Test
+    public void lowerHireTalentButtonTest() {
+        pageContent().navigateLowerHireTalentPage();
+        assertThat("Not found Hire Talent page in the Talentbase site",getDriver().getCurrentUrl(), equalToIgnoringCase(HIRE_TALENT));
+    }
 }

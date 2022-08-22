@@ -1,7 +1,8 @@
 package pages.registrationpage;
 
+import io.qameta.allure.Step;
 import mainbase.base.TalentbasePage;
-import mainbase.browserenum.FooterElementsEnum;
+import mainbase.mainenum.AsTalentLinksEnum;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -27,21 +28,24 @@ public class RegistrationApplyAsTalentPage extends WebelementsPage {
     WebelementsPage webElements(){
         return new WebelementsPage(driver);
     }
-    public TalentbasePage verifyLinksFunctionality(FooterElementsEnum element) {
+    @Step("In Apply as Talent Page,navigate links.")
+    public TalentbasePage verifyLinksFunctionality(AsTalentLinksEnum element) {
         switch (element) {
-            case whyUsLink:
+            case registerCorporation:
                 action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
-                action.moveToElement(registerCorporation).click().perform();
+                wait.until(ExpectedConditions.elementToBeClickable(registerCorporation)).click();
+//
+//                action.moveToElement(registerCorporation).click().perform();
                 return new HireTalentPage(driver);
-            case clients:
+            case signIn:
                 action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
-                action.moveToElement(signInLink).click().perform();
+                wait.until(ExpectedConditions.elementToBeClickable(signInLink)).click();
                 return new SignInPage(driver);
-            case partnersAndInvestors:
-                action.moveToElement(privacyPolicyLink).click().perform();
+            case privacyPolicy:
+                wait.until(ExpectedConditions.elementToBeClickable(privacyPolicyLink)).click();
                 return new OurPolicyPage(driver);
-            case contactus:
-                action.moveToElement(termsOfServiceLink).click().perform();
+            case termsOfService:
+                wait.until(ExpectedConditions.elementToBeClickable(termsOfServiceLink)).click();
                 return new WebsiteTermsPage(driver);
         }
         return null;

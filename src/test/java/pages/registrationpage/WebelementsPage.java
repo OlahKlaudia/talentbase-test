@@ -1,10 +1,12 @@
 package pages.registrationpage;
 
+import io.qameta.allure.Step;
 import mainbase.base.TalentbasePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class WebelementsPage extends TalentbasePage {
     @FindBy(css = "input[name='name']")
@@ -22,7 +24,7 @@ public class WebelementsPage extends TalentbasePage {
     @FindBy(css = "input[name='password']")
     public WebElement passwordInput;
 
-    @FindBy(css = ".MuiFormControl-root:nth-child(1) .MuiSvgIcon-root")
+    @FindBy(css = " .MuiSvgIcon-root:nth-child(2)")
     public WebElement checkboxSelect;
     @FindBy(css = "p:nth-child(1) a[href='/hire-talent']")
     public WebElement registerCorporation;
@@ -66,9 +68,18 @@ public class WebelementsPage extends TalentbasePage {
     public static final String EMAIL = "test+talentbase@digitalarcher.dev";
     public static final String PASSWORD = "password";
     public static final String WRONG_PASSWORD = "pass";
-    public static final String LONG_PASSWORD = "4Zg9*A6Fk!p@SsUJconfirm4Zg9*A6Fk!p@SsUJconfirm4Zg9*A6Fk!p@SsUJconfirm";
+    public static final String LONG_PASSWORD = "4Zg9*A6Fk!p@SsUJconfirm4Zg9*A6Fk!p@SsUJconfirm4Zg9*A6Fk!p@SsUJconfirm4Zg9*A6Fk!p@SsUJconfirm4Zg9*A6Fk!p@SsUJconfirm4Zg9*A6Fk!p@SsUJconfirm";
     public static final String DELETE = Keys.chord(Keys.CONTROL, "a");
     public WebelementsPage(WebDriver driver) {
         super(driver);
+    }
+    @Step("Get pop-up next button element.")
+    public WebElement getPopUpButton() {
+        return popUpNextButton;
+    }
+    @Step("Get button background color.")
+    public String getColor() {
+        wait.until(ExpectedConditions.visibilityOf(registerCorporationButton));
+        return registerCorporationButton.getCssValue("background-color");
     }
 }

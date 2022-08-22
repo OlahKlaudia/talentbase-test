@@ -1,4 +1,4 @@
-package mainbase.browserenum;
+package mainbase.mainenum;
 
 public enum BrowserEnum {
     CHROME("chrome"),

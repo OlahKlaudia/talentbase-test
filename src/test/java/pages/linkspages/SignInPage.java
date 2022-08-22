@@ -1,9 +1,11 @@
 package pages.linkspages;
 
+import io.qameta.allure.Step;
 import mainbase.base.TalentbasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.loginpage.LoginPage;
 
 public class SignInPage extends TalentbasePage {
     @FindBy(css = "a[href='/login']")
@@ -23,7 +25,9 @@ public class SignInPage extends TalentbasePage {
     public SignInPage(WebDriver driver) {
         super(driver);
     }
+    public LoginPage loginPage(){return new LoginPage(driver);}
 
+    @Step("Navigate to Sign in Page.")
     public void navigateSignIn() {
         loginMenuItem.click();
     }

@@ -14,7 +14,6 @@ public class LinkedInPage extends TalentbasePage {
     protected void load() {
 
     }
-
     @Override
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(LINKED_IN_PAGE);

@@ -1,4 +1,4 @@
-package mainbase.browserenum;
+package mainbase.mainenum;
 
 public enum FooterElementsEnum {
 //    footer,
@@ -6,11 +6,10 @@ public enum FooterElementsEnum {
 //    developers,
 //    financialExperts,
     whyUsLink,
-    clients,
+    blog,
     partnersAndInvestors,
     contactus,
-    support,
-    faq,
+    lookingForWork,
     ourPolicy,
     websiteTerms;
 }

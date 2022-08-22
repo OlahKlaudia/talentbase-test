@@ -1,5 +1,6 @@
 package pages.landingpage;
 
+import io.qameta.allure.Step;
 import mainbase.base.TalentbasePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -10,31 +11,39 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class PageContentPage extends TalentbasePage {
 
     @FindBy(css = "a[role='button']:nth-child(1)")
-    private WebElement upperhiretalentbutton;
+    private WebElement upperHireTalentButton;
 
     @FindBy(css = "a[role='button']:nth-child(2)")
-    private WebElement lowerhiretalentbutton;
+    private WebElement lowerHireTalentButton;
 
     @FindBy(css = "section a:nth-child(2)")
-    private WebElement whyuslink;
+    private WebElement whyUsLink;
 
     public PageContentPage(WebDriver driver) {
         super(driver);
     }
 
+    @Step("Click upper Hire Talent button.")
     public void navigateUpperHireTalentPage(){
-        wait.until(ExpectedConditions.visibilityOf(upperhiretalentbutton));
-        upperhiretalentbutton.click();
+
+        action.sendKeys(Keys.PAGE_DOWN).build().perform();
+        wait.until(ExpectedConditions.visibilityOf(upperHireTalentButton));
+        action.moveToElement(upperHireTalentButton).click().perform();
+
+//        upperHireTalentButton.click();
     }
+    @Step("Click why Us link")
     public void navigateWhyUsPage(){
-        wait.until(ExpectedConditions.visibilityOf(whyuslink));
-        whyuslink.click();
+        action.sendKeys(Keys.PAGE_DOWN).build().perform();
+        wait.until(ExpectedConditions.visibilityOf(whyUsLink));
+        action.moveToElement(whyUsLink).click().perform();
+//        whyUsLink.click();
     }
+    @Step("Scroll down and click lower Hire Talent button.")
     public void navigateLowerHireTalentPage(){
-        wait.until(ExpectedConditions.visibilityOf(upperhiretalentbutton));
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
 
-        wait.until(ExpectedConditions.visibilityOf(lowerhiretalentbutton));
-        lowerhiretalentbutton.click();
+        wait.until(ExpectedConditions.visibilityOf(lowerHireTalentButton));
+        lowerHireTalentButton.click();
     }
 }

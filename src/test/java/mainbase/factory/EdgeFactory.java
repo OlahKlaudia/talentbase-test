@@ -1,7 +1,7 @@
 package mainbase.factory;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import mainbase.browserenum.BrowserEnum;
+import mainbase.mainenum.BrowserEnum;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;

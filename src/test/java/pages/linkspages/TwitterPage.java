@@ -18,4 +18,8 @@ public class TwitterPage extends TalentbasePage {
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(TWITTER_PAGE);
     }
+    public void navigateTwitter(){
+
+    }
+
 }

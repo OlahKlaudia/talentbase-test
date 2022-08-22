@@ -1,36 +1,54 @@
 package tests.logintest;
 
 import mainbase.base.TalentbaseTestBase;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pages.loginpage.LoginPage;
-import pages.linkspages.SignInPage;
+import pages.linkspages.HomePage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 public class SignInTest extends TalentbaseTestBase {
+    public HomePage homePage() {
+        return new HomePage(getDriver());
+    }
 
-    public static final String SHORT_PASSWORD_ERROR = "Password must be at least 8 characters long.";
-    @Test
-    public void signInTest() {
+    @BeforeEach
+    public void navigateTalentbasePage() {
         navigateToTalentbasePage();
-        SignInPage signInPage = new SignInPage(getDriver());
-        signInPage.navigateSignIn();
+        homePage().signInPage().navigateSignIn();
+    }
 
-        LoginPage loginPage= new LoginPage(getDriver());
-        loginPage.verifyAllInputIsBlank();
-        assertThat(loginPage.getColor(), equalToIgnoringCase(COLOR_GREY));
+    @Test
+    public void blankInputFieldTest() {
+        homePage().signInPage().loginPage().verifyAllInputIsBlank();
+        assertThat("Button is clickable.",homePage().signInPage().loginPage().getColor(), equalToIgnoringCase(COLOR_GREY));
+    }
 
-        loginPage.verifyButtonIsDisable();
-        assertThat(loginPage.getColor(), equalToIgnoringCase(COLOR_GREY));
+    @Test
+    public void buttondDisableTest() {
+        homePage().signInPage().loginPage().verifyButtonIsDisable();
+        assertThat(homePage().signInPage().loginPage().getColor(), equalToIgnoringCase(COLOR_GREY));
+    }
 
-        loginPage.verifyInvalidPassword();
-        assertThat(loginPage.getPasswordErrorMessage(), equalToIgnoringCase(SHORT_PASSWORD_ERROR));
+    @Test
+    public void shortPasswordTest() {
+        homePage().signInPage().loginPage().verifyInvalidPassword();
+        assertThat(homePage().signInPage().loginPage().getPasswordErrorMessage(), equalToIgnoringCase(SHORT_PASSWORD_ERROR));
+    }
 
-        loginPage.verifyValidCredentials();
-        assertThat(loginPage.getColor(), equalToIgnoringCase(COLOR_GREY));
+    @Test
+    public void validDataTest() {
+        homePage().signInPage().loginPage().verifyValidCredentials();
+        assertThat(homePage().signInPage().loginPage().getColor(), equalToIgnoringCase(COLOR_GREY));
 
-        loginPage.signUpLink();
-        assertThat(getDriver().getCurrentUrl(), equalToIgnoringCase(HIRE_TALENT));
+        //  assertTrue(homePage().signInPage().loginPage().getPopUpButton().isDisplayed(),"Pop-up button is not visible." );
+    }
+
+    @Test
+    public void signUpLinkTest() {
+        homePage().signInPage().loginPage().signUpLink();
+        assertThat(getDriver().getCurrentUrl(), equalToIgnoringCase(SIGN_UP));
     }
 }
+

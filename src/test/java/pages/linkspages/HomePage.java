@@ -3,8 +3,9 @@ package pages.linkspages;
 import mainbase.base.TalentbasePage;
 import org.openqa.selenium.WebDriver;
 import pages.landingpage.FooterSection;
+import pages.landingpage.HeaderSection;
 import pages.landingpage.WaitFooterElement;
-import pages.landingpage.SrollToBottom;
+import pages.landingpage.ScrollToBottom;
 
 public class HomePage extends TalentbasePage {
     private static final String HOME_PAGE = "https://dev.thetalentbase.com/";
@@ -29,5 +30,10 @@ public class HomePage extends TalentbasePage {
     public WaitFooterElement scrollDown(){
         return new WaitFooterElement(driver);
     }
-    public SrollToBottom waiting(){return new SrollToBottom(driver);}
+    public ScrollToBottom waiting(){return new ScrollToBottom(driver);}
+    public HeaderSection headerSection(){return new HeaderSection(driver);}
+    public SignInPage signInPage(){return new SignInPage(driver);}
+    public ApplyAsTalentPage applyAsTalentPage(){return new ApplyAsTalentPage(driver);}
+    public PartnersAndInvestorsPage partnersAndInvestorsPage(){return new PartnersAndInvestorsPage(driver);}
+    public HireTalentPage hireTalentPage(){return new HireTalentPage(driver);}
 }

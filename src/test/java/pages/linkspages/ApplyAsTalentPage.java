@@ -1,5 +1,6 @@
 package pages.linkspages;
 
+import io.qameta.allure.Step;
 import mainbase.base.TalentbasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,6 +25,7 @@ public class ApplyAsTalentPage extends TalentbasePage {
     public ApplyAsTalentPage(WebDriver driver) {
         super(driver);
     }
+    @Step("Navigate to Apply as Talent Page.")
     public void navigateApplyTalentPage() {
         applyAsTalentMenuItem.click();
     }

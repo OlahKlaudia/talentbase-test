@@ -1,27 +1,40 @@
 package tests.logintest;
 
 import mainbase.base.TalentbaseTestBase;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pages.linkspages.SignInPage;
+import pages.linkspages.HomePage;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ForgotPasswordTest extends TalentbaseTestBase {
-    public static final String INVALID_EMAIL_ERROR = "Please enter a valid email address";
+    @BeforeEach
+    public void navigateTalentbasePage() {
+        navigateToTalentbasePage();
+        homePage().signInPage().navigateSignIn();
+        homePage().signInPage().forgotPasswordLink().navigateForgotPasswordLink();
+    }
+
+    public HomePage homePage() {
+        return new HomePage(getDriver());
+    }
 
     @Test
-    public void forgotPassword() {
-        navigateToTalentbasePage();
-        SignInPage signInPage = new SignInPage(getDriver());
-        signInPage.navigateSignIn();
+    public void navigateForgotPasswordTest() {
+        assertThat("Not found Forgot password link in the Talentbase site.",homePage().signInPage().forgotPasswordLink().getColor(), equalToIgnoringCase(COLOR_GREY));
+    }
 
-        signInPage.forgotPasswordLink().navigateForgotPasswordLink();
-        assertThat(signInPage.forgotPasswordLink().getColor(), equalToIgnoringCase(COLOR_GREY));
+    @Test
+    public void invalidEmailTest() {
+        homePage().signInPage().forgotPasswordLink().verifyInvalidEmail();
+        assertThat("Not found invalid email error message.",homePage().signInPage().forgotPasswordLink().getEmailErrorMessage(), equalToIgnoringCase(INVALID_EMAIL_ERROR));
+    }
 
-        signInPage.forgotPasswordLink().verifyInvalidEmail();
-        assertThat(signInPage.forgotPasswordLink().getEmailErrorMessage(), equalToIgnoringCase(INVALID_EMAIL_ERROR));
-
-        signInPage.forgotPasswordLink().validEmail();
-        assertThat(signInPage.forgotPasswordLink().getColor(), equalToIgnoringCase(BLACK));
+    @Test
+    public void validEmailTest() {
+        homePage().signInPage().forgotPasswordLink().validEmail();
+        assertTrue(homePage().signInPage().forgotPasswordLink().getPopUpButton().isDisplayed(),"Pop-up button is not visible");
     }
 }

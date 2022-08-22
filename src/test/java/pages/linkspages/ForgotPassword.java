@@ -1,6 +1,6 @@
 package pages.linkspages;
 
-import mainbase.base.TalentbasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,25 +24,23 @@ public class ForgotPassword extends WebelementsPage {
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(FORGOT_PASSWORD_PAGE);
     }
-
+    @Step("Navigate to Forgot Password Page.")
     public void navigateForgotPasswordLink() {
         resetPasswordLink.click();
     }
+    @Step("Type the input field invalid email.")
     public void verifyInvalidEmail() {
-
         emailInput.sendKeys(INVALID_EMAIL);
     }
+    @Step("Type valid email into the input field.")
     public void validEmail(){
-        emailInput.sendKeys(DELETE);
         emailInput.sendKeys(EMAIL);
-        wait.until(ExpectedConditions.elementToBeClickable(registerCorporationButton));
-
+        registerCorporationButton.click();
+        wait.until(ExpectedConditions.visibilityOf(popUpNextButton));
     }
-    public String getColor() {
-        wait.until(ExpectedConditions.visibilityOf(registerCorporationButton));
-        return registerCorporationButton.getCssValue("background-color");
-    }
+    @Step("Get email error message text.")
     public String getEmailErrorMessage() {
         return forgotPasswordErrorMessage.getText();
     }
+
 }

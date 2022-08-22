@@ -1,5 +1,6 @@
 package pages.landingpage;
 
+import io.qameta.allure.Step;
 import mainbase.base.TalentbasePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -11,10 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class WaitFooterElement extends TalentbasePage {
-    @FindBy(css = ".footer")
-    private WebElement footer;
-    @FindBy(css = "footer a[href='/contact'] p")
-    private WebElement websiteTermsFooterLink;
+    @FindBy(css = "footer a[href='/partners'] p")
+    private WebElement waitPartnersLink;
     public WaitFooterElement(WebDriver driver) {
         super(driver);
     }
@@ -25,9 +24,9 @@ public class WaitFooterElement extends TalentbasePage {
     @Override
     protected void isLoaded() throws Error {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-//        wait.until(ExpectedConditions.visibilityOf(websiteTermsFooterLink));
-        wait.until(ExpectedConditions.elementToBeClickable(websiteTermsFooterLink));
+        wait.until(ExpectedConditions.visibilityOf(waitPartnersLink));
     }
+    @Step("Scroll down to footer.")
     public void waitFooterVisibility() {
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
     }

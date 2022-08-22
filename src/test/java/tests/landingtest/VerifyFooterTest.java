@@ -2,42 +2,71 @@ package tests.landingtest;
 
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import io.qameta.allure.Step;
-import pages.landingpage.FooterSection;
-import pages.landingpage.WaitFooterElement;
-import mainbase.browserenum.FooterElementsEnum;
+import org.junit.jupiter.api.BeforeEach;
+import mainbase.mainenum.FooterElementsEnum;
 import mainbase.base.TalentbaseTestBase;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.linkspages.HomePage;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 @Epic("Talentbase")
 @Feature("Talentbase landing page")
 public class VerifyFooterTest extends TalentbaseTestBase {
 
-    @DisplayName("Footer links functionality Test")
-    @Step("Footer links functionality")
-    @Test
-    public void footerLinksFunctionalityTest() {
+//    @DisplayName("Footer links functionality Test")
+//    @Test
+//    public void footerLinksFunctionalityTest() {
+//        navigateToTalentbasePage();
+//        WaitFooterElement navigate=new WaitFooterElement(getDriver());
+//        navigate.waitFooterVisibility();
+//        FooterSection footerFunctionality = new FooterSection(getDriver());
+//
+//        for (FooterElementsEnum footerElementsEnum : FooterElementsEnum.values()){
+//            assertTrue( footerFunctionality.getFooterElements(footerElementsEnum).isDisplayed(), "Not found links in the Talentbase site");
+//        }
+//    }
+    @BeforeEach
+    public void navigateTalentbasePage(){
         navigateToTalentbasePage();
-        WaitFooterElement navigate=new WaitFooterElement(getDriver());
-        navigate.waitFooterVisibility();
-        FooterSection footerFunctionality = new FooterSection(getDriver());
-
-        for (FooterElementsEnum footerElementsEnum : FooterElementsEnum.values()){
-            assertTrue( footerFunctionality.getFooterElements(footerElementsEnum).isDisplayed(), "Not found links in the Talentbase site");
-        }
+        homePage().scrollDown().waitFooterVisibility();
     }
-
+    public HomePage homePage(){return new HomePage(getDriver());}
     @Test
-    public void footerLinksTest() {
-        HomePage homePage=navigateToTalentbasePage();
-        for (FooterElementsEnum footerElementsEnum : FooterElementsEnum.values()) {
-            homePage.waiting().waitFooterVisibility();
-            homePage.footerSection().clickFooterElements(footerElementsEnum);
-            getDriver().get(HOME_PAGE);
-        }
+    public void whyUsFooterLinkTest() {
+        homePage().footerSection().clickFooterElements(FooterElementsEnum.whyUsLink);
+        assertThat(getDriver().getCurrentUrl(), equalToIgnoringCase(ABOUT_PAGE));
     }
+    @Test
+    public void blogFooterLinkTest() {
+        homePage().footerSection().clickFooterElements(FooterElementsEnum.blog);
+        assertThat("Not found Blog link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(BLOG_PAGE));
+    }
+    @Test
+    public void partnersAndInvestorsLinkTest() {
+        homePage().footerSection().clickFooterElements(FooterElementsEnum.partnersAndInvestors);
+        assertThat("Not found Partners And Investor link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(PARTNERS_AND_INVESTORS_PAGE));
+    }
+    @Test
+    public void contactUsFooterLinkTest() {
+        homePage().footerSection().clickFooterElements(FooterElementsEnum.contactus);
+        assertThat("Not found Contact Us link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(CONTACT_PAGE));
+    }
+    @Test
+    public void lookingForWorkFooterLinkTest() {
+        homePage().footerSection().clickFooterElements(FooterElementsEnum.lookingForWork);
+        assertThat("Not found Looking For Work link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(LOOKING_FOR_WORK_PAGE));
+    }
+    @Test
+    public void ourPolicyFooterLinkTest() {
+        homePage().footerSection().clickFooterElements(FooterElementsEnum.ourPolicy);
+        assertThat("Not found Our Policy link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(OUR_POLICY));
+    }
+    @Test
+    public void websiteTermsFooterLinkTest() {
+        homePage().footerSection().clickFooterElements(FooterElementsEnum.websiteTerms);
+        assertThat("Not found Website Terms link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(WEBSITE_TERMS));
+    }
+
 }

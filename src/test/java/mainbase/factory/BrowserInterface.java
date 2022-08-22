@@ -1,6 +1,6 @@
 package mainbase.factory;
 
-import mainbase.browserenum.BrowserEnum;
+import mainbase.mainenum.BrowserEnum;
 import org.openqa.selenium.WebDriver;
 
 import java.net.MalformedURLException;

@@ -1,6 +1,7 @@
 package pages.landingpage;
 
-import mainbase.browserenum.FooterElementsEnum;
+import io.qameta.allure.Step;
+import mainbase.mainenum.FooterElementsEnum;
 import mainbase.base.TalentbasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,17 +38,17 @@ public class FooterSection extends TalentbasePage {
     @FindBy(css = "footer a[href='/about']:nth-child(1) p")
     private WebElement whyUsFooterLink;
 
-    @FindBy(css = "footer a[href='/about']:nth-child(2) p")
-    private WebElement clientsFooterLink;
+    @FindBy(css = "footer a[href='/blog'] p")
+    private WebElement blogFooterLink;
 
     @FindBy(css = "footer a[href='/partners'] p")
     private WebElement partnersAndInvestorsFooterLink;
 
-    @FindBy(css = "footer a[href='/contact']:nth-child(1) p")
+    @FindBy(css = "footer a[href='/contact'] p")
     private WebElement contactUsFooterLink;
 
-    @FindBy(css = "footer a[href='/contact']:nth-child(2) p")
-    private WebElement supportFooterLink;
+    @FindBy(css = "footer a[href='/work'] p")
+    private WebElement lookingForWorkFooterLink;
 
     @FindBy(css = "footer a[href='/contact']:nth-child(3) p")
     private WebElement faqFooterLink;
@@ -76,6 +77,7 @@ public class FooterSection extends TalentbasePage {
         wait.until(ExpectedConditions.elementToBeClickable(ourPolicyFooterLink));
     }
 
+    @Step("Return webelement,and assert footer elements are visible.")
     public WebElement getFooterElements(FooterElementsEnum element) {
         switch (element) {
 //            case footer:
@@ -88,16 +90,14 @@ public class FooterSection extends TalentbasePage {
 //                return financialExpertsFooterLink;
             case whyUsLink:
                 return whyUsFooterLink;
-            case clients:
-                return clientsFooterLink;
+            case blog:
+                return blogFooterLink;
             case partnersAndInvestors:
                 return partnersAndInvestorsFooterLink;
             case contactus:
                 return contactUsFooterLink;
-            case support:
-                return supportFooterLink;
-            case faq:
-                return faqFooterLink;
+            case lookingForWork:
+                return lookingForWorkFooterLink;
             case ourPolicy:
                 return ourPolicyFooterLink;
             case websiteTerms:
@@ -105,10 +105,12 @@ public class FooterSection extends TalentbasePage {
         }
         return null;
     }
-    private WaitFooterElement navigateFooterLinksPage(){
+
+    private WaitFooterElement navigateFooterLinksPage() {
         return new WaitFooterElement(driver);
     }
 
+    @Step("Scroll down,wait footer visibility,return Page Object.")
     public TalentbasePage clickFooterElements(FooterElementsEnum element) {
         switch (element) {
 //            case designers:
@@ -119,42 +121,38 @@ public class FooterSection extends TalentbasePage {
 //                return financialExpertsFooterLink;
             case whyUsLink:
                 navigateFooterLinksPage().waitFooterVisibility();
-                action.moveToElement(whyUsFooterLink).click().perform();
-//                whyUsFooterLink.click();
+                wait.until(ExpectedConditions.elementToBeClickable(whyUsFooterLink)).click();
+//                action.moveToElement(whyUsFooterLink).click().perform();
                 return new AboutPage(driver);
-            case clients:
+            case blog:
                 navigateFooterLinksPage().waitFooterVisibility();
-                action.moveToElement(clientsFooterLink).click().perform();
-//                clientsFooterLink.click();
-                return new AboutPage(driver);
+                wait.until(ExpectedConditions.elementToBeClickable(blogFooterLink)).click();
+//                action.moveToElement(blogFooterLink).click().perform();
+                return new BlogPage(driver);
             case partnersAndInvestors:
                 navigateFooterLinksPage().waitFooterVisibility();
-                action.moveToElement(partnersAndInvestorsFooterLink).click().perform();
-//                partnersAndInvestorsFooterLink.click();
+                wait.until(ExpectedConditions.elementToBeClickable(partnersAndInvestorsFooterLink)).click();
+//                action.moveToElement(partnersAndInvestorsFooterLink).click().perform();
                 return new PartnersAndInvestorsPage(driver);
             case contactus:
                 navigateFooterLinksPage().waitFooterVisibility();
-                action.moveToElement(contactUsFooterLink).click().perform();
+                wait.until(ExpectedConditions.elementToBeClickable(contactUsFooterLink)).click();
+//                action.moveToElement(contactUsFooterLink).click().perform();
                 return new ContactPage(driver);
-            case support:
+            case lookingForWork:
                 navigateFooterLinksPage().waitFooterVisibility();
-                wait.until(ExpectedConditions.elementToBeClickable(supportFooterLink));
-                action.moveToElement(supportFooterLink).click().perform();
-                return new ContactPage(driver);
-            case faq:
-                navigateFooterLinksPage().waitFooterVisibility();
-                wait.until(ExpectedConditions.elementToBeClickable(faqFooterLink));
-                action.moveToElement(faqFooterLink).click().perform();
-                return new ContactPage(driver);
+                wait.until(ExpectedConditions.elementToBeClickable(lookingForWorkFooterLink)).click();
+//                action.moveToElement(lookingForWorkFooterLink).click().perform();
+                return new LookingForWorkPage(driver);
             case ourPolicy:
                 navigateFooterLinksPage().waitFooterVisibility();
-                wait.until(ExpectedConditions.elementToBeClickable(ourPolicyFooterLink));
-                action.moveToElement(ourPolicyFooterLink).click().perform();
+                wait.until(ExpectedConditions.elementToBeClickable(ourPolicyFooterLink)).click();
+//                action.moveToElement(ourPolicyFooterLink).click().perform();
                 return new OurPolicyPage(driver);
             case websiteTerms:
                 navigateFooterLinksPage().waitFooterVisibility();
-                wait.until(ExpectedConditions.elementToBeClickable(websiteTermsFooterLink));
-                action.moveToElement(websiteTermsFooterLink).click().perform();
+                wait.until(ExpectedConditions.elementToBeClickable(websiteTermsFooterLink)).click();
+//                action.moveToElement(websiteTermsFooterLink).click().perform();
                 return new WebsiteTermsPage(driver);
         }
         return null;

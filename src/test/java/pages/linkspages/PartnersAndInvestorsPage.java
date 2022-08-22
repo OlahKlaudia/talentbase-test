@@ -1,5 +1,6 @@
 package pages.linkspages;
 
+import io.qameta.allure.Step;
 import mainbase.base.TalentbasePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -24,6 +25,7 @@ public class PartnersAndInvestorsPage extends TalentbasePage {
     public PartnersAndInvestorsPage(WebDriver driver) {
         super(driver);
     }
+    @Step("Navigate to Partners and Investors Page, and scroll down to bottom.")
     public void navigatePartnersAndInvestors() {
         partnersAndInvestorsMenuItem.click();
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();

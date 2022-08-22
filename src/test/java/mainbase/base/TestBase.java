@@ -1,6 +1,6 @@
 package mainbase.base;
 
-import mainbase.browserenum.BrowserEnum;
+import mainbase.mainenum.BrowserEnum;
 import mainbase.extension.ScreenshotExtension;
 import mainbase.factory.DriverFactory;
 import org.junit.jupiter.api.AfterEach;
@@ -9,7 +9,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.ITestResult;
 
 import java.net.MalformedURLException;
 import java.time.Duration;

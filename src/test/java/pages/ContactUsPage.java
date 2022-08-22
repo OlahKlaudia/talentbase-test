@@ -1,7 +1,6 @@
 package pages;
 
-import mainbase.base.TalentbasePage;
-import org.openqa.selenium.Keys;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,23 +24,24 @@ public class ContactUsPage extends WebelementsPage {
     protected void isLoaded() throws Error {
 //        wait.until(ExpectedConditions.elementToBeClickable(contactUsButton));
     }
-    public void scrollDownPartnersAndInvestors() {
+    @Step("Click contact us button.")
+    public void clickContactUsButton() {
         action.moveToElement(contactUsButton).click().perform();
     }
-    public String getColor() {
-        wait.until(ExpectedConditions.visibilityOf(registerCorporationButton));
-        return registerCorporationButton.getCssValue("background-color");
-    }
+
+    @Step("Click into name, email, textarea field, to show up error messages.")
     public void emptyInputs() {
       nameInput.click();
       emailInput.click();
       textarea.click();
     }
+    @Step("Type invalid email into the input field ")
     public void invalidEmail() {
         nameInput.sendKeys(DELETE);
         textarea.sendKeys(DELETE);
         emailInput.sendKeys(INVALID_EMAIL);
     }
+    @Step("Type white spaces into the input fields.")
     public void verifyWithSpaces() {
         nameInput.sendKeys(DELETE);
         emailInput.sendKeys(DELETE);
@@ -50,6 +50,7 @@ public class ContactUsPage extends WebelementsPage {
         emailInput.sendKeys("  ");
         textarea.sendKeys("  ");
     }
+    @Step("Type long characters into the input fields.")
     public void verifyWithLongCharacters() {
         nameInput.sendKeys(DELETE);
         emailInput.sendKeys(DELETE);
