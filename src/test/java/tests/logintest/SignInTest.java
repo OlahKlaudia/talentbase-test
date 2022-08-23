@@ -50,5 +50,9 @@ public class SignInTest extends TalentbaseTestBase {
         homePage().signInPage().loginPage().signUpLink();
         assertThat(getDriver().getCurrentUrl(), equalToIgnoringCase(SIGN_UP));
     }
+    @Test
+    public void loginTest() {
+        homePage().signInPage().loginPage().login();
+    }
 }
 

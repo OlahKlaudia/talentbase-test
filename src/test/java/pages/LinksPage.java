@@ -3,9 +3,11 @@ package pages;
 import io.qameta.allure.Step;
 import mainbase.base.TalentbasePage;
 import mainbase.mainenum.LinksEnum;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.landingpage.WaitFooterElement;
 import pages.linkspages.*;
 
@@ -47,8 +49,11 @@ public class LinksPage extends TalentbasePage {
     public TalentbasePage clickFooterElements(LinksEnum element) {
         switch (element) {
             case linkedIn:
-                navigateFooterLinksPage().waitFooterVisibility();
-                action.moveToElement(linkedInFooterMenuIcon).click().perform();
+//                navigateFooterLinksPage().waitFooterVisibility();
+                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(linkedInFooterMenuIcon)).click();
+//                navigateFooterLinksPage().waitFooterVisibility();
+//                action.moveToElement(linkedInFooterMenuIcon).click().perform();
                 return new LinkedInPage(driver);
             case facebook:
                 navigateFooterLinksPage().waitFooterVisibility();

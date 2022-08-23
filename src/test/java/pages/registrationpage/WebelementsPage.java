@@ -24,7 +24,7 @@ public class WebelementsPage extends TalentbasePage {
     @FindBy(css = "input[name='password']")
     public WebElement passwordInput;
 
-    @FindBy(css = " .MuiSvgIcon-root:nth-child(2)")
+    @FindBy(css = ".PrivateSwitchBase-input")
     public WebElement checkboxSelect;
     @FindBy(css = "p:nth-child(1) a[href='/hire-talent']")
     public WebElement registerCorporation;
@@ -64,7 +64,7 @@ public class WebelementsPage extends TalentbasePage {
     public static final String INVALID_USERNAME = "test12#";
     public static final String CONTAINS_SPACES_USERNAME = "test username";
     public static final String INVALID_EMAIL = "test+talentbase @digitalarcher.dev";
-    public static final String USERNAME = "test123";
+    public static final String USERNAME = "test321";
     public static final String EMAIL = "test+talentbase@digitalarcher.dev";
     public static final String PASSWORD = "password";
     public static final String WRONG_PASSWORD = "pass";

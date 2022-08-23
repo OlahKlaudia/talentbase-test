@@ -3,7 +3,6 @@ package pages.registrationpage;
 import io.qameta.allure.Step;
 import mainbase.base.TalentbasePage;
 import mainbase.mainenum.AsTalentLinksEnum;
-import mainbase.mainenum.FooterElementsEnum;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -98,12 +97,23 @@ public class RegistrationHireTalentPage extends WebelementsPage {
     }
     @Step("Clear all inputs, and type valid username,email, and password.Check without select checkbox,button is disable")
     public void buttonIsDisableWithoutSelectCheckbox() {
-        usernameInput.clear();
-        emailInput.clear();
-        passwordInput.clear();
+        usernameInput.sendKeys(Keys.DELETE);
+        emailInput.sendKeys(Keys.DELETE);
+        passwordInput.sendKeys(Keys.DELETE);
         usernameInput.sendKeys(USERNAME);
         emailInput.sendKeys(EMAIL);
         passwordInput.sendKeys(PASSWORD);
+    }
+    @Step("Clear all inputs, and type valid username,email, and password.")
+    public void registrationAsTalent() {
+        usernameInput.sendKeys(Keys.DELETE);
+        emailInput.sendKeys(Keys.DELETE);
+        passwordInput.sendKeys(Keys.DELETE);
+        usernameInput.sendKeys(USERNAME);
+        emailInput.sendKeys(EMAIL);
+        passwordInput.sendKeys(PASSWORD);
+        checkboxSelect.click();
+        registerCorporationButton.click();
     }
     @Step("Hire Talent page,switch navigate link.")
     public TalentbasePage verifyLinksFunctionality(AsTalentLinksEnum element) {

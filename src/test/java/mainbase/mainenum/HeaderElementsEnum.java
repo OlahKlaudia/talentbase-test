@@ -8,6 +8,9 @@ public enum HeaderElementsEnum {
     about,
     contact,
     blog,
+    notification,
+    profile,
+    signOut
 //    applyAsTalent,
 //    hireTalent,
 //    signIn

@@ -2,7 +2,6 @@ package tests.registrationtest;
 
 import mainbase.base.TalentbaseTestBase;
 import mainbase.mainenum.AsTalentLinksEnum;
-import mainbase.mainenum.HeaderElementsEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.linkspages.HomePage;
@@ -27,13 +26,6 @@ public class RegistrationHireTalentTest extends TalentbaseTestBase {
         return new RegistrationHireTalentPage(getDriver());
     }
 
-    //    @Test
-//    public void registrationAsHireTalent() {
-//        navigateToTalentbasePage();
-//        HireTalentPage navigateToHireTalent = new HireTalentPage(getDriver());
-//        navigateToHireTalent.navigateHireTalentPage();
-//        RegistrationHireTalentPage registration = new RegistrationHireTalentPage(getDriver());
-//    }
     @Test
     public void registrationAllBlankFieldsTest() {
         //ALL BLANK FIELDS

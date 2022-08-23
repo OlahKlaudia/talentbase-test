@@ -74,6 +74,10 @@ public class RegistrationApplyAsTalentTest extends TalentbaseTestBase {
         assertThat(registration().getPasswordErrorMessage(),equalToIgnoringCase(LONG_PASSWORD_ERROR));
     }
     @Test
+    public void registrationTest() {
+        registration().registrationAsTalent();
+    }
+    @Test
     public void termsOfServiceLinkTest() {
         registrationAsTalent().verifyLinksFunctionality(AsTalentLinksEnum.termsOfService);
         assertThat("Not found Partners And Investor link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(WEBSITE_TERMS));
