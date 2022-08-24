@@ -19,4 +19,7 @@ public class AboutPage extends TalentbasePage {
     public AboutPage(WebDriver driver) {
         super(driver);
     }
+    public void navigateAboutPage(){
+        aboutitem.click();
+    }
 }

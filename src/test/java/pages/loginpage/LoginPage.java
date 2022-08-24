@@ -2,7 +2,6 @@ package pages.loginpage;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.registrationpage.WebelementsPage;
 
 public class LoginPage extends WebelementsPage {

@@ -17,9 +17,10 @@ public class TalentbaseTestBase extends TestBase {
     public static final String WHY_US = "https://dev.thetalentbase.com/about";
     public static final String OUR_POLICY = "https://dev.thetalentbase.com/privacyPolicy";
     public static final String WEBSITE_TERMS = "https://dev.thetalentbase.com/termsOfService";
-    public static final String LINKED_IN_PAGE = "https://dev.thetalentbase.com/blog";
-    public static final String FACEBOOK_PAGE = "https://dev.thetalentbase.com/register";
-    public static final String TWITTER_PAGE = "https://dev.thetalentbase.com/privacyPolicy";
+    public static final String LINKEDIN = "https://www.linkedin.com/company/talentbasesavicsoft";
+    public static final String FACEBOOK = "https://www.facebook.com/TalentBase-";
+    public static final String TWITTER = "https://twitter.com/TalentBase2022";
+    public static final String MAIL = "info@thetalentbase.com";
     public static final String COLOR_GREY = "rgba(189, 189, 189, 1)";
     public static final String BLACK = "rgba(97, 97, 97, 1)";
     public static final String SHORT_USERNAME_ERROR = "Username must be at least 6 characters.";

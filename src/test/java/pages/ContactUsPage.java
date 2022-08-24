@@ -1,6 +1,8 @@
 package pages;
 
 import io.qameta.allure.Step;
+import mainbase.mainenum.LinksEnum;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -58,5 +60,27 @@ public class ContactUsPage extends WebelementsPage {
         nameInput.sendKeys(LONG_USERNAME);
         emailInput.sendKeys(LONG_USERNAME);
         textarea.sendKeys(LONG_USERNAME);
+    }
+    @Step("Click Talentbase mini menu icon links.")
+    public String clickAboutPageLinkElements(LinksEnum element) {
+        switch (element) {
+            case linkedIn:
+                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(linkedInMenuIcon));
+                return linkedInMenuIcon.getAttribute("href");
+            case facebook:
+                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(facebookMenuIcon));
+                return facebookMenuIcon.getAttribute("href");
+            case twitter:
+                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(twitterMenuIcon));
+                return twitterMenuIcon.getAttribute("href");
+            case mail:
+                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(mailMenuItem));
+                return mailMenuItem.getAttribute("href");
+        }
+        return null;
     }
 }

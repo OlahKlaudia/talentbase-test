@@ -1,6 +1,7 @@
 package tests;
 
 import mainbase.base.TalentbaseTestBase;
+import mainbase.mainenum.LinksEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.ContactUsPage;
@@ -37,5 +38,27 @@ public class ContactTest extends TalentbaseTestBase {
         contactUsPage().verifyWithSpaces();
 //        assertThat(contactUsPage.getEmailErrorMessage(), equalToIgnoringCase(INVALID_EMAIL_ERROR));
         contactUsPage().verifyWithLongCharacters();
+    }
+    @Test
+    public void linkedInLinkTest() {
+        contactUsPage().clickAboutPageLinkElements(LinksEnum.linkedIn);
+        assertThat("Wrong linkedin url.", contactUsPage().clickAboutPageLinkElements(LinksEnum.linkedIn).contains(LINKEDIN));
+    }
+
+    @Test
+    public void facebookLinkTest() {
+        contactUsPage().clickAboutPageLinkElements(LinksEnum.facebook);
+        assertThat("Wrong facebook url.", contactUsPage().clickAboutPageLinkElements(LinksEnum.facebook).contains(FACEBOOK));
+    }
+
+    @Test
+    public void twitterLinkTest() {
+        contactUsPage().clickAboutPageLinkElements(LinksEnum.twitter);
+        assertThat("Wrong twitter url.", contactUsPage().clickAboutPageLinkElements(LinksEnum.twitter).contains(TWITTER));
+    }
+    @Test
+    public void mailLinkTest() {
+        contactUsPage().clickAboutPageLinkElements(LinksEnum.mail);
+        assertThat("Wrong mail url.", contactUsPage().clickAboutPageLinkElements(LinksEnum.mail).contains(MAIL));
     }
 }
