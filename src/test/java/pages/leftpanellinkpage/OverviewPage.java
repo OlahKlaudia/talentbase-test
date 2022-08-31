@@ -1,13 +1,31 @@
 package pages.leftpanellinkpage;
 
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import mainbase.base.TalentbasePage;
 import mainbase.mainenum.LeftPanelElementsEnum;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.astalentpage.waitUntil;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OverviewPage extends TalentbasePage {
     @FindBy(css = ".css-16khe3f svg")
@@ -37,6 +55,8 @@ public class OverviewPage extends TalentbasePage {
 
     @FindBy(css = ".MuiTypography-root span")
     private WebElement clickOverview;
+    @FindBy(css = "[data-aos=\"fade-right\"]:nth-child(3) .MuiLink-underlineAlways")
+    private WebElement exportProfileAsPdf;
     public static final String OVERVIEW = "/profile";
 
     @Override
@@ -47,20 +67,50 @@ public class OverviewPage extends TalentbasePage {
     @Override
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(OVERVIEW);
+        wait.until(ExpectedConditions.visibilityOf(contractAdministratorOverview));
+
     }
     public OverviewPage(WebDriver driver) {
         super(driver);
     }
 
+    public void clickExportProfile(){
+        exportProfileAsPdf.click();
+    }
+
+
+    private static final String SCREENSHOT_FOLDER = "." + File.separator + "target" + File.separator +"download" + File.separator ;
+    public  boolean isFileDownloaded(String fileName,int iterations) throws Exception{
+        boolean flag = false;
+        File dir = new File(SCREENSHOT_FOLDER);
+
+
+        for(int waitForDownload=0;waitForDownload<iterations;waitForDownload++){
+            File[] dir_contents = dir.listFiles();
+            for (int i = 0; i < dir_contents.length; i++) {
+                if (dir_contents[i].getName().equals(fileName)){
+                    System.out.println("File"+fileName+"has downloaded");
+//                    Actions.log("[TestData]"+ IBrowser.downloadFolder+fileName+" exist.");
+//                    File deleteFile= new File(IBrowser.downloadFolder+fileName);
+//                    Actions.log("[TestData]"+IBrowser.downloadFolder+fileName+" deleted successfully.");
+                    return flag=true;
+                }
+            }
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+
+        }
+        return flag;
+    }
+    public  waitUntil scroll(){return new   waitUntil(driver);}
     @Step("Scroll down,wait footer visibility,return Page Object.")
     public TalentbasePage clickOverviewElements(LeftPanelElementsEnum element) {//todo scroll down and click the elements
+        //todo export profile as PDF
         switch (element) {
-//            case start:
-//                wait.until(ExpectedConditions.elementToBeClickable(contractAdministrator)).click();
-//                return new StartPage(driver);
-//            case overview:
-//                wait.until(ExpectedConditions.elementToBeClickable(overviewLink)).click();
-//                return new OverviewPage(driver);
             case accountDetails:
                 wait.until(ExpectedConditions.elementToBeClickable(contractAdministratorOverview)).click();
                 return new AccountDetailsPage(driver);
@@ -68,10 +118,12 @@ public class OverviewPage extends TalentbasePage {
                 wait.until(ExpectedConditions.elementToBeClickable(aboutMeOverview)).click();
                 return new IntroDescriptionPage(driver);
             case experience:
-                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+                scroll().waitUntils();
+//                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(workingExperienceOverview)).click();
                 return new ExperiencePage(driver);
             case education:
+                scroll().waitUntils();
 //                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(educationOverview)).click();
                 return new EducationPage(driver);
@@ -79,18 +131,22 @@ public class OverviewPage extends TalentbasePage {
                 wait.until(ExpectedConditions.elementToBeClickable(skillsOverview)).click();
                 return new SkillsPage(driver);
             case language:
-                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
-                wait.until(ExpectedConditions.elementToBeClickable(languageOverview)).click();
+                scroll().waitUntils();
+//                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+                wait.until(ExpectedConditions.visibilityOf(languageOverview)).click();
                 return new LanguagePage(driver);
             case certificates:
+                scroll().waitUntils();
 //                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
-                wait.until(ExpectedConditions.elementToBeClickable(certificatesOverview)).click();
+                wait.until(ExpectedConditions.visibilityOf(certificatesOverview)).click();
                 return new CertificatesPage(driver);
             case projects:
+                scroll().waitUntils();
 //                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
-                wait.until(ExpectedConditions.elementToBeClickable(projectsOverview)).click();
+                wait.until(ExpectedConditions.visibilityOf(projectsOverview)).click();
                 return new ProjectsPage(driver);
             case hobbies:
+                scroll().waitUntils();
 //                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
                 wait.until(ExpectedConditions.visibilityOf(hobbiesOverview)).click();
                 return new HobbiesPage(driver);

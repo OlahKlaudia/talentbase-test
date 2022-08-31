@@ -4,6 +4,7 @@ import mainbase.base.ProfileTestBase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.leftpanellinkpage.AccountDetailsPage;
+import pages.leftpanellinkpage.OverviewPage;
 import pages.linkspages.HomePage;
 import tests.logintest.SignInTest;
 
@@ -20,9 +21,10 @@ public class AccountDetailTest extends ProfileTestBase {
         HomePage homePage = navigateToTalentbasePage();
         homePage.signInPage().navigateSignIn();
         loginAsTalent().loginTest();
+        overviewPage();
         accountDetailsPage().navigateAccountDetails();
     }
-
+    public OverviewPage overviewPage(){return new OverviewPage(getDriver());}
     public SignInTest loginAsTalent() {
         return new SignInTest();
     }

@@ -82,5 +82,10 @@ public class OverviewTest extends ProfileTestBase {
         overviewPage().clickOverviewElements(LeftPanelElementsEnum.hobbies);
         assertThat("Not found Hobbies link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(HOBBIES));
     }
+    @Test
+    public void downloadProfilePdfTest() throws Exception {
+        overviewPage().clickExportProfile();
+        overviewPage().isFileDownloaded("filename.pdf",10);
+    }
 
 }

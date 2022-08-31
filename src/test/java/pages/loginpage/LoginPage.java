@@ -37,7 +37,7 @@ public class LoginPage extends WebelementsPage {
         passwordInput.sendKeys(PASSWORD);
         registerCorporationButton.click();
     }
-        @Step("Click Sign up link.")
+    @Step("Click Sign up link.")
     public void signUpLink() {
         signUpAsTalentLink.click();
     }

@@ -25,6 +25,7 @@ public class TalentbaseTestBase extends TestBase {
     public static final String BLACK = "rgba(97, 97, 97, 1)";
     public static final String SHORT_USERNAME_ERROR = "Username must be at least 6 characters.";
     public static final String LONG_USERNAME_ERROR = "Username must not exceed 50 characters in length.";
+    public static final String LONG_CHAR_ERROR = "must be less than 100 characters";
     public static final String INVALID_USERNAME_ERROR = "Username format invalid.";
     public static final String INVALID_EMAIL_ERROR = "Please enter a valid email address";
     public static final String SHORT_PASSWORD_ERROR = "Password must be at least 8 characters long.";

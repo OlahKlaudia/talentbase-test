@@ -1,13 +1,10 @@
 package mainbase.utils;
 
 import io.qameta.allure.Allure;
-import mainbase.base.TestBase;
 import org.apache.commons.io.FileUtils;
-import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.ITestResult;
 
 import java.io.File;
 import java.io.FileInputStream;

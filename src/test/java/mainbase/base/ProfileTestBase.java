@@ -16,4 +16,5 @@ public class ProfileTestBase extends TalentbaseTestBase{
     public static final String SOCIAL_LINK = "https://dev.thetalentbase.com/profile/social";
     public static final String USER_TERMS = "https://dev.thetalentbase.com/profile/terms";
     public static final String SIGN_OUT = "https://dev.thetalentbase.com/";
+    public static final String COLOR_RED = "rgba(211, 47, 47, 1)";
 }
