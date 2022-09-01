@@ -10,11 +10,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class CertificatesPage extends TalentbasePage {
     public static final String CERTIFICATES = "/certificates";
     @FindBy(css = "[name=\"name\"]")
-    public WebElement nameOfCertificate;
+    private WebElement nameOfCertificate;
     @FindBy(css = "[name=\"givenBy\"]")
-    public WebElement institution;
+    private WebElement institution;
     @FindBy(css = "[name=\"field\"]")
-    public WebElement field;
+    private WebElement field;
+    @FindBy(css = "textarea[name=\"description\"]")
+    private WebElement description;
+    @FindBy(css = ".footer")
+    private WebElement footer;
 
     @Override
     protected void load() {
@@ -44,7 +48,6 @@ public class CertificatesPage extends TalentbasePage {
         wait.until(ExpectedConditions.elementToBeClickable(select2022)).click();
         wait.until(ExpectedConditions.elementToBeClickable(selectAug)).click();
         //todo element is not clickable
-        action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
-        wait.until(ExpectedConditions.elementToBeClickable(saveSubmit)).click();
+        saveSubmit.click();
     }
 }

@@ -42,7 +42,7 @@ public class WebelementsPage extends TalentbasePage {
     public WebElement privacyPolicyLink;
 
     @FindBy(css = "button[type='submit']")
-    public WebElement registerCorporationButton;
+    public WebElement button;
 
     @FindBy(css = ".MuiFormHelperText-root")
     public WebElement usernameErrorMessage;
@@ -56,6 +56,7 @@ public class WebelementsPage extends TalentbasePage {
 
     @FindBy(css = ".MuiFormControl-root:nth-child(2) p")
     public WebElement forgotPasswordErrorMessage;
+
     @FindBy(css = ".MuiPaper-root .MuiButton-root")
     public WebElement popUpNextButton;
 
@@ -65,8 +66,9 @@ public class WebelementsPage extends TalentbasePage {
     public static final String CONTAINS_SPACES_USERNAME = "test username";
     public static final String INVALID_EMAIL = "test+talentbase @digitalarcher.dev";
     public static final String USERNAME = "test321";
-    public static final String EMAIL = "test+talentbase@digitalarcher.dev";
+    public static final String EMAIL = "test+talentbase1@digitalarcher.dev";
     public static final String PASSWORD = "password";
+    public static final String USERNAME_AS_HIRE = "testtalent";
     public static final String WRONG_PASSWORD = "pass";
     public static final String LONG_PASSWORD = "4Zg9*A6Fk!p@SsUJconfirm4Zg9*A6Fk!p@SsUJconfirm4Zg9*A6Fk!p@SsUJconfirm4Zg9*A6Fk!p@SsUJconfirm4Zg9*A6Fk!p@SsUJconfirm4Zg9*A6Fk!p@SsUJconfirm";
     public static final String DELETE = Keys.chord(Keys.CONTROL, "a");
@@ -79,7 +81,7 @@ public class WebelementsPage extends TalentbasePage {
     }
     @Step("Get button background color.")
     public String getColor() {
-        wait.until(ExpectedConditions.visibilityOf(registerCorporationButton));
-        return registerCorporationButton.getCssValue("background-color");
+        wait.until(ExpectedConditions.visibilityOf(button));
+        return button.getCssValue("background-color");
     }
 }

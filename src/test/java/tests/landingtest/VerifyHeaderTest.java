@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import pages.linkspages.HomePage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 @Epic("Talentbase")
@@ -23,36 +24,36 @@ public class VerifyHeaderTest extends TalentbaseTestBase {
     @Test
     public void homeLinkTest() {
         homePage().headerSection().clickHeaderElements(HeaderElementsEnum.home);
-        assertThat(getDriver().getCurrentUrl(), equalToIgnoringCase(HOME_PAGE));
+        assertThat(getDriver().getCurrentUrl(), containsString(HOME_PAGE));
     }
     @Test
     public void talentbaseLogoLinkTest() {
         homePage().headerSection().clickHeaderElements(HeaderElementsEnum.talentbaseLogo);
-        assertThat("Not found Talentbase logo link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(HOME_PAGE));
+        assertThat("Not found Talentbase logo link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(HOME_PAGE));
     }
     @Test
     public void partnersAndInvestorsLinkTest() {
         homePage().headerSection().clickHeaderElements(HeaderElementsEnum.partnersAndInvestors);
-        assertThat("Not found Partners And Investors link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(PARTNERS_AND_INVESTORS_PAGE));
+        assertThat("Not found Partners And Investors link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(PARTNERS_AND_INVESTORS_PAGE));
     }
     @Test
     public void lookingFotWorkLinkTest() {
         homePage().headerSection().clickHeaderElements(HeaderElementsEnum.lookingForWork);
-        assertThat("Not found Looking for Work link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(LOOKING_FOR_WORK_PAGE));
+        assertThat("Not found Looking for Work link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(LOOKING_FOR_WORK_PAGE));
     }
     @Test
     public void aboutLinkTest() {
         homePage().headerSection().clickHeaderElements(HeaderElementsEnum.about);
-        assertThat("Not found About link  in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(ABOUT_PAGE));
+        assertThat("Not found About link  in the Talentbase site.",getDriver().getCurrentUrl(), containsString(ABOUT_PAGE));
     }
     @Test
     public void contactLinkTest() {
         homePage().headerSection().clickHeaderElements(HeaderElementsEnum.contact);
-        assertThat("Not found Contact link in the Talentbase site",getDriver().getCurrentUrl(), equalToIgnoringCase(CONTACT_PAGE));
+        assertThat("Not found Contact link in the Talentbase site",getDriver().getCurrentUrl(), containsString(CONTACT_PAGE));
     }
     @Test
     public void blogLinkTest() {
         homePage().headerSection().clickHeaderElements(HeaderElementsEnum.blog);
-        assertThat("Not found Blog link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(BLOG_PAGE));
+        assertThat("Not found Blog link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(BLOG_PAGE));
     }
 }

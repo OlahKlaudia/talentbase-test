@@ -8,7 +8,12 @@ import pages.leftpanellinkpage.ProjectsPage;
 import pages.linkspages.HomePage;
 import tests.logintest.SignInTest;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
+
 public class ProjectsTest extends TalentbaseTestBase {
+    public static final String ORANGE = "rgba(241, 84, 18, 1)";
+
     @BeforeEach
     public void navigateTalentbasePage() {
         HomePage homePage = navigateToTalentbasePage();
@@ -29,8 +34,12 @@ public class ProjectsTest extends TalentbaseTestBase {
     public OverviewPage overviewPage() {
         return new OverviewPage(getDriver());
     }
+
     @Test
     public void projectsTest() {
-    projectsPage().fillProjects();
+        projectsPage().fillProjects();
+        assertThat("Button is disable.", projectsPage().getColor(), containsString(ORANGE));
+        projectsPage().waitButton();
+
     }
 }

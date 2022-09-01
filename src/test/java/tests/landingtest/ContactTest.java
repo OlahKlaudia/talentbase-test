@@ -1,14 +1,15 @@
-package tests;
+package tests.landingtest;
 
 import mainbase.base.TalentbaseTestBase;
 import mainbase.mainenum.LinksEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pages.ContactUsPage;
+import pages.landingpage.ContactUsPage;
 import pages.linkspages.ContactPage;
 import pages.linkspages.HomePage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 public class ContactTest extends TalentbaseTestBase {
@@ -27,17 +28,18 @@ public class ContactTest extends TalentbaseTestBase {
         contactUsPage().clickContactUsButton();
     }
     @Test
-    public void contactUsTest() {//todo missing error messages
+    public void contactUsEmptyInputTest() {
         contactUsPage().emptyInputs();
         assertThat("The send message button is clickable.",contactUsPage().getColor(), equalToIgnoringCase(COLOR_GREY));
 
-        //invalid email
+        assertThat("Missing email error message",contactUsPage().getEmailErrorMessageText(),containsString(ERROR_MESSAGE));
+        assertThat("Missing name error message",contactUsPage().getNameErrorMessageText(),containsString(ERROR_MESSAGE));
+        assertThat("Missing message error message",contactUsPage().getErrorMessageText(),containsString(ERROR_MESSAGE));
+    }
+    @Test
+    public void invalidEmailTest() {
         contactUsPage().invalidEmail();
-//        assertThat(contactUsPage.getEmailErrorMessage(), equalToIgnoringCase(INVALID_EMAIL_ERROR));
-        //whitespaces
-        contactUsPage().verifyWithSpaces();
-//        assertThat(contactUsPage.getEmailErrorMessage(), equalToIgnoringCase(INVALID_EMAIL_ERROR));
-        contactUsPage().verifyWithLongCharacters();
+        assertThat("Missing invalid email error message",contactUsPage().getEmailErrorMessageText(),containsString(INVALID_EMAIL_ERROR));
     }
     @Test
     public void linkedInLinkTest() {

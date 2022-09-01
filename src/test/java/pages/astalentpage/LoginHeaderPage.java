@@ -11,7 +11,7 @@ import pages.linkspages.*;
 
 import java.time.Duration;
 
-public class AsTalentHeaderPage extends TalentbasePage {
+public class LoginHeaderPage extends TalentbasePage {
 
     @Override
     protected void load() {
@@ -24,9 +24,10 @@ public class AsTalentHeaderPage extends TalentbasePage {
         wait.until(ExpectedConditions.visibilityOf(blogItem));
     }
 
-    public AsTalentHeaderPage(WebDriver driver) {
+    public LoginHeaderPage(WebDriver driver) {
         super(driver);
     }
+
     @Step("Click header menu item,return webelement,and assert header elements are visible.")
     public TalentbasePage clickHeaderElements(HeaderElementsEnum element) {
         switch (element) {
@@ -44,19 +45,23 @@ public class AsTalentHeaderPage extends TalentbasePage {
                 return new LookingForWorkPage(driver);
             case about:
                 wait.until(ExpectedConditions.visibilityOf(header)).click();
-                aboutItem.click();
+                action.moveToElement(aboutItem).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(aboutItem)).click();
                 return new AboutPage(driver);
             case contact:
                 wait.until(ExpectedConditions.visibilityOf(header)).click();
-                contactItem.click();
+                action.moveToElement(contactItem).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(contactItem)).click();
                 return new ContactPage(driver);
             case salary:
                 wait.until(ExpectedConditions.visibilityOf(header)).click();
-                salaryItem.click();
+                action.moveToElement(salaryItem).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(salaryItem)).click();
                 return new SalaryPage(driver);
             case blog:
                 wait.until(ExpectedConditions.visibilityOf(header)).click();
-                blogItem.click();
+                action.moveToElement(blogItem).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(blogItem)).click();
                 return new BlogPage(driver);
 //            case notification:
 //                blogitem.click();
@@ -65,12 +70,14 @@ public class AsTalentHeaderPage extends TalentbasePage {
                 profileItem.click();
                 return new OverviewPage(driver);
             case base:
-
                 wait.until(ExpectedConditions.visibilityOf(header)).click();
+                action.moveToElement(baseItem).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(baseItem)).click();
                 return new BasePage(driver);
             case signOut:
-                signOut.click();
+                wait.until(ExpectedConditions.visibilityOf(header)).click();
+                action.moveToElement(signOut).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(signOut)).click();
                 return new HomePage(driver);
         }
         return null;

@@ -14,7 +14,7 @@ public class LeftPanelLinksPage extends TalentbasePage {
         super(driver);
     }
 
-    @Step("Scroll down,wait footer visibility,return Page Object.")
+    @Step("Click left panel elements,and return Page Object.")
     public TalentbasePage clickLeftPanelElements(LeftPanelElementsEnum element) {
         switch (element) {
             case start:

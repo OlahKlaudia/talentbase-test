@@ -1,4 +1,4 @@
-package pages;
+package pages.landingpage;
 
 import io.qameta.allure.Step;
 import mainbase.mainenum.LinksEnum;
@@ -11,12 +11,22 @@ import pages.registrationpage.WebelementsPage;
 
 public class ContactUsPage extends WebelementsPage {
 
-    @FindBy(css = ".MuiGrid-root:nth-child(1) button")
-    private WebElement contactUsButton;
+    @FindBy(css = "#mui-3-helper-text")
+    private WebElement messageError;
+    @FindBy(css = "#mui-2-helper-text")
+    public WebElement contactEmailErrorMessage;
+    @FindBy(css = "mui-1-helper-text")
+    private WebElement nameError;
+    @FindBy(css = "#mui-4")
+    private WebElement requestEmail;
+    @FindBy(css = "#mui-4-helper-text")
+    private WebElement requestEmailErrorMessage;
+
 
     public ContactUsPage(WebDriver driver) {
         super(driver);
     }
+
     @Override
     protected void load() {
 
@@ -24,34 +34,39 @@ public class ContactUsPage extends WebelementsPage {
 
     @Override
     protected void isLoaded() throws Error {
-//        wait.until(ExpectedConditions.elementToBeClickable(contactUsButton));
+        wait.until(ExpectedConditions.elementToBeClickable(button));
     }
+
+    public String getEmailErrorMessageText() {
+        return contactEmailErrorMessage.getText();
+    }
+
+    public String getNameErrorMessageText() {
+        return nameError.getText();
+    }
+
+    public String getErrorMessageText() {
+        return messageError.getText();
+    }
+
     @Step("Click contact us button.")
     public void clickContactUsButton() {
-        action.moveToElement(contactUsButton).click().perform();
+        action.moveToElement(button).click().perform();
     }
 
     @Step("Click into name, email, textarea field, to show up error messages.")
     public void emptyInputs() {
-      nameInput.click();
-      emailInput.click();
-      textarea.click();
+        nameInput.click();
+        emailInput.click();
+        textarea.click();
+        emailInput.click();
     }
+
     @Step("Type invalid email into the input field ")
     public void invalidEmail() {
-        nameInput.sendKeys(DELETE);
-        textarea.sendKeys(DELETE);
         emailInput.sendKeys(INVALID_EMAIL);
     }
-    @Step("Type white spaces into the input fields.")
-    public void verifyWithSpaces() {
-        nameInput.sendKeys(DELETE);
-        emailInput.sendKeys(DELETE);
-        textarea.sendKeys(DELETE);
-        nameInput.sendKeys("  ");
-        emailInput.sendKeys("  ");
-        textarea.sendKeys("  ");
-    }
+
     @Step("Type long characters into the input fields.")
     public void verifyWithLongCharacters() {
         nameInput.sendKeys(DELETE);
@@ -61,6 +76,7 @@ public class ContactUsPage extends WebelementsPage {
         emailInput.sendKeys(LONG_USERNAME);
         textarea.sendKeys(LONG_USERNAME);
     }
+
     @Step("Click Talentbase mini menu icon links.")
     public String clickAboutPageLinkElements(LinksEnum element) {
         switch (element) {

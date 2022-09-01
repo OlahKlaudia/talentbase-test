@@ -7,9 +7,11 @@ public enum HeaderElementsEnum {
     lookingForWork,
     about,
     contact,
+    salary,
     blog,
     notification,
     profile,
+    base,
     signOut
 //    applyAsTalent,
 //    hireTalent,

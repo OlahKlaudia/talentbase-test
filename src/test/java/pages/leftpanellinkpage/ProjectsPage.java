@@ -1,5 +1,6 @@
 package pages.leftpanellinkpage;
 
+import io.qameta.allure.Step;
 import mainbase.base.TalentbasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,7 +17,9 @@ public class ProjectsPage extends TalentbasePage {
     @FindBy(css = "input[name='additionalLinkName']")
     private WebElement additionalLinkName;
     @FindBy(css = "textarea[name='description']")
-    private WebElement dees;
+    private WebElement description;
+    @FindBy(css = ".footer")
+    private WebElement footer;
     public static final String PROJECT = "/projects";
 
     @Override
@@ -40,9 +43,16 @@ public class ProjectsPage extends TalentbasePage {
         linkToProject.sendKeys(TALENTBASE_URL);
         additionalLinkName.sendKeys(VALID_INPUT);
         additionalLinkUrl.sendKeys(TALENTBASE_URL);
-
-        dees.click();
-//        action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+        description.click();
+    }
+    public void waitButton() {
+        //todo element is not clickable
+        wait.until(ExpectedConditions.visibilityOf(footer)).click();
         wait.until(ExpectedConditions.elementToBeClickable(saveSubmit)).click();
+    }
+    @Step("Get button background color.")
+    public String getColor() {
+        wait.until(ExpectedConditions.elementToBeClickable(saveSubmit));
+        return saveSubmit.getCssValue("background-color");
     }
 }

@@ -14,5 +14,7 @@ public enum LeftPanelElementsEnum {
     hobbies,
     socialLinks,
     userTerms,
-    evolution
+    evolution,
+    searchTheBase,
+    myBase
 }

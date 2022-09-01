@@ -8,7 +8,6 @@ import pages.landingpage.WaitFooterElement;
 import pages.landingpage.ScrollToBottom;
 
 public class HomePage extends TalentbasePage {
-    private static final String HOME_PAGE = "https://dev.thetalentbase.com/";
 
     @Override
     protected void load() {
@@ -17,7 +16,7 @@ public class HomePage extends TalentbasePage {
 
     @Override
     protected void isLoaded() throws Error {
-        driver.getCurrentUrl().contains(HOME_PAGE);
+        driver.getCurrentUrl().contains(TALENTBASE_URL);
     }
 
     public HomePage(WebDriver driver) {

@@ -54,5 +54,9 @@ public class SignInTest extends TalentbaseTestBase {
     public void loginTest() {
         homePage().signInPage().loginPage().login();
     }
+    @Test
+    public void loginHireTalentTest() {
+        homePage().signInPage().loginPage().loginHireTalent();
+    }
 }
 

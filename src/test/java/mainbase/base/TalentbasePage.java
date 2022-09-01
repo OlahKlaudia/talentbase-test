@@ -6,28 +6,43 @@ import org.openqa.selenium.support.FindBy;
 
 public class TalentbasePage extends BasePage {
     @FindBy(css = "#app-header")
-    public WebElement headerisvisible;
+    public WebElement headerIsVisible;
 
     @FindBy(css = ".navbar-stack a img")
-    public WebElement talentbaselogomenuitem;
+    public WebElement talentbaseLogoMenuItem;
 
     @FindBy(css = ".navbar-stack a[href='/']")
-    public WebElement homemenuitem;
+    public WebElement homeMenuItem;
 
     @FindBy(css = ".navbar-stack a[href='/partners']")
-    public WebElement partnersandinvestoritem;
+    public WebElement partnersAndInvestorItem;
 
     @FindBy(css = ".navbar-stack a[href='/work']")
-    public WebElement lookingforworkitem;
+    public WebElement lookingForWorkItem;
 
     @FindBy(css = ".navbar-stack a[href='/about']")
-    public WebElement aboutitem;
+    public WebElement aboutItem;
 
     @FindBy(css = ".navbar-stack a[href='/contact']")
-    public WebElement contactitem;
+    public WebElement contactItem;
 
-    @FindBy(css = ".navbar-stack a[href='/blog']")
-    public WebElement blogitem;
+    @FindBy(css = ".navbar-stack a[href='/calculator']")
+    public WebElement salaryItem;
+
+    @FindBy(css = ".navbar-stack a[href='/corp/base']")
+    public WebElement baseItem;
+
+    @FindBy(css = "a[href='/blog']")
+    public WebElement blogItem;
+    @FindBy(css = "#app-header")
+    public WebElement header;
+
+    @FindBy(css = ".navbar-stack a[href='/profile']")
+    public WebElement profileItem;
+
+    @FindBy(css = " a[href='/']:nth-child(3)")
+    public WebElement signOut;
+
     @FindBy(css = "a[href='/Profile/start']")
     public WebElement startLink;
 
@@ -101,6 +116,16 @@ public class TalentbasePage extends BasePage {
     public WebElement selectAug;
     @FindBy(css = ".MuiFormControl-root:nth-child(2)  p")//nem teljesen okés
     public WebElement locationError;
+    @FindBy(css = "a[href=\"/corp/start\"]")
+    public WebElement startLeftItem;
+    @FindBy(css = "a[href=\"/corp/account\"]")
+    public WebElement accountLeftItem;
+    @FindBy(css = ".MuiBox-root a[href=\"/corp/base\"]")
+    public WebElement baseLeftItem;
+    @FindBy(css = "a[href=\"/corp/talent/\"]")
+    public WebElement talentLeftItem;
+    @FindBy(css = ".MuiTypography-h3")
+    public WebElement welcomeToTalentbaseText;
     public static final String TALENTBASE_URL = "https://dev.thetalentbase.com/";
     public static final String LONG_CHAR = "mSLsbjtFEnwbhVxZTJgNhq4pe7t6pnciex3XFSYOYWDAjXKRn5ymSLsbjtFEnwbhVxZTJgNhq4pe7t6pnciex3XFSYOYWDAjXKRn5y";
     public static final String VALID_INPUT = "Test";
@@ -110,9 +135,7 @@ public class TalentbasePage extends BasePage {
     }
     @Override
     protected void load() {
-
     }
-
     @Override
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(TALENTBASE_URL);

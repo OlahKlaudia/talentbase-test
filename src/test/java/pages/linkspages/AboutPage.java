@@ -20,6 +20,6 @@ public class AboutPage extends TalentbasePage {
         super(driver);
     }
     public void navigateAboutPage(){
-        aboutitem.click();
+        aboutItem.click();
     }
 }

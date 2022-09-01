@@ -1,5 +1,6 @@
-package pages;
+package pages.landingpage;
 
+import io.qameta.allure.Step;
 import mainbase.base.TalentbasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,6 +23,11 @@ public class EmailPage extends TalentbasePage {
     private WebElement pswNext;
     @FindBy(css = "[role=\"row\"]:nth-child(1)")
     private WebElement lastEmail;
+    @FindBy(css = "table:nth-child(1) td a")
+    private WebElement activateAccountLink;
+    public static final String EMAIL = "test@digitalarcher.dev";
+    public static final String PASSWORD = "4Zg9*A6Fk!p@SsUJ";
+    public static final String GMAIL_URL = "https://mail.google.com/mail/u/2/#inbox";
     @Override
     protected void load() {
 
@@ -31,19 +37,43 @@ public class EmailPage extends TalentbasePage {
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains("mail");
     }
-    public void register(){
-
+    public WebElement getNextButton(){
+        return nextButton;
     }
-
-    public void verifyEmail(){
+    public WebElement getActivateLink(){
+        return activateAccountLink;
+    }
+    public WebElement getAlertButton(){
+        return alertVerifyButton;
+    }
+    @Step("Click the verify Button.")
+    public void verifyEmail() {
         alertVerifyButton.click();
-        driver.get("https://mail.google.com/mail/u/2/#inbox");
-        email.sendKeys("test@digitalarcher.dev");
-        nextButton.click();
-        wait.until(ExpectedConditions.visibilityOf(psw));
-        psw.sendKeys("4Zg9*A6Fk!p@SsUJ");
-        pswNext.click();
-        //todo open email
-        lastEmail.click();
+        driver.get(GMAIL_URL);
     }
+
+    @Step("Type email into the input field and click next button.")
+    public void navigateLoginGmail(){
+        email.sendKeys(EMAIL);
+        nextButton.click();
+    }
+
+    @Step("Type password into the input field and click next button.")
+    public void password(){
+        wait.until(ExpectedConditions.visibilityOf(psw));
+        psw.sendKeys(PASSWORD);
+        pswNext.click();
+        wait.until(ExpectedConditions.visibilityOf(lastEmail));
+    }
+    @Step("Click last email.")
+    public void lastEmail(){
+        wait.until(ExpectedConditions.visibilityOf(lastEmail));
+        wait.until(ExpectedConditions.elementToBeClickable(lastEmail)).click();
+    }
+    @Step("Click activate Account Link.")
+    public void activateButton(){
+        wait.until(ExpectedConditions.elementToBeClickable(activateAccountLink)).click();
+        wait.until(ExpectedConditions.visibilityOf(header));
+    }
+
 }

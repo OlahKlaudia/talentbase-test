@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
+import static org.hamcrest.Matchers.containsString;
 
 @Epic("Talentbase")
 @Feature("Talentbase landing page")
@@ -27,20 +27,20 @@ public class VerifyPageContentTest extends TalentbaseTestBase {
     @Test
     public void upperHireTalentButtonTest() {
         pageContent().navigateUpperHireTalentPage();
-        assertThat("Not found Hire Talent page in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(HIRE_TALENT));
+        assertThat("Not found Hire Talent page in the Talentbase site.",getDriver().getCurrentUrl(), containsString(HIRE_TALENT));
         getDriver().get(HOME_PAGE);
     }
 
     @Test
     public void whyUsLinkTest() {
         pageContent().navigateWhyUsPage();
-        assertThat("Not found Why us page in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(WHY_US));
+        assertThat("Not found Why us page in the Talentbase site.",getDriver().getCurrentUrl(), containsString(ABOUT_PAGE));
         getDriver().get(HOME_PAGE);
     }
 
     @Test
     public void lowerHireTalentButtonTest() {
         pageContent().navigateLowerHireTalentPage();
-        assertThat("Not found Hire Talent page in the Talentbase site",getDriver().getCurrentUrl(), equalToIgnoringCase(HIRE_TALENT));
+        assertThat("Not found Hire Talent page in the Talentbase site",getDriver().getCurrentUrl(), containsString(HIRE_TALENT));
     }
 }

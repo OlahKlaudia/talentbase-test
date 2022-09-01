@@ -113,7 +113,7 @@ public class RegistrationHireTalentPage extends WebelementsPage {
         emailInput.sendKeys(EMAIL);
         passwordInput.sendKeys(PASSWORD);
         checkboxSelect.click();
-        registerCorporationButton.click();
+        button.click();
     }
     @Step("Hire Talent page,switch navigate link.")
     public TalentbasePage verifyLinksFunctionality(AsTalentLinksEnum element) {

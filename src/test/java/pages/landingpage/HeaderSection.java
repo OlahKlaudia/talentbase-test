@@ -15,32 +15,32 @@ public class HeaderSection extends TalentbasePage {
 
     @Step("Return header webelement,and assert header is visible.")
     public WebElement getHeaderIsVisible() {
-        return headerisvisible;
+        return headerIsVisible;
     }
 
     @Step("Click header menu item,return webelement,and assert header elements are visible.")
     public TalentbasePage clickHeaderElements(HeaderElementsEnum element) {
         switch (element) {
             case home:
-                homemenuitem.click();
+                homeMenuItem.click();
                 return new HomePage(driver);
             case talentbaseLogo:
-                talentbaselogomenuitem.click();
+                talentbaseLogoMenuItem.click();
                 return new HomePage(driver);
             case partnersAndInvestors:
-                partnersandinvestoritem.click();
+                partnersAndInvestorItem.click();
                 return new PartnersAndInvestorsPage(driver);
             case lookingForWork:
-                lookingforworkitem.click();
+                lookingForWorkItem.click();
                 return new LookingForWorkPage(driver);
             case about:
-                aboutitem.click();
+                aboutItem.click();
                 return new AboutPage(driver);
             case contact:
-                contactitem.click();
+                contactItem.click();
                 return new ContactPage(driver);
             case blog:
-                blogitem.click();
+                blogItem.click();
                 return new BlogPage(driver);
         }
         return null;

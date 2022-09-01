@@ -35,7 +35,7 @@ public class ForgotPassword extends WebelementsPage {
     @Step("Type valid email into the input field.")
     public void validEmail(){
         emailInput.sendKeys(EMAIL);
-        registerCorporationButton.click();
+        button.click();
         wait.until(ExpectedConditions.visibilityOf(popUpNextButton));
     }
     @Step("Get email error message text.")
