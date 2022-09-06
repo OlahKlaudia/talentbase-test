@@ -2,6 +2,7 @@ package pages.loginpage;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.registrationpage.WebelementsPage;
 
 public class LoginPage extends WebelementsPage {
@@ -13,6 +14,7 @@ public class LoginPage extends WebelementsPage {
     public void verifyAllInputIsBlank() {
         usernameInput.sendKeys(DELETE);
         passwordInput.sendKeys(DELETE);
+        usernameInput.click();
     }
 
     @Step("Click into the input field, and verify error message is available.")
@@ -26,11 +28,6 @@ public class LoginPage extends WebelementsPage {
         usernameInput.sendKeys(DELETE);
         passwordInput.sendKeys(WRONG_PASSWORD);
     }
-    @Step("Type valid email into the input fields.")
-    public void verifyValidCredentials() {
-        usernameInput.sendKeys(EMAIL);
-        passwordInput.sendKeys(PASSWORD);
-    }
     @Step("Type valid email into the input fields,and log in.")
     public void login() {
         usernameInput.sendKeys(USERNAME);
@@ -38,10 +35,11 @@ public class LoginPage extends WebelementsPage {
         button.click();
     }
     @Step("Type valid email into the input fields,and log in.")
-    public void loginHireTalent() {
+    public void loginHireTalent()  {
         usernameInput.sendKeys(USERNAME_AS_HIRE);
         passwordInput.sendKeys(PASSWORD);
         button.click();
+        wait.until(ExpectedConditions.elementToBeClickable(welcomeToTalentbaseText));
     }
     @Step("Click Sign up link.")
     public void signUpLink() {
@@ -51,5 +49,9 @@ public class LoginPage extends WebelementsPage {
     @Step("Get password error message text.")
     public String getPasswordErrorMessage() {
         return loginPasswordErrorMessage.getText();
+    }
+    @Step("Get password error message text.")
+    public String getUsernameErrorMessage() {
+        return usernameErrorMessage.getText();
     }
 }

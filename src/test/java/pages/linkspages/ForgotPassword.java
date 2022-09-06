@@ -42,5 +42,10 @@ public class ForgotPassword extends WebelementsPage {
     public String getEmailErrorMessage() {
         return forgotPasswordErrorMessage.getText();
     }
+    @Step("Empty email into the input field.")
+    public void emptyEmail(){
+        emailInput.click();
+        button.click();
+    }
 
 }

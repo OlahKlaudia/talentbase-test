@@ -43,4 +43,9 @@ public class VerifyPageContentTest extends TalentbaseTestBase {
         pageContent().navigateLowerHireTalentPage();
         assertThat("Not found Hire Talent page in the Talentbase site",getDriver().getCurrentUrl(), containsString(HIRE_TALENT));
     }
+    @Test
+    public void scrollToTopButtonTest() throws InterruptedException {
+        pageContent().waitButton();
+        assertThat("Not found Hire Talent page in the Talentbase site",pageContent().getHeader().isDisplayed());
+    }
 }

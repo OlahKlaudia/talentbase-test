@@ -11,29 +11,29 @@ public class SearchTheBasePage extends TalentbasePage {
     public SearchTheBasePage(WebDriver driver) {
         super(driver);
     }
+
     public static final String VALID_INPUT_JAVA = "java";
     public static final String VALID_INPUT_TWO = "Software";
     public static final String INVALID_INPUT = "jav";
 
-
-    @FindBy(css = "name=\"query\"")
+    @FindBy(css = "[name=\"query\"]")
     public WebElement inputSearch;
     @FindBy(css = ".MuiButton-root:nth-child(1)")
     public WebElement searchButton;
     @FindBy(css = ".MuiGrid-container img")
     public WebElement cantFindWhatLookingForImage;
-    //todo több elem
-    @FindBy(css = ".aos-init .MuiGrid-item svg:nth-child(3)")
+    @FindBy(css = ".MuiGrid-container a:first-child  [viewBox=\"0 0 20 20\"]")
     public WebElement like;
     @FindBy(css = ".aos-init .MuiGrid-item svg:nth-child(1)")
     public WebElement bookmarkResult;
-    @FindBy(css = ".aos-init .MuiGrid-item svg:nth-child(2)")
+    @FindBy(css = ".MuiGrid-container a:first-child .MuiGrid-container svg:nth-child(2)")
     public WebElement export;
     @FindBy(css = ".MuiButtonBase-root:nth-child(2)")
     public WebElement downloadExport;
-    @FindBy(css = ".MuiGrid-root:nth-child(3)  .MuiGrid-container:nth-child(1)")
+    @FindBy(css = ".MuiGrid-container a:first-child .aos-init")
     public WebElement resultUser;
-    @FindBy(css = "[viewBox=\"0 0 16 16\"]")
+    //no
+    @FindBy(css = ".MuiGrid-container a:first-child .MuiGrid-container svg:nth-child(1)")
     public WebElement bookmarkUser;
     @FindBy(css = ".aos-init button:nth-child(1)")
     public WebElement hireButton;
@@ -57,29 +57,66 @@ public class SearchTheBasePage extends TalentbasePage {
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(SEARCH_THE_BASE);
     }
-    public WebElement noResult(){
+
+    public WebElement getNoResult() {
         return cantFindWhatLookingForImage;
     }
-    public void validSearch(){
-        inputSearch.sendKeys(VALID_INPUT);
+    public String getLikeColor() {
+        return like.getAttribute("background-color");
+    }
+    public String getBookmarkColor() {
+        return bookmarkResult.getAttribute("background-color");
+    }
+    public String getUserBookmarkColor() {
+        return bookmarkUser.getAttribute("background-color");
+    }
+    public String getExportColor() {
+        return downloadExport.getAttribute("background-color");
+    }
+    public WebElement getNextButton() {
+        return nextButtonAlert;
+    }
+    public WebElement getContactNextButton() {
+        return contactButton;
+    }
+    public void navigateTheBase() {
+        action.moveToElement(baseLeftItem).perform();
+        wait.until(ExpectedConditions.elementToBeClickable(baseLeftItem)).click();
+    }
+
+    public void validSearch() {
+        inputSearch.sendKeys(VALID_INPUT_JAVA);
         action.sendKeys(Keys.ENTER).perform();
     }
-    public void invalidSearch(){
+
+    public void invalidSearch() {
         inputSearch.sendKeys(INVALID_INPUT);
         action.sendKeys(Keys.ENTER).perform();
     }
+
     public void result() {
         like.click();
         bookmarkResult.click();
         export.click();
+        action.moveToElement(downloadExport).perform();
         wait.until(ExpectedConditions.elementToBeClickable(downloadExport)).click();
+    }
+
+    public void bookmarkAssertion() {
         resultUser.click();
+        bookmarkUser.click();
+    }
+
+    public void hireTalent() {
         hireButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(nextButtonAlert)).click();
         wait.until(ExpectedConditions.elementToBeClickable(nextButtonAlert)).click();
+    }
+
+    public void contactTalent() {
         wait.until(ExpectedConditions.elementToBeClickable(contactButton)).click();
         wait.until(ExpectedConditions.elementToBeClickable(messageTextarea)).click();
-        messageTextarea.sendKeys(TalentbasePage.VALID_INPUT);
+        messageTextarea.sendKeys(VALID_INPUT);
         searchButton.click();
     }
 }

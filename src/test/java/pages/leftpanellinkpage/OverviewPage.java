@@ -1,31 +1,12 @@
 package pages.leftpanellinkpage;
 
-import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import mainbase.base.TalentbasePage;
 import mainbase.mainenum.LeftPanelElementsEnum;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.astalentpage.waitUntil;
-
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OverviewPage extends TalentbasePage {
     @FindBy(css = ".css-16khe3f svg")
@@ -44,8 +25,10 @@ public class OverviewPage extends TalentbasePage {
     private WebElement projectsOverview;
     @FindBy(css = ".MuiGrid-root:nth-child(2) svg:nth-child(1) g")
     private WebElement locationOverview;
-    @FindBy(css = ".MuiGrid-container:nth-child(4) svg:nth-child(2) ")
+    @FindBy(css = ".MuiGrid-container:nth-child(4) svg:nth-child(2)")
     private WebElement socialNetworkLinksOverview;
+    @FindBy(css = ".MuiGrid-container:nth-child(4) span")
+    private WebElement clickToSeeOverview;
     @FindBy(css = "div[data-aos=\"fade-left\"]:nth-child(6) svg g")
     private WebElement skillsOverview;
     @FindBy(css = "div[data-aos=\"fade-left\"]:nth-child(8) svg g")
@@ -57,6 +40,8 @@ public class OverviewPage extends TalentbasePage {
     private WebElement clickOverview;
     @FindBy(css = "[data-aos=\"fade-right\"]:nth-child(3) .MuiLink-underlineAlways")
     private WebElement exportProfileAsPdf;
+    @FindBy(css = "[data-aos=\"fade-right\"]:nth-child(3)  div[style=\"flex-grow: 1; margin-top: auto;\"] p")
+    private WebElement salaryHover;
     public static final String OVERVIEW = "/profile";
 
     @Override
@@ -78,37 +63,9 @@ public class OverviewPage extends TalentbasePage {
         exportProfileAsPdf.click();
     }
 
-
-    private static final String SCREENSHOT_FOLDER = "." + File.separator + "target" + File.separator +"download" + File.separator ;
-    public  boolean isFileDownloaded(String fileName,int iterations) throws Exception{
-        boolean flag = false;
-        File dir = new File(SCREENSHOT_FOLDER);
-
-
-        for(int waitForDownload=0;waitForDownload<iterations;waitForDownload++){
-            File[] dir_contents = dir.listFiles();
-            for (int i = 0; i < dir_contents.length; i++) {
-                if (dir_contents[i].getName().equals(fileName)){
-                    System.out.println("File"+fileName+"has downloaded");
-//                    Actions.log("[TestData]"+ IBrowser.downloadFolder+fileName+" exist.");
-//                    File deleteFile= new File(IBrowser.downloadFolder+fileName);
-//                    Actions.log("[TestData]"+IBrowser.downloadFolder+fileName+" deleted successfully.");
-                    return flag=true;
-                }
-            }
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-
-        }
-        return flag;
-    }
     public  waitUntil scroll(){return new   waitUntil(driver);}
-    @Step("Scroll down,wait footer visibility,return Page Object.")
-    public TalentbasePage clickOverviewElements(LeftPanelElementsEnum element) {//todo scroll down and click the elements
+    @Step("Scroll down,wait left panel items visibility,return Page Object.")
+    public TalentbasePage clickOverviewElements(LeftPanelElementsEnum element) {
         //todo export profile as PDF
         switch (element) {
             case accountDetails:
@@ -119,12 +76,10 @@ public class OverviewPage extends TalentbasePage {
                 return new IntroDescriptionPage(driver);
             case experience:
                 scroll().waitUntils();
-//                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(workingExperienceOverview)).click();
                 return new ExperiencePage(driver);
             case education:
                 scroll().waitUntils();
-//                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(educationOverview)).click();
                 return new EducationPage(driver);
             case skills:
@@ -132,27 +87,26 @@ public class OverviewPage extends TalentbasePage {
                 return new SkillsPage(driver);
             case language:
                 scroll().waitUntils();
-//                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
                 wait.until(ExpectedConditions.visibilityOf(languageOverview)).click();
                 return new LanguagePage(driver);
             case certificates:
                 scroll().waitUntils();
-//                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
                 wait.until(ExpectedConditions.visibilityOf(certificatesOverview)).click();
                 return new CertificatesPage(driver);
             case projects:
-                scroll().waitUntils();
-//                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
                 wait.until(ExpectedConditions.visibilityOf(projectsOverview)).click();
                 return new ProjectsPage(driver);
             case hobbies:
                 scroll().waitUntils();
-//                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
                 wait.until(ExpectedConditions.visibilityOf(hobbiesOverview)).click();
                 return new HobbiesPage(driver);
             case socialLinks:
                 wait.until(ExpectedConditions.elementToBeClickable(socialNetworkLinksOverview)).click();
                 return new SocialLinksPage(driver);
+            case click:
+                wait.until(ExpectedConditions.elementToBeClickable(clickToSeeOverview)).click();
+                return new OverviewPage(driver);
             case userTerms:
                 wait.until(ExpectedConditions.elementToBeClickable(userTermsOverview)).click();
                 return new UserTermsPage(driver);

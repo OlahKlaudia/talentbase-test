@@ -24,7 +24,7 @@ public class waitUntil extends TalentbasePage {
         wait.until(ExpectedConditions.elementToBeClickable(projectsLink));
     }
     public void waitUntils(){
-        action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+        action.sendKeys(Keys.PAGE_DOWN).perform();
     }
 
 

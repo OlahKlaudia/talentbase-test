@@ -63,9 +63,10 @@ public class LoginHeaderPage extends TalentbasePage {
                 action.moveToElement(blogItem).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(blogItem)).click();
                 return new BlogPage(driver);
-//            case notification:
-//                blogitem.click();
-//                return new OverviewPage(driver);
+            case notification:
+                notification.click();
+                wait.until(ExpectedConditions.elementToBeClickable(showAllNotification)).click();
+                return new NotificationPage(driver);
             case profile:
                 profileItem.click();
                 return new OverviewPage(driver);

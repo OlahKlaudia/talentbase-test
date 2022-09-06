@@ -18,7 +18,7 @@ public class ProjectsTest extends TalentbaseTestBase {
     public void navigateTalentbasePage() {
         HomePage homePage = navigateToTalentbasePage();
         homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginTest();
+        loginAsTalent().loginAsTalentTest();
         overviewPage();
         projectsPage().navigateProject();
     }
@@ -36,10 +36,9 @@ public class ProjectsTest extends TalentbaseTestBase {
     }
 
     @Test
-    public void projectsTest() {
+    public void projectsTest() throws InterruptedException {
         projectsPage().fillProjects();
         assertThat("Button is disable.", projectsPage().getColor(), containsString(ORANGE));
         projectsPage().waitButton();
-
     }
 }

@@ -1,6 +1,7 @@
 package tests.logintest;
 
 import mainbase.base.TalentbaseTestBase;
+import org.hamcrest.Matcher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.linkspages.HomePage;
@@ -37,4 +38,10 @@ public class ForgotPasswordTest extends TalentbaseTestBase {
         homePage().signInPage().forgotPasswordLink().validEmail();
         assertTrue(homePage().signInPage().forgotPasswordLink().getPopUpButton().isDisplayed(),"Pop-up button is not visible");
     }
+    @Test
+    public void blankEmailTest() {
+        homePage().signInPage().forgotPasswordLink().emptyEmail();
+        assertThat("Button is able.",homePage().signInPage().forgotPasswordLink().getColor(), equalToIgnoringCase(COLOR_GREY));
+    }
+
 }

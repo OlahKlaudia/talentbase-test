@@ -22,11 +22,7 @@ public class ContactTest extends TalentbaseTestBase {
     }
     public HomePage homePage(){return new HomePage(getDriver());}
     public ContactUsPage contactUsPage(){return new ContactUsPage(getDriver());}
-    @Test
-    public void navigateContactUsTest() {
-        homePage().partnersAndInvestorsPage();
-        contactUsPage().clickContactUsButton();
-    }
+
     @Test
     public void contactUsEmptyInputTest() {
         contactUsPage().emptyInputs();

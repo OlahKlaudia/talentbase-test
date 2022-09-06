@@ -43,6 +43,6 @@ public class EmailVerifyTest extends TalentbaseTestBase {
         assertThat("Wrong creditials.",emailPage().getActivateLink().isDisplayed());
         emailPage().activateButton();
         assertThat("Wrong creditials.", getDriver().getCurrentUrl(), containsString(HOME_PAGE));
-        //todo  error message is displayed
+        //  error message is displayed
     }
 }

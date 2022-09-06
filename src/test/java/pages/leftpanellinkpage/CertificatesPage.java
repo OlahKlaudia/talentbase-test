@@ -36,7 +36,8 @@ public class CertificatesPage extends TalentbasePage {
 
     public void navigateCertificates() {
         certificatesLink.click();
-        addPlus.click();
+        wait.until(ExpectedConditions.elementToBeClickable(addPlus)).click();
+//        addPlus.click();
     }
 
     public void fillCertificates() {
@@ -47,7 +48,19 @@ public class CertificatesPage extends TalentbasePage {
         wait.until(ExpectedConditions.elementToBeClickable(startDate)).click();
         wait.until(ExpectedConditions.elementToBeClickable(select2022)).click();
         wait.until(ExpectedConditions.elementToBeClickable(selectAug)).click();
-        //todo element is not clickable
-        saveSubmit.click();
+    }
+    public void waitButton() throws InterruptedException {
+        int maxWait = 1000 / 200;
+        int i = 1;
+        do {
+            try {
+                wait.until(ExpectedConditions.elementToBeClickable(saveSubmit)).click();
+                i++;
+                System.out.println("how many times it goes through the do while" + i);
+                break;
+            } catch (Exception e) {
+                Thread.sleep(200);
+            }
+        } while (i < maxWait);
     }
 }

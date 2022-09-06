@@ -15,7 +15,7 @@ public class ExperienceTest extends TalentbaseTestBase {
     public void navigateTalentbasePage() {
         HomePage homePage = navigateToTalentbasePage();
         homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginTest();
+        loginAsTalent().loginAsTalentTest();
         overviewPage();
         experiencePage().navigateWorkingExperience();
     }

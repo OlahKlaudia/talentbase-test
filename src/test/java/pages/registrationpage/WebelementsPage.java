@@ -53,7 +53,6 @@ public class WebelementsPage extends TalentbasePage {
     public WebElement passwordErrorMessage;
     @FindBy(css = ".MuiFormControl-root:nth-child(4) p")
     public WebElement loginPasswordErrorMessage;
-
     @FindBy(css = ".MuiFormControl-root:nth-child(2) p")
     public WebElement forgotPasswordErrorMessage;
 

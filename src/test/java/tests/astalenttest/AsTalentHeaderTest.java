@@ -10,14 +10,13 @@ import tests.logintest.SignInTest;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 public class AsTalentHeaderTest extends ProfileTestBase {
     @BeforeEach
     public void navigateTalentbasePage(){
         HomePage homePage=navigateToTalentbasePage();
         homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginTest();
+        loginAsTalent().loginAsTalentTest();
     }
     public SignInTest loginAsTalent(){return new SignInTest();}
     public LoginHeaderPage asTalentHeaderPage(){return new LoginHeaderPage(getDriver());}
@@ -55,6 +54,11 @@ public class AsTalentHeaderTest extends ProfileTestBase {
     public void blogLinkTest() {
         asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.blog);
         assertThat("Not found Blog link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(BLOG_PAGE));
+    }
+    @Test
+    public void notificationLinkTest() {
+        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.notification);
+        assertThat("Not found Blog link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(NOTIFICATIONS_PAGE));
     }
     @Test
     public void profileLinkTest() {

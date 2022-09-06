@@ -17,7 +17,7 @@ public class LeftPanelTest extends ProfileTestBase {
     public void navigateTalentbasePage(){
         HomePage homePage=navigateToTalentbasePage();
         homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginTest();
+        loginAsTalent().loginAsTalentTest();
     }
     public SignInTest loginAsTalent(){return new SignInTest();}
     public LeftPanelLinksPage leftPanelLinksPage(){return new LeftPanelLinksPage(getDriver());}

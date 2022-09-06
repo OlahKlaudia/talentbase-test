@@ -14,7 +14,7 @@ public class CertificatesTest extends TalentbaseTestBase {
     public void navigateTalentbasePage() {
         HomePage homePage = navigateToTalentbasePage();
         homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginTest();
+        loginAsTalent().loginAsTalentTest();
         overviewPage();
         certificatesPage().navigateCertificates();
     }
@@ -31,7 +31,8 @@ public class CertificatesTest extends TalentbaseTestBase {
         return new OverviewPage(getDriver());
     }
     @Test
-    public void certificatesTest() {
+    public void certificatesTest() throws InterruptedException {
       certificatesPage().fillCertificates();
+      certificatesPage().waitButton();
     }
 }

@@ -13,7 +13,7 @@ public class UserTermsTest extends TalentbaseTestBase {
     public void navigateTalentbasePage() {
         HomePage homePage = navigateToTalentbasePage();
         homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginTest();
+        loginAsTalent().loginAsTalentTest();
         overviewPage();
         userTermsPage().navigateUserTerms();
     }
@@ -31,8 +31,8 @@ public class UserTermsTest extends TalentbaseTestBase {
     }
 
     @Test
-    public void userTermsTest() {
+    public void userTermsTest() throws InterruptedException {
         userTermsPage().fillUserTerms();
-//        userTermsPage().currency();
+        userTermsPage().waitButton();
     }
 }

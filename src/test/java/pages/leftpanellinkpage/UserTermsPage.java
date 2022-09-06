@@ -5,9 +5,10 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class UserTermsPage extends TalentbasePage {
-    @FindBy(css = ".MuiFormControl-root")
+    @FindBy(css = "#mui-5")
     private WebElement currentStatus;
     @FindBy(css = "li[data-value=\"AVAILABLE\"]")
     private WebElement available;
@@ -17,12 +18,11 @@ public class UserTermsPage extends TalentbasePage {
     private WebElement hoursPerDay;
     @FindBy(css = "input[name='vacationDays']")
     private WebElement vacationDays;
-    @FindBy(css = "input[name='availability']")
+    @FindBy(css = "#mui-9")
     private WebElement availability;
-    //todo second parameters
-    @FindBy(css = "input[name=\"currency\"]")
+    @FindBy(css = "[aria-describedby=\"mui-10-helper-text\"] ")
     private WebElement currency;
-    @FindBy(css = "input[name='monthlySalary']")
+    @FindBy(css = "#mui-11")
     private WebElement monthlySalary;
     @FindBy(css = ".MuiSwitch-switchBase")
     private WebElement switchBrutoOrNeto;
@@ -56,22 +56,33 @@ public class UserTermsPage extends TalentbasePage {
         monthlySalary.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         availability.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
 
-        currentStatus.click();
-        available.click();
-//        wait.until(ExpectedConditions.elementToBeClickable(currentStatus)).click();
-//        wait.until(ExpectedConditions.elementToBeClickable(available)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(currentStatus)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(available)).click();
 
         daysPerWeek.sendKeys("5");
         hoursPerDay.sendKeys("8");
         vacationDays.sendKeys("20");
         availability.sendKeys("1");
-//        currency.click();
-//        usd.click();
-//        wait.until(ExpectedConditions.elementToBeClickable(currency)).click();
-//        wait.until(ExpectedConditions.elementToBeClickable(usd)).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(currency)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(usd)).click();
         monthlySalary.sendKeys("800");
         switchBrutoOrNeto.click();
-//        saveSubmit.click();
+    }
+    public void waitButton() throws InterruptedException {
+        int maxWait=1000/200;
+        int i=1;
+        do{
+            try {
+                wait.until(ExpectedConditions.elementToBeClickable(saveSubmit)).click();
+                i++;
+                System.out.println("how many times it goes through the do while"+i);
+                break;
+            }
+            catch(Exception e) {
+                Thread.sleep(200);
+            }
+        } while (i<maxWait);
     }
     public void currency(){
         currency.click();

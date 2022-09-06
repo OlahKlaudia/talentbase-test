@@ -34,6 +34,10 @@ public class TalentbasePage extends BasePage {
 
     @FindBy(css = "a[href='/blog']")
     public WebElement blogItem;
+    @FindBy(css = "span .clr-i-solid-path-1")
+    public WebElement notification;
+    @FindBy(css = ".MuiPaper-root .MuiMenuItem-gutters:nth-child(2) p")
+    public WebElement showAllNotification;
     @FindBy(css = "#app-header")
     public WebElement header;
 

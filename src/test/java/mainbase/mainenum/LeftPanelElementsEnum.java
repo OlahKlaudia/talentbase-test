@@ -13,6 +13,7 @@ public enum LeftPanelElementsEnum {
     projects,
     hobbies,
     socialLinks,
+    click,
     userTerms,
     evolution,
     searchTheBase,

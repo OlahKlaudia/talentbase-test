@@ -20,7 +20,7 @@ public class AccountDetailTest extends ProfileTestBase {
     public void navigateTalentbasePage() {
         HomePage homePage = navigateToTalentbasePage();
         homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginTest();
+        loginAsTalent().loginAsTalentTest();
         overviewPage();
         accountDetailsPage().navigateAccountDetails();
     }

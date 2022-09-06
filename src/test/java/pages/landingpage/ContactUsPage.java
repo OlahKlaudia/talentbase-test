@@ -49,10 +49,7 @@ public class ContactUsPage extends WebelementsPage {
         return messageError.getText();
     }
 
-    @Step("Click contact us button.")
-    public void clickContactUsButton() {
-        action.moveToElement(button).click().perform();
-    }
+
 
     @Step("Click into name, email, textarea field, to show up error messages.")
     public void emptyInputs() {

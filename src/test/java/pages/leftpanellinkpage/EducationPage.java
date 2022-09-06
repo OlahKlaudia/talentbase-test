@@ -1,7 +1,6 @@
 package pages.leftpanellinkpage;
 
 import mainbase.base.TalentbasePage;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -44,9 +43,20 @@ public class EducationPage extends TalentbasePage {
 
         employmentType.click();
         bachelor.click();
-
-        action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
-        wait.until(ExpectedConditions.elementToBeClickable(saveSubmit)).click();
+    }
+    public void waitButton() throws InterruptedException {
+        int maxWait = 1000 / 200;
+        int i = 1;
+        do {
+            try {
+                wait.until(ExpectedConditions.elementToBeClickable(saveSubmit)).click();
+                i++;
+                System.out.println("how many times it goes through the do while" + i);
+                break;
+            } catch (Exception e) {
+                Thread.sleep(200);
+            }
+        } while (i < maxWait);
     }
 
 }

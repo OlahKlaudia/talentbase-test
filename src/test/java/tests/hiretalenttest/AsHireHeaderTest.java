@@ -52,6 +52,11 @@ public class AsHireHeaderTest extends ProfileTestBase {
         assertThat("Not found Blog link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(BLOG_PAGE));
     }
     @Test
+    public void notificationLinkTest() {
+        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.notification);
+        assertThat("Not found Blog link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(NOTIFICATIONS_PAGE));
+    }
+    @Test
     public void baseLinkTest() {
         asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.base);
         assertThat("Not found Base link  in the Talentbase site.",getDriver().getCurrentUrl(), containsString(BASE));

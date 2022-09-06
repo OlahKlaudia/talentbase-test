@@ -3,16 +3,28 @@ package tests.logintest;
 import mainbase.base.TalentbaseTestBase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pages.leftpanellinkpage.OverviewPage;
+import pages.leftpanellinkpage.StartPage;
 import pages.linkspages.HomePage;
+import pages.loginpage.LoginPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 public class SignInTest extends TalentbaseTestBase {
     public HomePage homePage() {
         return new HomePage(getDriver());
     }
-
+    public LoginPage loginPage() {
+        return new LoginPage(getDriver());
+    }
+    public OverviewPage overviewPage() {
+        return new OverviewPage(getDriver());
+    }
+    public StartPage startPage() {
+        return new StartPage(getDriver());
+    }
     @BeforeEach
     public void navigateTalentbasePage() {
         navigateToTalentbasePage();
@@ -23,40 +35,38 @@ public class SignInTest extends TalentbaseTestBase {
     public void blankInputFieldTest() {
         homePage().signInPage().loginPage().verifyAllInputIsBlank();
         assertThat("Button is clickable.",homePage().signInPage().loginPage().getColor(), equalToIgnoringCase(COLOR_GREY));
+        assertThat("Missing error message.", loginPage().getUsernameErrorMessage(),containsString(ERROR_MESSAGE));
+        assertThat("Missing error message.", loginPage().getPasswordErrorMessage(),containsString(ERROR_MESSAGE));
     }
 
     @Test
-    public void buttondDisableTest() {
-        homePage().signInPage().loginPage().verifyButtonIsDisable();
-        assertThat(homePage().signInPage().loginPage().getColor(), equalToIgnoringCase(COLOR_GREY));
+    public void buttonDisableTest() {
+        loginPage().verifyButtonIsDisable();
+        assertThat("Button is able.",loginPage().getColor(), equalToIgnoringCase(COLOR_GREY));
     }
 
     @Test
     public void shortPasswordTest() {
-        homePage().signInPage().loginPage().verifyInvalidPassword();
-        assertThat(homePage().signInPage().loginPage().getPasswordErrorMessage(), equalToIgnoringCase(SHORT_PASSWORD_ERROR));
+        loginPage().verifyInvalidPassword();
+        assertThat("Missing short error message.",loginPage().getPasswordErrorMessage(), equalToIgnoringCase(SHORT_PASSWORD_ERROR));
     }
 
     @Test
-    public void validDataTest() {
-        homePage().signInPage().loginPage().verifyValidCredentials();
-        assertThat(homePage().signInPage().loginPage().getColor(), equalToIgnoringCase(COLOR_GREY));
-
-        //  assertTrue(homePage().signInPage().loginPage().getPopUpButton().isDisplayed(),"Pop-up button is not visible." );
+    public void loginHireTalentTest() {//todo assert start page
+        loginPage().loginHireTalent();
+        startPage();
+//        assertThat("Login failed.",getDriver().getCurrentUrl(), containsString(START_PAGE));
     }
 
     @Test
     public void signUpLinkTest() {
-        homePage().signInPage().loginPage().signUpLink();
-        assertThat(getDriver().getCurrentUrl(), equalToIgnoringCase(SIGN_UP));
+        loginPage().signUpLink();
+        assertThat("Login failed.",getDriver().getCurrentUrl(), containsString(SIGN_UP));
     }
     @Test
-    public void loginTest() {
-        homePage().signInPage().loginPage().login();
-    }
-    @Test
-    public void loginHireTalentTest() {
-        homePage().signInPage().loginPage().loginHireTalent();
-    }
+    public void loginAsTalentTest() {
+        loginPage().login();
+        overviewPage();
+        assertThat("Login failed.",getDriver().getCurrentUrl(), containsString(OVERVIEW)); }
 }
 

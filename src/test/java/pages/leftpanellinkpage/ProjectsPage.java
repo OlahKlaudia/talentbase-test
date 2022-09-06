@@ -30,14 +30,18 @@ public class ProjectsPage extends TalentbasePage {
     @Override
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(PROJECT);
+
     }
+
     public ProjectsPage(WebDriver driver) {
         super(driver);
     }
-    public void navigateProject(){
+
+    public void navigateProject() {
         projectsLink.click();
         addPlus.click();
     }
+
     public void fillProjects() {
         name.sendKeys(VALID_INPUT);
         linkToProject.sendKeys(TALENTBASE_URL);
@@ -45,11 +49,22 @@ public class ProjectsPage extends TalentbasePage {
         additionalLinkUrl.sendKeys(TALENTBASE_URL);
         description.click();
     }
-    public void waitButton() {
-        //todo element is not clickable
-        wait.until(ExpectedConditions.visibilityOf(footer)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(saveSubmit)).click();
+
+    public void waitButton() throws InterruptedException {
+        int maxWait = 1000 / 200;
+        int i = 1;
+        do {
+            try {
+                wait.until(ExpectedConditions.elementToBeClickable(saveSubmit)).click();
+                i++;
+                System.out.println("how many times it goes through the do while" + i);
+                break;
+            } catch (Exception e) {
+                Thread.sleep(200);
+            }
+        } while (i < maxWait);
     }
+
     @Step("Get button background color.")
     public String getColor() {
         wait.until(ExpectedConditions.elementToBeClickable(saveSubmit));

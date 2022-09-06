@@ -18,6 +18,8 @@ public class PageContentPage extends TalentbasePage {
 
     @FindBy(css = "section a:nth-child(2)")
     private WebElement whyUsLink;
+    @FindBy(css = "button .MuiSvgIcon-root")
+    private WebElement scrollTop;
 
     public PageContentPage(WebDriver driver) {
         super(driver);
@@ -30,14 +32,12 @@ public class PageContentPage extends TalentbasePage {
         wait.until(ExpectedConditions.visibilityOf(upperHireTalentButton));
         action.moveToElement(upperHireTalentButton).click().perform();
 
-//        upperHireTalentButton.click();
     }
     @Step("Click why Us link")
     public void navigateWhyUsPage(){
         action.sendKeys(Keys.PAGE_DOWN).build().perform();
         wait.until(ExpectedConditions.visibilityOf(whyUsLink));
         action.moveToElement(whyUsLink).click().perform();
-//        whyUsLink.click();
     }
     @Step("Scroll down and click lower Hire Talent button.")
     public void navigateLowerHireTalentPage(){
@@ -45,5 +45,24 @@ public class PageContentPage extends TalentbasePage {
 
         wait.until(ExpectedConditions.visibilityOf(lowerHireTalentButton));
         lowerHireTalentButton.click();
+    }
+    @Step("Scroll down and click scroll to the top button button.")
+    public void waitButton() throws InterruptedException {
+        action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+        int maxWait = 1000 / 200;
+        int i = 1;
+        do {
+            try {
+                wait.until(ExpectedConditions.elementToBeClickable(scrollTop)).click();
+                i++;
+                System.out.println("how many times it goes through the do while" + i);
+                break;
+            } catch (Exception e) {
+                Thread.sleep(200);
+            }
+        } while (i < maxWait);
+    }
+    public WebElement getHeader(){
+        return header;
     }
 }

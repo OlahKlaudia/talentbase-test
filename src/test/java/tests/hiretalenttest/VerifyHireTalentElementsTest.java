@@ -9,7 +9,7 @@ import pages.linkspages.HomePage;
 import tests.logintest.SignInTest;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
+import static org.hamcrest.Matchers.containsString;
 
 public class VerifyHireTalentElementsTest extends TalentbaseTestBase {
 
@@ -29,22 +29,22 @@ public class VerifyHireTalentElementsTest extends TalentbaseTestBase {
     @Test
     public void startLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.start);
-        assertThat("Not found Start link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(START_PAGE));
+        assertThat("Not found Start link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(START_PAGE));
     }
     @Test
     public void accountLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.accountDetails);
-        assertThat("Not found Account Details link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(ACCOUNT_PAGE));
+        assertThat("Not found Account Details link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(ACCOUNT_PAGE));
     }
     @Test
     public void searchTheBaseLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.searchTheBase);
         leftPanelLinksPage();
-        assertThat("Not found Search the base link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(SEARCH_THE_BASE_PAGE));
+        assertThat("Not found Search the base link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(SEARCH_THE_BASE_PAGE));
     }
     @Test
     public void myBaseLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.myBase);
-        assertThat("Not found My base link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(MY_BASE_PAGE));
+        assertThat("Not found My base link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(MY_BASE_PAGE));
     }
 }

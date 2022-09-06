@@ -13,7 +13,7 @@ public class EducationTest extends TalentbaseTestBase {
     public void navigateTalentbasePage() {
         HomePage homePage = navigateToTalentbasePage();
         homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginTest();
+        loginAsTalent().loginAsTalentTest();
         overviewPage();
         educationPage().navigateEducationPage();
     }
@@ -30,7 +30,8 @@ public class EducationTest extends TalentbaseTestBase {
         return new OverviewPage(getDriver());
     }
     @Test
-    public void educationTest() {
+    public void educationTest() throws InterruptedException {
         educationPage().fillEducation();
+        educationPage().waitButton();
     }
 }

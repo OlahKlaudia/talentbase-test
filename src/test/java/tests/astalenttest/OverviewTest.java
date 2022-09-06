@@ -5,6 +5,7 @@ import mainbase.mainenum.LeftPanelElementsEnum;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;
+import pages.hiretalentpage.DownloadFile;
 import pages.leftpanellinkpage.OverviewPage;
 import pages.linkspages.HomePage;
 import tests.logintest.SignInTest;
@@ -17,7 +18,7 @@ public class OverviewTest extends ProfileTestBase {
     public void navigateTalentbasePage(){
         HomePage homePage=navigateToTalentbasePage();
         homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginTest();
+        loginAsTalent().loginAsTalentTest();
     }
     public SignInTest loginAsTalent(){return new SignInTest();}
     public OverviewPage overviewPage(){return new OverviewPage(getDriver());}
@@ -68,6 +69,11 @@ public class OverviewTest extends ProfileTestBase {
         assertThat("Not found Social Link link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(SOCIAL_LINK));
     }
     @Test
+    public void clickToSeeOverviewTest() {//todo assertion missing
+        overviewPage().clickOverviewElements(LeftPanelElementsEnum.click);
+//        assertThat("Not found Social Link link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(SOCIAL_LINK));
+    }
+    @Test
     public void skillsOverviewTest() {
         overviewPage().clickOverviewElements(LeftPanelElementsEnum.skills);
         assertThat("Not found Skills link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(SKILLS));
@@ -82,10 +88,17 @@ public class OverviewTest extends ProfileTestBase {
         overviewPage().clickOverviewElements(LeftPanelElementsEnum.hobbies);
         assertThat("Not found Hobbies link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(HOBBIES));
     }
+    public DownloadFile downloadFile(){return new DownloadFile(getDriver());}
     @Test
     public void downloadProfilePdfTest() throws Exception {
         overviewPage().clickExportProfile();
-        overviewPage().isFileDownloaded("filename.pdf",10);
+        downloadFile().getDownloadedFiles();
+        downloadFile().isFileInDownloads("Filename");
+
+
+
+//       overviewPage().isFileDownloaded(FILE_FOLDER,"filename");
+//        overviewPage().isFileDownloaded("filename.pdf",10);
     }
 
 }

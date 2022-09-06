@@ -10,6 +10,7 @@ public class TalentbaseTestBase extends TestBase {
     public static final String ABOUT_PAGE = "/about";
     public static final String CONTACT_PAGE = "/contact";
     public static final String BLOG_PAGE = "/blog";
+    public static final String NOTIFICATIONS_PAGE = "/notifications";
     public static final String START_PAGE = "/corp/start";
     public static final String ACCOUNT_PAGE = "/corp/account";
     public static final String SEARCH_THE_BASE_PAGE = "/corp/base";
@@ -17,6 +18,7 @@ public class TalentbaseTestBase extends TestBase {
     public static final String HIRE_TALENT = "/hire-talent";
     public static final String SIGN_UP = "/register";
     public static final String LOGIN = "/login";
+    public static final String OVERVIEW = "/profile";
     public static final String OUR_POLICY = "/privacyPolicy";
     public static final String WEBSITE_TERMS = "/termsOfService";
     public static final String LINKEDIN = "https://www.linkedin.com/company/talentbasesavicsoft";
@@ -32,7 +34,7 @@ public class TalentbaseTestBase extends TestBase {
     public static final String INVALID_EMAIL_ERROR = "Please enter a valid email address";
     public static final String SHORT_PASSWORD_ERROR = "Password must be at least 8 characters long.";
     public static final String LONG_PASSWORD_ERROR = "Password can't be longer than 100 characters.";
-    public static final String ERROR_MESSAGE = "is required.";
+    public static final String ERROR_MESSAGE = "is required";
 
     public HomePage navigateToTalentbasePage(){
         getDriver().get(TALENTBASE);
