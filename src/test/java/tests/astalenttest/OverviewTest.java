@@ -11,6 +11,7 @@ import pages.linkspages.HomePage;
 import tests.logintest.SignInTest;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 public class OverviewTest extends ProfileTestBase {
@@ -22,6 +23,7 @@ public class OverviewTest extends ProfileTestBase {
     }
     public SignInTest loginAsTalent(){return new SignInTest();}
     public OverviewPage overviewPage(){return new OverviewPage(getDriver());}
+    public DownloadFile downloadFile(){return new DownloadFile(getDriver());}
 
     @Test
     public void contractAdministratorOverviewTest() {
@@ -88,17 +90,21 @@ public class OverviewTest extends ProfileTestBase {
         overviewPage().clickOverviewElements(LeftPanelElementsEnum.hobbies);
         assertThat("Not found Hobbies link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(HOBBIES));
     }
-    public DownloadFile downloadFile(){return new DownloadFile(getDriver());}
+    @Test
+    public void hoverOverviewTest() {
+        overviewPage().hoverSalary();
+        assertThat("Not found hover when move to element above salary button.",overviewPage().hoverSalary(),containsString("The salary that is displayed is the one that you have set for yourself. You can change it in your profile."));
+    }
+
     @Test
     public void downloadProfilePdfTest() throws Exception {
         overviewPage().clickExportProfile();
-        downloadFile().getDownloadedFiles();
-        downloadFile().isFileInDownloads("Filename");
 
+        downloadFile().isFileDownloaded();
+        downloadFile().getDownloadedFilesPath();
+        downloadFile().isFileGreaterThanZero();
 
-
-//       overviewPage().isFileDownloaded(FILE_FOLDER,"filename");
-//        overviewPage().isFileDownloaded("filename.pdf",10);
+        assertThat("Not found Hobbies link in the Talentbase site.",downloadFile().getDownloadedFilesPath(),containsString(".pdf"));
+        downloadFile().cleanupDownloads();
     }
-
 }

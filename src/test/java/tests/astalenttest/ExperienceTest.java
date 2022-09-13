@@ -1,5 +1,6 @@
 package tests.astalenttest;
 
+import mainbase.base.ProfileTestBase;
 import mainbase.base.TalentbaseTestBase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,9 +9,12 @@ import pages.leftpanellinkpage.OverviewPage;
 import pages.linkspages.HomePage;
 import tests.logintest.SignInTest;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalToIgnoringCase;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ExperienceTest extends TalentbaseTestBase {
+public class ExperienceTest extends ProfileTestBase {
     @BeforeEach
     public void navigateTalentbasePage() {
         HomePage homePage = navigateToTalentbasePage();
@@ -50,5 +54,14 @@ public class ExperienceTest extends TalentbaseTestBase {
     public void workingExperienceTest() {
         experiencePage().fillWorkingExperience();
     }
-
+    @Test
+    public void blankFieldWorkingExperienceTest() {
+        experiencePage().blankFieldsWorkingExperience();
+        assertThat("Button is able.",experiencePage().getColor(), equalToIgnoringCase(GREY));
+    }
+    @Test
+    public void clickStillWorkHereCheckboxTest() {
+        experiencePage().verifyCheckbox();
+        assertFalse(experiencePage().verifyCheckbox().isDisplayed());
+    }
 }

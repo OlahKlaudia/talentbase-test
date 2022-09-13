@@ -1,6 +1,6 @@
 package tests.astalenttest;
 
-import mainbase.base.TalentbaseTestBase;
+import mainbase.base.ProfileTestBase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.leftpanellinkpage.CertificatesPage;
@@ -8,7 +8,10 @@ import pages.leftpanellinkpage.OverviewPage;
 import pages.linkspages.HomePage;
 import tests.logintest.SignInTest;
 
-public class CertificatesTest extends TalentbaseTestBase {
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalToIgnoringCase;
+
+public class CertificatesTest extends ProfileTestBase {
 
     @BeforeEach
     public void navigateTalentbasePage() {
@@ -34,5 +37,10 @@ public class CertificatesTest extends TalentbaseTestBase {
     public void certificatesTest() throws InterruptedException {
       certificatesPage().fillCertificates();
       certificatesPage().waitButton();
+    }
+    @Test
+    public void blankFieldCertificatesTest() {
+        certificatesPage().blankFields();
+        assertThat("Button is able.",certificatesPage().getColor(), equalToIgnoringCase(GREY));
     }
 }

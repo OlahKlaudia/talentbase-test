@@ -10,6 +10,7 @@ import tests.logintest.SignInTest;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
+import static org.testng.AssertJUnit.assertFalse;
 
 public class VerifyHireTalentElementsTest extends TalentbaseTestBase {
 
@@ -46,5 +47,10 @@ public class VerifyHireTalentElementsTest extends TalentbaseTestBase {
     public void myBaseLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.myBase);
         assertThat("Not found My base link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(MY_BASE_PAGE));
+    }
+    @Test
+    public void closeLeftPanelTest() {
+        leftPanelLinksPage().closeLeftPanel();
+        assertFalse("Left panel it didn't close.",leftPanelLinksPage().getUsername().contains("KLAUDIA"));
     }
 }

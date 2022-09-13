@@ -2,6 +2,7 @@ package pages.leftpanellinkpage;
 
 import io.qameta.allure.Step;
 import mainbase.base.TalentbasePage;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -69,5 +70,10 @@ public class ProjectsPage extends TalentbasePage {
     public String getColor() {
         wait.until(ExpectedConditions.elementToBeClickable(saveSubmit));
         return saveSubmit.getCssValue("background-color");
+    }
+    public void blankFields() {
+        name.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        linkToProject.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        additionalLinkUrl.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
     }
 }

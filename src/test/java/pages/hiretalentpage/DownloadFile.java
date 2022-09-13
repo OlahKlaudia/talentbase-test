@@ -4,16 +4,18 @@ import mainbase.base.TalentbasePage;
 import org.openqa.selenium.WebDriver;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class DownloadFile extends TalentbasePage {
     public DownloadFile(WebDriver driver) {
         super(driver);
     }
 
-//    private static final String FILE_FOLDER = "." + File.separator + "target" + File.separator + "download" + File.separator;
+    private static final String FILE_FOLDER = "C" + File.separator + "Users" + File.separator + "olahk" + File.separator + "Downloads" + File.separator;
 
-    //    private static final String PATH = "C:\Users\olahk\Downloads" ;
     public static String getAppPath(String relPath) {
         String path = new File(relPath).getAbsolutePath();
         return path;
@@ -21,7 +23,58 @@ public class DownloadFile extends TalentbasePage {
 
     public static String getDownloadPath() {
         return getAppPath("C:\\Users\\olahk\\Downloads\\");
+    }
 
+    public boolean isFileDownloaded() throws Exception {
+        final int SLEEP_TIME_MILLIS = 100;
+        File file = new File(getDownloadedFilesPath());
+        final int timeout = 60 * SLEEP_TIME_MILLIS;
+        int timeElapsed = 0;
+        while (timeElapsed < timeout) {
+            if (file.exists()) {
+//                System.out.println(getDownloadedFiles() + " is present");
+                return true;
+            } else {
+                timeElapsed += SLEEP_TIME_MILLIS;
+                Thread.sleep(SLEEP_TIME_MILLIS);
+            }
+        }
+        return false;
+    }
+
+    public File[] getDownloadedFiles() {
+        File downloadPath = new File(getDownloadPath());
+        File[] files = downloadPath.listFiles();
+//        System.out.println("get Downloads" + files);
+        return files;
+    }
+
+    public String getDownloadedFilesPath() {//párhuzamos futtatásnál problémába ütközhet
+        File folder = new File(getDownloadPath());
+        File[] listOfFiles = folder.listFiles();
+        String fileName = "";
+        int i;
+        for (i = 0; i < listOfFiles.length; i++) {
+            fileName = listOfFiles[i].getName();
+            System.out.println("get Downloads" + fileName);
+
+        }
+
+        Arrays.sort(listOfFiles, Comparator.comparingLong(File::lastModified));
+        System.out.println("Get Downloads last: " + listOfFiles[i-1].lastModified());
+
+        java.util.Date time=new java.util.Date((long)listOfFiles[i-1].lastModified()*1000);
+        System.out.println("Last modified file: " + time +" "+ listOfFiles[i-1].getName());
+        return time+listOfFiles[i-1].getName();
+    }
+
+    public boolean isFileGreaterThanZero() {
+        long fileSize = getDownloadedFilesPath().length();
+        if (fileSize > 0)
+            System.out.println("File Greater than 0");
+        else
+            System.out.println("File LessThanEqual to 0");
+        return false;
     }
 
     public void cleanupDownloads() {
@@ -29,43 +82,5 @@ public class DownloadFile extends TalentbasePage {
             System.out.println("Delete" + f);
             f.delete();
         }
-    }
-
-    public File[] getDownloadedFiles() {
-        File downloadPath = new File(getDownloadPath());
-        File[] files = downloadPath.listFiles();
-        System.out.println("getDownloads");
-        //LOGGER.debug("Downloaded files: $files")
-        return files;
-
-    }
-    public boolean isFileInDownloads(String fileName) {
-        try {
-            Process exec = Runtime.getRuntime().exec(fileName);
-            int exitVal = exec.waitFor();
-            System.out.println("Exit value: " + exitVal);
-        } catch (InterruptedException | IOException ex) {
-            System.out.println(ex.toString());
-        }
-//        waitFor(timeout) {
-//            getDownloadedFiles().collect { it.name }.contains(fileName);
-//        }
-        return false;
-    }
-
-
-    //
-    public File getDownloadedFileWithName(String fileName) {
-        String path = getDownloadPath() + File.separatorChar + fileName;
-        return new File(path);
-    }
-
-    public boolean cleanupFileWithName(String fileName) {
-        System.out.println("Deleting file:" + fileName);
-//        LOGGER.debug("Deleting file: ${fileName}");
-        boolean isDeleted = getDownloadedFileWithName(fileName).delete();
-        System.out.println("File deleted:" + fileName);
-//        LOGGER.debug("File deleted: ${path}");
-        return isDeleted;
     }
 }

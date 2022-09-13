@@ -9,6 +9,7 @@ import pages.linkspages.HomePage;
 import tests.logintest.SignInTest;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 public class AccountDetailTest extends ProfileTestBase {
@@ -16,6 +17,7 @@ public class AccountDetailTest extends ProfileTestBase {
     public static final String INVALID_PHONE_NUMBER = "Phone number format invalid.";
     public static final String INVALID_ZIPCODE = "Zipcode only accepts numeric characters";
     public static final String LONG_ZIPCODE = "Zipcode cannot be longer than 20 character.";
+
     @BeforeEach
     public void navigateTalentbasePage() {
         HomePage homePage = navigateToTalentbasePage();
@@ -34,26 +36,36 @@ public class AccountDetailTest extends ProfileTestBase {
     }
 
     @Test
-    public void shortPhoneNumber() {
+    public void shortPhoneNumberTest() {
         accountDetailsPage().shortPhoneNumber();
         assertThat(accountDetailsPage().getShortPhoneNumberText(), equalToIgnoringCase(SHORT_PHONE_NUMBER));
     }
 
     @Test
-    public void invalidPhoneNumber() {
+    public void invalidPhoneNumberTest() {
         accountDetailsPage().invalidPhoneNumber();
         assertThat(accountDetailsPage().getShortPhoneNumberText(), equalToIgnoringCase(INVALID_PHONE_NUMBER));
     }
 
     @Test
-    public void invalidZipCode() {
+    public void invalidZipCodeTest() {
         accountDetailsPage().invalidZipCode();
         assertThat(accountDetailsPage().getZipCodeText(), equalToIgnoringCase(INVALID_ZIPCODE));
     }
 
     @Test
-    public void longZipCode() {
+    public void longZipCodeTest() {
         accountDetailsPage().longZipCode();
         assertThat(accountDetailsPage().getZipCodeText(), equalToIgnoringCase(LONG_ZIPCODE));
+    }
+    @Test
+    public void buttonDisableTest() {
+        accountDetailsPage().blankFields();
+        assertThat(accountDetailsPage().getButtonColor(), equalToIgnoringCase(GREY));
+    }
+    @Test
+    public void uploadImageTest() {
+        accountDetailsPage().uploadImage();
+        assertThat("Image is not uploaded",accountDetailsPage().uploadImage(),containsString("talentbase.com"));
     }
 }

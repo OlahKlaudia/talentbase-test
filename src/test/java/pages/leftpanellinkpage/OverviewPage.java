@@ -40,8 +40,9 @@ public class OverviewPage extends TalentbasePage {
     private WebElement clickOverview;
     @FindBy(css = "[data-aos=\"fade-right\"]:nth-child(3) .MuiLink-underlineAlways")
     private WebElement exportProfileAsPdf;
-    @FindBy(css = "[data-aos=\"fade-right\"]:nth-child(3)  div[style=\"flex-grow: 1; margin-top: auto;\"] p")
+    @FindBy(css = ".MuiTooltip-popper")
     private WebElement salaryHover;
+
     public static final String OVERVIEW = "/profile";
 
     @Override
@@ -59,9 +60,14 @@ public class OverviewPage extends TalentbasePage {
         super(driver);
     }
 
-    public void clickExportProfile(){
+    public void clickExportProfile() throws Exception {
         exportProfileAsPdf.click();
     }
+    public String hoverSalary() {
+        action.moveToElement(salaryHover).click().perform();
+        return salaryHover.getText();
+    }
+
 
     public  waitUntil scroll(){return new   waitUntil(driver);}
     @Step("Scroll down,wait left panel items visibility,return Page Object.")

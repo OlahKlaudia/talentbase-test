@@ -5,6 +5,7 @@ import mainbase.base.TalentbasePage;
 import mainbase.mainenum.LeftPanelElementsEnum;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.leftpanellinkpage.*;
@@ -16,14 +17,25 @@ public class LeftPanelLinksPage extends TalentbasePage {
     public LeftPanelLinksPage(WebDriver driver) {
         super(driver);
     }
+
     @Override
     protected void load() {
 
     }
+
     public static final String OVERVIEW = "/profile";
+
     @Override
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(OVERVIEW);
+    }
+
+    public void closeLeftPanel() {
+        closeLeftPanel.click();
+        wait.until(ExpectedConditions.invisibilityOf(usernameParagraphLeftPanel));    }
+
+    public WebElement getUsername() {
+        return usernameParagraphLeftPanel;
     }
 
     @Step("Click left panel elements,and return Page Object.")

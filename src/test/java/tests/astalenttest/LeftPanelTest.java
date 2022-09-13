@@ -10,6 +10,7 @@ import tests.logintest.SignInTest;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
+import static org.testng.AssertJUnit.assertFalse;
 
 
 public class LeftPanelTest extends ProfileTestBase {
@@ -91,5 +92,9 @@ public class LeftPanelTest extends ProfileTestBase {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.evolution);
         assertThat("Not found Experience link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(EVOLUTION));
     }
-
+    @Test
+    public void closeLeftPanelTest() {
+        leftPanelLinksPage().closeLeftPanel();
+        assertFalse("Left panel it didn't close.",leftPanelLinksPage().getUsername().isDisplayed());
+    }
 }

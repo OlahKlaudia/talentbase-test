@@ -88,4 +88,11 @@ public class UserTermsPage extends TalentbasePage {
         currency.click();
         usd.click();
     }
+    public void blankFields() {
+        daysPerWeek.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        hoursPerDay.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        vacationDays.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        availability.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        monthlySalary.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+    }
 }

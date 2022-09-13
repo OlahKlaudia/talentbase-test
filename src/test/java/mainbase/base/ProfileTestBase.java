@@ -20,4 +20,5 @@ public class ProfileTestBase extends TalentbaseTestBase{
 //    public static final String SIGN_OUT = "https://dev.thetalentbase.com/profile/start";
     public static final String HIRE_SIGN_OUT = "thetalentbase.com/";
     public static final String COLOR_RED = "rgba(211, 47, 47, 1)";
+    public static final String GREY = "rgba(0, 0, 0, 0.12)";
 }

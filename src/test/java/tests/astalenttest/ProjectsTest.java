@@ -1,6 +1,6 @@
 package tests.astalenttest;
 
-import mainbase.base.TalentbaseTestBase;
+import mainbase.base.ProfileTestBase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.leftpanellinkpage.OverviewPage;
@@ -10,8 +10,9 @@ import tests.logintest.SignInTest;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalToIgnoringCase;
 
-public class ProjectsTest extends TalentbaseTestBase {
+public class ProjectsTest extends ProfileTestBase {
     public static final String ORANGE = "rgba(241, 84, 18, 1)";
 
     @BeforeEach
@@ -40,5 +41,10 @@ public class ProjectsTest extends TalentbaseTestBase {
         projectsPage().fillProjects();
         assertThat("Button is disable.", projectsPage().getColor(), containsString(ORANGE));
         projectsPage().waitButton();
+    }
+    @Test
+    public void blankFieldProjectTest() {
+        projectsPage().blankFields();
+        assertThat("Button is able.",projectsPage().getColor(), equalToIgnoringCase(GREY));
     }
 }

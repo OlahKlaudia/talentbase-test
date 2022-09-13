@@ -1,6 +1,7 @@
 package pages.leftpanellinkpage;
 
 import mainbase.base.TalentbasePage;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -58,5 +59,8 @@ public class EducationPage extends TalentbasePage {
             }
         } while (i < maxWait);
     }
-
+    public void blankFields() {
+        school.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        fieldOfStudy.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+    }
 }

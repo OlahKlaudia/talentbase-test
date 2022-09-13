@@ -18,7 +18,8 @@ public class ExperiencePage extends TalentbasePage {
     private WebElement inputLocation;
     @FindBy(css = ".MuiOutlinedInput-root input[name='companyName']")
     private WebElement companyName;
-
+    @FindBy(css = ".MuiOutlinedInput-root .Mui-disabled")
+    private WebElement endDate;
 
 
     @Override
@@ -87,5 +88,17 @@ public class ExperiencePage extends TalentbasePage {
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
         wait.until(ExpectedConditions.elementToBeClickable(saveSubmit)).click();
     }
-
+    public void blankFieldsWorkingExperience() {
+        inputTitle.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        inputLocation.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        companyName.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        inputTitle.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        inputLocation.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        companyName.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        employmentType.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+    }
+    public WebElement verifyCheckbox() {
+        checkBox.click();
+        return endDate;
+    }
 }

@@ -1,8 +1,10 @@
 package mainbase.base;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class TalentbasePage extends BasePage {
     @FindBy(css = "#app-header")
@@ -130,6 +132,10 @@ public class TalentbasePage extends BasePage {
     public WebElement talentLeftItem;
     @FindBy(css = ".MuiTypography-h3")
     public WebElement welcomeToTalentbaseText;
+    @FindBy(css = ".MuiBox-root:nth-child(1) svg[viewBox=\"0 0 24 24\"]")
+    public WebElement closeLeftPanel;
+    @FindBy(css = ".MuiBox-root:nth-child(3) .MuiTypography-root")
+    public WebElement usernameParagraphLeftPanel;
     public static final String TALENTBASE_URL = "https://dev.thetalentbase.com/";
     public static final String LONG_CHAR = "mSLsbjtFEnwbhVxZTJgNhq4pe7t6pnciex3XFSYOYWDAjXKRn5ymSLsbjtFEnwbhVxZTJgNhq4pe7t6pnciex3XFSYOYWDAjXKRn5y";
     public static final String VALID_INPUT = "Test";
@@ -144,5 +150,9 @@ public class TalentbasePage extends BasePage {
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(TALENTBASE_URL);
     }
-
+    @Step("Get button background color.")
+    public String getColor() {
+        wait.until(ExpectedConditions.visibilityOf(saveSubmit));
+        return saveSubmit.getCssValue("background-color");
+    }
 }

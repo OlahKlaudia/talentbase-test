@@ -63,4 +63,9 @@ public class CertificatesPage extends TalentbasePage {
             }
         } while (i < maxWait);
     }
+    public void blankFields() {
+        nameOfCertificate.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        institution.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        field.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+    }
 }
