@@ -2,10 +2,9 @@ package pages.loginpage;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.registrationpage.WebelementsPage;
+import pages.registrationpage.InputElementsPage;
 
-public class LoginPage extends WebelementsPage {
+public class LoginPage extends InputElementsPage {
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -39,7 +38,6 @@ public class LoginPage extends WebelementsPage {
         usernameInput.sendKeys(USERNAME_AS_HIRE);
         passwordInput.sendKeys(PASSWORD);
         button.click();
-        wait.until(ExpectedConditions.elementToBeClickable(welcomeToTalentbaseText));
     }
     @Step("Click Sign up link.")
     public void signUpLink() {
@@ -54,4 +52,6 @@ public class LoginPage extends WebelementsPage {
     public String getUsernameErrorMessage() {
         return usernameErrorMessage.getText();
     }
+
+
 }

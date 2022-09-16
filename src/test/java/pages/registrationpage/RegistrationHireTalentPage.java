@@ -1,20 +1,20 @@
 package pages.registrationpage;
 
 import io.qameta.allure.Step;
-import mainbase.base.TalentbasePage;
+import mainbase.basepage.TalentbaseLandingPage;
 import mainbase.mainenum.AsTalentLinksEnum;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.linkspages.ApplyAsTalentPage;
-import pages.linkspages.OurPolicyPage;
-import pages.linkspages.SignInPage;
-import pages.linkspages.WebsiteTermsPage;
+import pages.headerlinks.ApplyAsTalentPage;
+import pages.footerlinkspages.OurPolicyPage;
+import pages.headerlinks.SignInPage;
+import pages.footerlinkspages.WebsiteTermsPage;
 
 import java.time.Duration;
 
-public class RegistrationHireTalentPage extends WebelementsPage {
+public class RegistrationHireTalentPage extends InputElementsPage {
 
     public RegistrationHireTalentPage(WebDriver driver) {
         super(driver);
@@ -116,7 +116,7 @@ public class RegistrationHireTalentPage extends WebelementsPage {
         button.click();
     }
     @Step("Hire Talent page,switch navigate link.")
-    public TalentbasePage verifyLinksFunctionality(AsTalentLinksEnum element) {
+    public TalentbaseLandingPage verifyLinksFunctionality(AsTalentLinksEnum element) {
         switch (element) {
             case registerCorporation:
                 action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();

@@ -2,17 +2,18 @@ package pages.landingpage;
 
 import io.qameta.allure.Step;
 import mainbase.mainenum.FooterElementsEnum;
-import mainbase.base.TalentbasePage;
+import mainbase.basepage.TalentbaseLandingPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.linkspages.*;
+import pages.headerlinks.*;
+import pages.footerlinkspages.*;
 
 import java.time.Duration;
 
-public class FooterSection extends TalentbasePage {
+public class FooterSection extends TalentbaseLandingPage {
 
     @FindBy(css = ".footer")
     private WebElement footer;
@@ -111,7 +112,7 @@ public class FooterSection extends TalentbasePage {
     }
 
     @Step("Scroll down,wait footer visibility,return Page Object.")
-    public TalentbasePage clickFooterElements(FooterElementsEnum element) {
+    public TalentbaseLandingPage clickFooterElements(FooterElementsEnum element) {
         switch (element) {
 //            case designers:
 //                return designersFooterLink;

@@ -1,15 +1,13 @@
 package pages.hiretalentpage;
 
-import mainbase.base.TalentbasePage;
+import mainbase.basepage.HireTalentBasePage;
 import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
-public class DownloadFile extends TalentbasePage {
+public class DownloadFile extends HireTalentBasePage {
     public DownloadFile(WebDriver driver) {
         super(driver);
     }

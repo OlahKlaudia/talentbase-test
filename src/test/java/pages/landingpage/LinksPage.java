@@ -1,17 +1,15 @@
 package pages.landingpage;
 
 import io.qameta.allure.Step;
-import mainbase.base.TalentbasePage;
+import mainbase.basepage.TalentbaseLandingPage;
 import mainbase.mainenum.LinksEnum;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.landingpage.WaitFooterElement;
-import pages.linkspages.*;
 
-public class LinksPage extends TalentbasePage {
+public class LinksPage extends TalentbaseLandingPage {
 
 
     @FindBy(css = ".MuiGrid-root:nth-child(2) a[href='https://www.linkedin.com/company/talentbasesavicsoft']")

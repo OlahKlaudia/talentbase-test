@@ -1,10 +1,9 @@
 package mainbase.extension;
 
-import mainbase.base.TestBase;
+import mainbase.testbase.TestBase;
 import mainbase.utils.CreateScreenshot;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;
-import org.testng.ITestResult;
 
 import java.util.Optional;
 
@@ -28,7 +27,6 @@ public class ScreenshotExtension implements TestWatcher {
 
     @Override
     public void testFailed(ExtensionContext context, Throwable cause) {
-
 //        new CreateScreenshot().createScreenshot(testbase.getDriver(), context.getDisplayName());
         try {
             new CreateScreenshot().createScreenshotWhenFailTest(TestBase.getDriver(),context.getTestMethod().get().getName());

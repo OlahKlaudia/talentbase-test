@@ -1,40 +1,28 @@
 package tests.hiretalenttest;
 
-import mainbase.base.ProfileTestBase;
+import mainbase.mainenum.LeftPanelElementsEnum;
+import mainbase.testbase.HireTestBase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pages.leftpanellinkpage.AccountDetailsPage;
-import pages.leftpanellinkpage.StartPage;
-import pages.linkspages.HomePage;
-import tests.logintest.SignInTest;
+import pages.astalentleftpanel.AccountDetailsPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
 
-public class AccountTest  extends ProfileTestBase {
+public class AccountTest extends HireTestBase {
     @BeforeEach
-    public void navigateTalentbasePage() {
-        HomePage homePage = navigateToTalentbasePage();
-        homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginHireTalentTest();
-        startPage().searchTheBasePicture();
-        accountDetailsPage().navigateAccount();
+    public void beforeHireTalent() {
+        navigateHireSite();
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.accountDetails);
+//        accountDetailsPage().navigateAccount();
     }
-    public StartPage startPage() {
-        return new StartPage(getDriver());
-    }
-    public SignInTest loginAsTalent() {
-        return new SignInTest();
-    }
-
     public AccountDetailsPage accountDetailsPage() {
         return new AccountDetailsPage(getDriver());
     }
     @Test
     public void buttonDisableTest() {
         accountDetailsPage().blankFieldsHireTalent();
-        assertThat(accountDetailsPage().getButtonColor(), equalToIgnoringCase(GREY));
+        assertThat(accountDetailsPage().getButtonColor(), containsString(GREY));
     }
     @Test
     public void uploadImageTest() {

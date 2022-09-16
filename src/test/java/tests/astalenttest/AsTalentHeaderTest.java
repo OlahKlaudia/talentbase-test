@@ -1,24 +1,19 @@
 package tests.astalenttest;
 
-import mainbase.base.ProfileTestBase;
+import mainbase.testbase.AsTalentTestBase;
 import mainbase.mainenum.HeaderElementsEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pages.astalentpage.LoginHeaderPage;
-import pages.linkspages.HomePage;
-import tests.logintest.SignInTest;
+import pages.landingpage.LoginHeaderPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
-public class AsTalentHeaderTest extends ProfileTestBase {
+public class AsTalentHeaderTest extends AsTalentTestBase {
     @BeforeEach
     public void navigateTalentbasePage(){
-        HomePage homePage=navigateToTalentbasePage();
-        homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginAsTalentTest();
+        navigateHireTalentSite();
     }
-    public SignInTest loginAsTalent(){return new SignInTest();}
     public LoginHeaderPage asTalentHeaderPage(){return new LoginHeaderPage(getDriver());}
     @Test
     public void talentbaseLogoLinkTest() {

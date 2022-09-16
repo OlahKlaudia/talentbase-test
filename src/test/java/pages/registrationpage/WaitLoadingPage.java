@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class WaitLoadingPage extends WebelementsPage {
+public class WaitLoadingPage extends InputElementsPage {
     public WaitLoadingPage(WebDriver driver) {
         super(driver);
     }

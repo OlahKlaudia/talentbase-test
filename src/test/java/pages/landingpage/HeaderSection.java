@@ -1,13 +1,13 @@
 package pages.landingpage;
 
 import io.qameta.allure.Step;
-import mainbase.base.TalentbasePage;
+import mainbase.basepage.TalentbaseLandingPage;
 import mainbase.mainenum.HeaderElementsEnum;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.linkspages.*;
+import pages.headerlinks.*;
 
-public class HeaderSection extends TalentbasePage {
+public class HeaderSection extends TalentbaseLandingPage {
 
     public HeaderSection(WebDriver driver) {
         super(driver);
@@ -19,7 +19,7 @@ public class HeaderSection extends TalentbasePage {
     }
 
     @Step("Click header menu item,return webelement,and assert header elements are visible.")
-    public TalentbasePage clickHeaderElements(HeaderElementsEnum element) {
+    public TalentbaseLandingPage clickHeaderElements(HeaderElementsEnum element) {
         switch (element) {
             case home:
                 homeMenuItem.click();

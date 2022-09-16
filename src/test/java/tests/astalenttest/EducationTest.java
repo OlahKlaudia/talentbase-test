@@ -1,37 +1,23 @@
 package tests.astalenttest;
 
-import mainbase.base.ProfileTestBase;
-import mainbase.base.TalentbaseTestBase;
+import mainbase.testbase.AsTalentTestBase;
+import mainbase.mainenum.LeftPanelElementsEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pages.leftpanellinkpage.EducationPage;
-import pages.leftpanellinkpage.OverviewPage;
-import pages.linkspages.HomePage;
-import tests.logintest.SignInTest;
+import pages.astalentleftpanel.EducationPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 
-public class EducationTest extends ProfileTestBase {
+public class EducationTest extends AsTalentTestBase {
     @BeforeEach
     public void navigateTalentbasePage() {
-        HomePage homePage = navigateToTalentbasePage();
-        homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginAsTalentTest();
-        overviewPage();
+        navigateHireTalentSite();
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.education);
         educationPage().navigateEducationPage();
     }
-
-    public SignInTest loginAsTalent() {
-        return new SignInTest();
-    }
-
     public EducationPage educationPage() {
         return new EducationPage(getDriver());
-    }
-
-    public OverviewPage overviewPage() {
-        return new OverviewPage(getDriver());
     }
     @Test
     public void educationTest() throws InterruptedException {

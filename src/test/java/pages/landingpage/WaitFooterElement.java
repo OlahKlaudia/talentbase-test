@@ -1,7 +1,7 @@
 package pages.landingpage;
 
 import io.qameta.allure.Step;
-import mainbase.base.TalentbasePage;
+import mainbase.basepage.TalentbaseLandingPage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class WaitFooterElement extends TalentbasePage {
+public class WaitFooterElement extends TalentbaseLandingPage {
     @FindBy(css = "footer a[href='/partners'] p")
     private WebElement waitPartnersLink;
     public WaitFooterElement(WebDriver driver) {

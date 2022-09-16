@@ -1,13 +1,13 @@
 package pages.landingpage;
 
 import io.qameta.allure.Step;
-import mainbase.base.TalentbasePage;
+import mainbase.basepage.TalentbaseLandingPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class EmailPage extends TalentbasePage {
+public class EmailPage extends TalentbaseLandingPage {
     public EmailPage(WebDriver driver) {
         super(driver);
     }
@@ -47,31 +47,31 @@ public class EmailPage extends TalentbasePage {
         return alertVerifyButton;
     }
     @Step("Click the verify Button.")
-    public void verifyEmail() {
+    public void navigateGmailSite() {
         alertVerifyButton.click();
         driver.get(GMAIL_URL);
     }
 
     @Step("Type email into the input field and click next button.")
-    public void navigateLoginGmail(){
+    public void typeEmailAddressToLoginGmail(){
         email.sendKeys(EMAIL);
         nextButton.click();
     }
 
     @Step("Type password into the input field and click next button.")
-    public void password(){
+    public void typePasswordToLoginGmail(){
         wait.until(ExpectedConditions.visibilityOf(psw));
         psw.sendKeys(PASSWORD);
         pswNext.click();
         wait.until(ExpectedConditions.visibilityOf(lastEmail));
     }
     @Step("Click last email.")
-    public void lastEmail(){
+    public void verifyGetEmail(){
         wait.until(ExpectedConditions.visibilityOf(lastEmail));
         wait.until(ExpectedConditions.elementToBeClickable(lastEmail)).click();
     }
     @Step("Click activate Account Link.")
-    public void activateButton(){
+    public void clickActivateAccountLink(){
         wait.until(ExpectedConditions.elementToBeClickable(activateAccountLink)).click();
         wait.until(ExpectedConditions.visibilityOf(header));
     }

@@ -1,40 +1,27 @@
 package tests.astalenttest;
 
-import mainbase.base.ProfileTestBase;
-import mainbase.base.TalentbaseTestBase;
+import mainbase.testbase.AsTalentTestBase;
+import mainbase.mainenum.LeftPanelElementsEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pages.leftpanellinkpage.ExperiencePage;
-import pages.leftpanellinkpage.OverviewPage;
-import pages.linkspages.HomePage;
-import tests.logintest.SignInTest;
+import pages.astalentleftpanel.ExperiencePage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ExperienceTest extends ProfileTestBase {
+public class ExperienceTest extends AsTalentTestBase {
     @BeforeEach
     public void navigateTalentbasePage() {
-        HomePage homePage = navigateToTalentbasePage();
-        homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginAsTalentTest();
-        overviewPage();
+        navigateHireTalentSite();
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.experience);
         experiencePage().navigateWorkingExperience();
     }
-
-    public SignInTest loginAsTalent() {
-        return new SignInTest();
-    }
-
     public ExperiencePage experiencePage() {
         return new ExperiencePage(getDriver());
     }
 
-    public OverviewPage overviewPage() {
-        return new OverviewPage(getDriver());
-    }
     @Test
     public void longTitleTest() {
         experiencePage().verifyLongTitle();

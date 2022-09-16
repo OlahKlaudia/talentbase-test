@@ -1,21 +1,22 @@
 package tests.registrationtest;
 
-import mainbase.base.TalentbaseTestBase;
+import mainbase.testbase.TalentbaseTestBase;
 import mainbase.mainenum.AsTalentLinksEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pages.linkspages.HomePage;
+import pages.headerlinks.HomePage;
 import pages.registrationpage.RegistrationApplyAsTalentPage;
 import pages.registrationpage.RegistrationHireTalentPage;
 import pages.registrationpage.WaitLoadingPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 public class RegistrationApplyAsTalentTest extends TalentbaseTestBase {
 
     @BeforeEach
-    public void navigateTalentbasePage() {
+    public void navigateApplyAsTalentPage() {
         HomePage homePage = navigateToTalentbasePage();
         homePage.applyAsTalentPage().navigateApplyTalentPage();
         WaitLoadingPage waitLoadingPage = new WaitLoadingPage(getDriver());
@@ -34,14 +35,14 @@ public class RegistrationApplyAsTalentTest extends TalentbaseTestBase {
     public void registrationWithBlankFieldTest() {
         //ALL BLANK FIELDS
         registration().verifyUserIsAllBlank();
-        assertThat(registration().getColor(), equalToIgnoringCase(COLOR_GREY));
+        assertThat(registration().getColor(), containsString(COLOR_GREY));
     }
 
     @Test
     public void selectCheckboxButtonDisableTest() {
         //checkbox selected and the button is disable
         registration().verifyCheckboxSelectedButtonDisable();
-        assertThat(registration().getColor(), equalToIgnoringCase(COLOR_GREY));
+        assertThat(registration().getColor(), containsString(COLOR_GREY));
     }
 
     @Test

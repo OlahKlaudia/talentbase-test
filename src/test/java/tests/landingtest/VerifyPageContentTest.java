@@ -4,7 +4,7 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.BeforeEach;
 import pages.landingpage.PageContentPage;
-import mainbase.base.TalentbaseTestBase;
+import mainbase.testbase.TalentbaseTestBase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,14 +28,13 @@ public class VerifyPageContentTest extends TalentbaseTestBase {
     public void upperHireTalentButtonTest() {
         pageContent().navigateUpperHireTalentPage();
         assertThat("Not found Hire Talent page in the Talentbase site.",getDriver().getCurrentUrl(), containsString(HIRE_TALENT));
-        getDriver().get(HOME_PAGE);
     }
 
     @Test
     public void whyUsLinkTest() {
         pageContent().navigateWhyUsPage();
         assertThat("Not found Why us page in the Talentbase site.",getDriver().getCurrentUrl(), containsString(ABOUT_PAGE));
-        getDriver().get(HOME_PAGE);
+
     }
 
     @Test

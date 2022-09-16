@@ -1,27 +1,23 @@
 package tests.hiretalenttest;
 
-import mainbase.base.TalentbaseTestBase;
+import mainbase.testbase.HireTestBase;
 import mainbase.mainenum.LeftPanelElementsEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.hiretalentpage.LeftPanelLinkPage;
-import pages.linkspages.HomePage;
-import tests.logintest.SignInTest;
+
+import java.util.Objects;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.testng.AssertJUnit.assertFalse;
 
-public class VerifyHireTalentElementsTest extends TalentbaseTestBase {
+public class VerifyHireTalentElementsTest extends HireTestBase {
 
     @BeforeEach
-    public void navigateTalentbasePage() {
-        HomePage homePage=navigateToTalentbasePage();
-        homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginHireTalentTest();
-    }
-    public SignInTest loginAsTalent() {
-        return new SignInTest();
+    public void beforeHireTalent() {
+        navigateHireSite();
     }
     public LeftPanelLinkPage leftPanelLinksPage() {
         return new LeftPanelLinkPage(getDriver());
@@ -50,7 +46,8 @@ public class VerifyHireTalentElementsTest extends TalentbaseTestBase {
     }
     @Test
     public void closeLeftPanelTest() {
+        leftPanelLinksPage().verifyStartIsVisible();
         leftPanelLinksPage().closeLeftPanel();
-        assertFalse("Left panel it didn't close.",leftPanelLinksPage().getUsername().contains("KLAUDIA"));
+        assertThat("Left panel is not closed.", leftPanelLinksPage().verifyStartIsVisible()==null);
     }
 }

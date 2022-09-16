@@ -1,100 +1,96 @@
 package tests.astalenttest;
 
-import mainbase.base.ProfileTestBase;
+import mainbase.testbase.AsTalentTestBase;
 import mainbase.mainenum.LeftPanelElementsEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pages.astalentpage.LeftPanelLinksPage;
-import pages.linkspages.HomePage;
-import tests.logintest.SignInTest;
+import pages.astalentpage.LeftPanelTalentLinksPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
+import static org.hamcrest.Matchers.containsString;
 import static org.testng.AssertJUnit.assertFalse;
 
 
-public class LeftPanelTest extends ProfileTestBase {
+public class LeftPanelTest extends AsTalentTestBase {
     @BeforeEach
     public void navigateTalentbasePage(){
-        HomePage homePage=navigateToTalentbasePage();
-        homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginAsTalentTest();
+        navigateHireTalentSite();
     }
-    public SignInTest loginAsTalent(){return new SignInTest();}
-    public LeftPanelLinksPage leftPanelLinksPage(){return new LeftPanelLinksPage(getDriver());}
+    public LeftPanelTalentLinksPage leftPanelLinksPage(){return new LeftPanelTalentLinksPage(getDriver());}
     @Test
     public void startLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.start);
-        assertThat("Not found Start link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(START));
+        assertThat("Not found Start link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(START));
     }
     @Test
     public void overviewLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.overview);
-        assertThat("Not found Overview link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(OVERVIEW));
+        assertThat("Not found Overview link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(OVERVIEW));
     }
     @Test
     public void accountDetailsLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.accountDetails);
-        assertThat("Not found Account Details link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(ACCOUNT_DETAILS));
+        assertThat("Not found Account Details link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(ACCOUNT_DETAILS));
     }
     @Test
     public void introDescriptionLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.introDescription);
-        assertThat("Not found Intro Description link in the Talentbase site.",getDriver().getCurrentUrl(), equalToIgnoringCase(INTRO_DESCRIPTION));
+        assertThat("Not found Intro Description link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(INTRO_DESCRIPTION));
     }
     @Test
     public void experienceLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.experience);
-        assertThat("Not found Experience link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(EXPERIENCE));
+        assertThat("Not found Experience link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(EXPERIENCE));
     }
     @Test
     public void educationLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.education);
-        assertThat("Not found Education link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(EDUCATION));
+        assertThat("Not found Education link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(EDUCATION));
     }
     @Test
     public void skillsLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.skills);
-        assertThat("Not found Skills link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(SKILLS));
+        assertThat("Not found Skills link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(SKILLS));
     }
     @Test
     public void languageLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.language);
-        assertThat("Not found Language link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(LANGUAGE));
+        assertThat("Not found Language link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(LANGUAGE));
     }
     @Test
     public void certificatesLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.certificates);
-        assertThat("Not found Certificates link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(CERTIFICATES));
+        assertThat("Not found Certificates link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(CERTIFICATES));
     }
     @Test
     public void projectLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.projects);
-        assertThat("Not found Project link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(PROJECT));
+        assertThat("Not found Project link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(PROJECT));
     }
     @Test
     public void hobbiesLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.hobbies);
-        assertThat("Not found Hobbies link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(HOBBIES));
+        assertThat("Not found Hobbies link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(HOBBIES));
     }
     @Test
     public void socialLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.socialLinks);
-        assertThat("Not found Website Terms link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(SOCIAL_LINK));
+        assertThat("Not found Website Terms link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(SOCIAL_LINK));
     }
     @Test
     public void userTermsLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.userTerms);
-        assertThat("Not found User Terms link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(USER_TERMS));
+        assertThat("Not found User Terms link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(USER_TERMS));
     }
     @Test
     public void evolutionLinkTest() {
         leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.evolution);
-        assertThat("Not found Experience link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(EVOLUTION));
+        assertThat("Not found Experience link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(EVOLUTION));
     }
     @Test
     public void closeLeftPanelTest() {
+        leftPanelLinksPage().verifyStartIsVisible();
         leftPanelLinksPage().closeLeftPanel();
-        assertFalse("Left panel it didn't close.",leftPanelLinksPage().getUsername().isDisplayed());
+        assertThat("Left panel is not closed.", leftPanelLinksPage().verifyStartIsVisible()==null);
     }
 }

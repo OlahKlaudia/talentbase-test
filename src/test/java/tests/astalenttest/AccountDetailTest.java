@@ -1,18 +1,15 @@
 package tests.astalenttest;
 
-import mainbase.base.ProfileTestBase;
+import mainbase.testbase.AsTalentTestBase;
+import mainbase.mainenum.LeftPanelElementsEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pages.leftpanellinkpage.AccountDetailsPage;
-import pages.leftpanellinkpage.OverviewPage;
-import pages.linkspages.HomePage;
-import tests.logintest.SignInTest;
+import pages.astalentleftpanel.AccountDetailsPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
 
-public class AccountDetailTest extends ProfileTestBase {
+public class AccountDetailTest extends AsTalentTestBase {
     public static final String SHORT_PHONE_NUMBER= "Number must be longer than 6 characters.";
     public static final String INVALID_PHONE_NUMBER = "Phone number format invalid.";
     public static final String INVALID_ZIPCODE = "Zipcode only accepts numeric characters";
@@ -20,15 +17,8 @@ public class AccountDetailTest extends ProfileTestBase {
 
     @BeforeEach
     public void navigateTalentbasePage() {
-        HomePage homePage = navigateToTalentbasePage();
-        homePage.signInPage().navigateSignIn();
-        loginAsTalent().loginAsTalentTest();
-        overviewPage();
-        accountDetailsPage().navigateAccountDetails();
-    }
-    public OverviewPage overviewPage(){return new OverviewPage(getDriver());}
-    public SignInTest loginAsTalent() {
-        return new SignInTest();
+        navigateHireTalentSite();
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.accountDetails);
     }
 
     public AccountDetailsPage accountDetailsPage() {
@@ -38,30 +28,30 @@ public class AccountDetailTest extends ProfileTestBase {
     @Test
     public void shortPhoneNumberTest() {
         accountDetailsPage().shortPhoneNumber();
-        assertThat(accountDetailsPage().getShortPhoneNumberText(), equalToIgnoringCase(SHORT_PHONE_NUMBER));
+        assertThat(accountDetailsPage().getShortPhoneNumberText(), containsString(SHORT_PHONE_NUMBER));
     }
 
     @Test
     public void invalidPhoneNumberTest() {
         accountDetailsPage().invalidPhoneNumber();
-        assertThat(accountDetailsPage().getShortPhoneNumberText(), equalToIgnoringCase(INVALID_PHONE_NUMBER));
+        assertThat(accountDetailsPage().getShortPhoneNumberText(), containsString(INVALID_PHONE_NUMBER));
     }
 
     @Test
     public void invalidZipCodeTest() {
         accountDetailsPage().invalidZipCode();
-        assertThat(accountDetailsPage().getZipCodeText(), equalToIgnoringCase(INVALID_ZIPCODE));
+        assertThat(accountDetailsPage().getZipCodeText(), containsString(INVALID_ZIPCODE));
     }
 
     @Test
     public void longZipCodeTest() {
         accountDetailsPage().longZipCode();
-        assertThat(accountDetailsPage().getZipCodeText(), equalToIgnoringCase(LONG_ZIPCODE));
+        assertThat(accountDetailsPage().getZipCodeText(), containsString(LONG_ZIPCODE));
     }
     @Test
     public void buttonDisableTest() {
         accountDetailsPage().blankFields();
-        assertThat(accountDetailsPage().getButtonColor(), equalToIgnoringCase(GREY));
+        assertThat(accountDetailsPage().getButtonColor(), containsString(GREY));
     }
     @Test
     public void uploadImageTest() {
