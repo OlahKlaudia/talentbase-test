@@ -5,7 +5,7 @@
 
 # Prerequisites: pom.xml and appropriate project structure should exist in the repository.
 
-image: maven:3.6.3
+image: maven:3.6.3-openjdk-18
 
 pipelines:
   default:
@@ -15,7 +15,11 @@ pipelines:
             caches:
               - maven
             script:
+              - echo "Automated pipelines."
               - mvn -B verify --file pom.xml
+              - bash run_local.sh
+              # run tests
+              - mvn -ntp clean test
             after-script:
               # Collect checkstyle results, if any, and convert to Bitbucket Code Insights.
               - pipe: atlassian/checkstyle-report:0.3.0
@@ -25,3 +29,57 @@ pipelines:
               # Run a security scan for sensitive data.
               # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
               - pipe: atlassian/git-secrets-scan:0.5.1
+              - mvn -B -Detest=TestAll verify
+
+    branches:
+       master:
+         - step:
+             name: Branches
+             script:
+               - mvn -ntp clean test
+               - mvn ci
+               - echo "Branch."
+         services:
+           - selenium-chrome
+         artifacts:
+           - target/test-output/**
+
+#    pipelines:
+#      default:
+#        - step:
+#      caches:
+#        - maven
+#      script:
+#        - echo "Automated pipelines."
+#        - mvn -B -Dtest=TestAll verify
+#        - bash run_local.sh
+
+
+#    run-functional-tests:
+#      - variables:
+##          - name: TARGET_ENV
+#          - name: UPLOAD_TESTS
+#            default: false
+#      - step:
+#          name: run tests
+#          caches:
+#            - maven
+#          script:
+#            - mvn -ntp clean test
+#            - ./bin/run-tests.sh
+#          services:
+#            - selenium-chrome
+#          after-script:
+#            - echo https://allure.test.nonprod.rreis.com/tbuilder-mobile-api-functional-tests/results/${RUN_GROUP}/allure-report/index.html
+#          artifacts:
+#            - target/test-output/**
+#    definitions:
+#      services:
+#        selenium-chrome:
+#          image: selenium/standalone-chrome:3.141.59-oxygen
+#          ports:
+#            - "4444:4444"
+#        selenium-firefox:
+#          image: selenium/standalone-firefox:latest
+#          ports:
+#            - "4444:4444"
