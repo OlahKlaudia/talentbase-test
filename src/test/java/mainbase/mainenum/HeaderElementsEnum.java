@@ -12,8 +12,8 @@ public enum HeaderElementsEnum {
     notification,
     profile,
     base,
-    signOut
-//    applyAsTalent,
-//    hireTalent,
-//    signIn
+    signOut,
+    applyAsTalent,
+    hireTalent,
+    signIn
 }

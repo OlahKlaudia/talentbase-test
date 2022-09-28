@@ -1,5 +1,6 @@
 package pages.loginpage;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,8 +19,10 @@ public class ResetPasswordPage extends InputElementsPage {
     @Override
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(RESET_PASSWORD);
-        wait.until(ExpectedConditions.visibilityOf(password));
+//        wait.until(ExpectedConditions.visibilityOf(header));
     }
+
+    @Step("Create new password.")
     public void createNewPassword() {
         wait.until(ExpectedConditions.visibilityOf(password));
         password.sendKeys(PASSWORD);

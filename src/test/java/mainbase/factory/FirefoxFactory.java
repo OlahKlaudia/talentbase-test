@@ -19,9 +19,14 @@ public class FirefoxFactory extends GenericFactory{
     }
 
     @Override
-    public WebDriver createRemoteDriver(BrowserEnum browser, String url) throws MalformedURLException {
-        WebDriver driver;
-        driver = maximize(new RemoteWebDriver(new URL(url), new FirefoxOptions()));
-        return driver;
+    public WebDriver createRemoteDriver(BrowserEnum browser, String url) {
+//        return maximize(new RemoteWebDriver(new URL(url), new FirefoxOptions()));
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        try {
+            return new RemoteWebDriver(new URL("http://" + url + "/wd/hub"), firefoxOptions);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

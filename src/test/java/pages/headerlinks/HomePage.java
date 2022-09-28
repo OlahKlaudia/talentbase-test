@@ -23,7 +23,5 @@ public class HomePage extends TalentbaseLandingPage {
     public WaitFooterElement scrollDown(){
         return new WaitFooterElement(driver);
     }
-    public SignInPage signInPage(){return new SignInPage(driver);}
-    public ApplyAsTalentPage applyAsTalentPage(){return new ApplyAsTalentPage(driver);}
-    public HireTalentPage hireTalentPage(){return new HireTalentPage(driver);}
+
 }

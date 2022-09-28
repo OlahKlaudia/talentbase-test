@@ -1,5 +1,6 @@
 package pages.astalentleftpanel;
 
+import io.qameta.allure.Step;
 import mainbase.basepage.AsTalentBasePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -33,21 +34,31 @@ public class StartPage extends AsTalentBasePage {
         driver.getCurrentUrl().contains(START);
         wait.until(ExpectedConditions.visibilityOf(welcomeToTalentbaseText));
     }
+
+    @Step("Wait until search the base picture is visible on the Start page.")
     public void waitStartPageLoad() {
         wait.until(ExpectedConditions.visibilityOf(searchTheBasePicture)).isDisplayed();
     }
+
+    @Step("Click the Search the base picture.")
     public void searchTheBasePicture(){
        wait.until(ExpectedConditions.visibilityOf(searchTheBasePicture)).click();
     }
+
+    @Step("Click the search the base button.")
     public void searchTheBaseButton(){
-        action.sendKeys(Keys.PAGE_DOWN);
+        scrollEnd();
         wait.until(ExpectedConditions.visibilityOf(searchTheBaseButton)).click();
     }
+
+    @Step("Click the Details picture picture.")
     public void accountDetailsPicture(){
         wait.until(ExpectedConditions.visibilityOf(accountDetailsPicture)).click();
     }
+
+    @Step("Click account details button.")
     public void accountDetailsButton(){
-        action.sendKeys(Keys.PAGE_DOWN);
+        scrollEnd();
         wait.until(ExpectedConditions.visibilityOf(accountDetailsButton)).click();
     }
 }

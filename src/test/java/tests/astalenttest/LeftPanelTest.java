@@ -1,5 +1,7 @@
 package tests.astalenttest;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import mainbase.testbase.AsTalentTestBase;
 import mainbase.mainenum.LeftPanelElementsEnum;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,13 +10,12 @@ import pages.astalentpage.LeftPanelTalentLinksPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
-import static org.testng.AssertJUnit.assertFalse;
-
-
+@Epic("Talentbase")
+@Feature("Talentbase Apply As Talent Site")
 public class LeftPanelTest extends AsTalentTestBase {
     @BeforeEach
-    public void navigateTalentbasePage(){
-        navigateHireTalentSite();
+    public void beforeAsTalentSite(){
+        navigateAsTalentSite();
     }
     public LeftPanelTalentLinksPage leftPanelLinksPage(){return new LeftPanelTalentLinksPage(getDriver());}
     @Test

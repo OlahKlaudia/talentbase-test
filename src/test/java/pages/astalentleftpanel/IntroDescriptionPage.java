@@ -30,17 +30,15 @@ public class IntroDescriptionPage extends AsTalentBasePage {
         super(driver);
     }
 
-//    public void navigateIntroDescription() {
-//        introDescriptionLink.click();
-//    }
-
+    @Step("Verify to get error message when type short summary text.")
     public void shortSummary() {
         summaryTextarea.sendKeys(Keys.chord(Keys.CONTROL,"a",Keys.DELETE));
         summaryTextarea.sendKeys(SHORT_SUMMARY);
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
 
     }
-    @Step("Get button color.")
+
+    @Step("Get error message color.")
     public String getColor() {
         wait.until(ExpectedConditions.visibilityOf(errorMessage));
         return errorMessage.getCssValue("color");

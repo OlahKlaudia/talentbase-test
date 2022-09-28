@@ -16,13 +16,20 @@ public class ChromeHeadlessFactory extends GenericFactory {
     public WebDriver createDriver() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
-        return maximize(new ChromeDriver(chromeOptions.setHeadless(true)));
+        return fullHDMaximize(new ChromeDriver(chromeOptions.setHeadless(true)));
     }
 
     @Override
-    public WebDriver createRemoteDriver(BrowserEnum browser, String url) throws MalformedURLException {
-        WebDriver driver;
-        driver = maximize(new RemoteWebDriver(new URL(url), new ChromeOptions().setHeadless(true)));
-        return driver;
+    public WebDriver createRemoteDriver(BrowserEnum browser, String url) {
+//        ChromeOptions chromeOptions = new ChromeOptions();
+//        return fullHDMaximize(new RemoteWebDriver(new URL(url), chromeOptions.setHeadless(true)));
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless","--window-size=1920,1200");
+        try {
+            return new RemoteWebDriver(new URL("http://" + url + "/wd/hub"), chromeOptions);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

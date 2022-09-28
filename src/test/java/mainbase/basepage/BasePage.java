@@ -1,6 +1,7 @@
 package mainbase.basepage;
 
 import com.github.javafaker.Faker;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -32,5 +33,11 @@ public class BasePage extends LoadableComponent<BasePage> {
     @Override
     protected void isLoaded() throws Error {
 
+    }
+    protected void pageDown(){
+        action.sendKeys(Keys.PAGE_DOWN).perform();
+    }
+    protected void scrollEnd(){
+        action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
     }
 }

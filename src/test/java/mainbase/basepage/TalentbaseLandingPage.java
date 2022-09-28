@@ -1,15 +1,12 @@
 package mainbase.basepage;
 
-import mainbase.basepage.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.landingpage.WaitFooterElement;
 
 public class TalentbaseLandingPage extends BasePage {
     //header links
-    @FindBy(css = "#app-header")
-    public WebElement headerIsVisible;
-
     @FindBy(css = ".navbar-stack a img")
     public WebElement talentbaseLogoMenuItem;
 
@@ -36,6 +33,16 @@ public class TalentbaseLandingPage extends BasePage {
 
     @FindBy(css = "a[href='/blog']")
     public WebElement blogItem;
+
+    @FindBy(css = "a[href='/register']")
+    public WebElement applyAsTalentMenuItem;
+
+    @FindBy(css = "a[href='/hire-talent']:nth-child(2)")
+    public WebElement hireTalentMenuItem;
+
+    @FindBy(css = "a[href='/login']")
+    public WebElement loginMenuItem;
+
     @FindBy(css = "span .clr-i-solid-path-1")
     public WebElement notification;
     @FindBy(css = ".MuiPaper-root .MuiMenuItem-gutters:nth-child(2) p")
@@ -50,14 +57,7 @@ public class TalentbaseLandingPage extends BasePage {
     public WebElement signOut;
 
     //footer links
-    @FindBy(css = "a[href='https://www.linkedin.com/company/talentbasesavicsoft']")
-    public WebElement linkedInMenuIcon;
-    @FindBy(css = "a[href='https://www.facebook.com/TalentBase-102244162580303/']")
-    public WebElement facebookMenuIcon;
-    @FindBy(css = "a[href='https://twitter.com/TalentBase2022']")
-    public WebElement twitterMenuIcon;
-    @FindBy(css = "a[href='mailto:info@thetalentbase.com']")
-    public WebElement mailMenuItem;
+
     public static final String TALENTBASE_URL = "https://dev.thetalentbase.com/";
     public TalentbaseLandingPage(WebDriver driver) {
         super(driver);
@@ -68,5 +68,8 @@ public class TalentbaseLandingPage extends BasePage {
     @Override
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(TALENTBASE_URL);
+    }
+    public WaitFooterElement navigateFooterLinksPage(){
+        return new WaitFooterElement(driver);
     }
 }

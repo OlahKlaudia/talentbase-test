@@ -1,6 +1,8 @@
 package pages.astalentleftpanel;
 
+import io.qameta.allure.Step;
 import mainbase.basepage.AsTalentBasePage;
+import mainbase.mainenum.LeftPanelElementsEnum;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,6 +30,8 @@ public class UserTermsPage extends AsTalentBasePage {
     private WebElement switchBrutoOrNeto;
     @FindBy(css = "li[data-value=\"DOLLAR\"]")
     private WebElement usd;
+    @FindBy(css = "a[href='/profile/terms']")
+    public WebElement userTermsLink;
     public static final String USER_TERMS = "/terms";
 
     @Override
@@ -44,11 +48,7 @@ public class UserTermsPage extends AsTalentBasePage {
         super(driver);
     }
 
-    public void navigateUserTerms() {
-        action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
-//        userTermsLink.click();
-    }
-
+    @Step("Fill with valid data.")
     public void fillUserTerms() {
         daysPerWeek.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         hoursPerDay.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -69,25 +69,8 @@ public class UserTermsPage extends AsTalentBasePage {
         monthlySalary.sendKeys("800");
         switchBrutoOrNeto.click();
     }
-    public void waitButton() throws InterruptedException {
-        int maxWait=1000/200;
-        int i=1;
-        do{
-            try {
-                wait.until(ExpectedConditions.elementToBeClickable(saveSubmit)).click();
-                i++;
-                System.out.println("how many times it goes through the do while"+i);
-                break;
-            }
-            catch(Exception e) {
-                Thread.sleep(200);
-            }
-        } while (i<maxWait);
-    }
-    public void currency(){
-        currency.click();
-        usd.click();
-    }
+
+    @Step("Verify the button is disable with blank fields.")
     public void blankFields() {
         daysPerWeek.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         hoursPerDay.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));

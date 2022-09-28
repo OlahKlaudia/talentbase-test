@@ -1,5 +1,6 @@
 package pages.hiretalentpage;
 
+import io.qameta.allure.Step;
 import mainbase.basepage.HireTalentBasePage;
 import org.openqa.selenium.WebDriver;
 
@@ -14,15 +15,18 @@ public class DownloadFile extends HireTalentBasePage {
 
     private static final String FILE_FOLDER = "C" + File.separator + "Users" + File.separator + "olahk" + File.separator + "Downloads" + File.separator;
 
+    @Step("Get absolute Path.")
     public static String getAppPath(String relPath) {
         String path = new File(relPath).getAbsolutePath();
         return path;
     }
 
+    @Step("Get download Path.")
     public static String getDownloadPath() {
         return getAppPath("C:\\Users\\olahk\\Downloads\\");
     }
 
+    @Step("Wait and check the file downloaded.")
     public boolean isFileDownloaded() throws Exception {
         final int SLEEP_TIME_MILLIS = 100;
         File file = new File(getDownloadedFilesPath());
@@ -40,6 +44,7 @@ public class DownloadFile extends HireTalentBasePage {
         return false;
     }
 
+    @Step("Get downloaded file.")
     public File[] getDownloadedFiles() {
         File downloadPath = new File(getDownloadPath());
         File[] files = downloadPath.listFiles();
@@ -47,6 +52,7 @@ public class DownloadFile extends HireTalentBasePage {
         return files;
     }
 
+    @Step("Get last downloaded file.")
     public String getDownloadedFilesPath() {//párhuzamos futtatásnál problémába ütközhet
         File folder = new File(getDownloadPath());
         File[] listOfFiles = folder.listFiles();
@@ -66,6 +72,7 @@ public class DownloadFile extends HireTalentBasePage {
         return time+listOfFiles[i-1].getName();
     }
 
+    @Step("Verify the file size is greater than zero.")
     public boolean isFileGreaterThanZero() {
         long fileSize = getDownloadedFilesPath().length();
         if (fileSize > 0)
@@ -75,6 +82,7 @@ public class DownloadFile extends HireTalentBasePage {
         return false;
     }
 
+    @Step("Clean up downloads.")
     public void cleanupDownloads() {
         for (File f : getDownloadedFiles()) {
             System.out.println("Delete" + f);

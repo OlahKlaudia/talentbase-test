@@ -32,10 +32,7 @@ public class PartnersAndInvestorsPage extends InputElementsPage {
     public PartnersAndInvestorsPage(WebDriver driver) {
         super(driver);
     }
-    @Step("Navigate to Partners and Investors Page, and scroll down to bottom.")
-    public void navigatePartnersAndInvestors() {
-        partnersAndInvestorsMenuItem.click();
-    }
+
     @Step("Click contact us button.")
     public void clickContactUsButton() {
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();

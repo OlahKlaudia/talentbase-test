@@ -1,5 +1,6 @@
 package pages.astalentleftpanel;
 
+import io.qameta.allure.Step;
 import mainbase.basepage.AsTalentBasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -37,10 +38,10 @@ public class AccountDetailsPage extends AsTalentBasePage {
     public WebElement saveButton;
     public static final String ACCOUNT_DETAILS = "/account";
     public static final String SHORT_PHONE_NUMBER = "123";
-    public static final String INVALID_PHONE_NUMBER = "123!@#";
+    public static final String INVALID_NUMBER = "123!@#";
     public static final String LONG_ZIPCODE = "123123123123123123123123123123123123123123123123";
     public static final String DELETE = Keys.chord(Keys.CONTROL, "a");
-    private static final File FILE = new File("C:\\Users\\olahk\\Downloads\\image.png");
+    private static final File FILE = new File("C:\\Users\\olahk\\Pictures\\image.png");
 
     @Override
     protected void load() {
@@ -56,47 +57,47 @@ public class AccountDetailsPage extends AsTalentBasePage {
         super(driver);
     }
 
+    @Step("Get short phone number text.")
     public String getShortPhoneNumberText() {
         return phoneNumberErrorMessage.getText();
     }
 
+    @Step("Get zip code text.")
     public String getZipCodeText() {
         return zipCodeErrorMessage.getText();
     }
 
+    @Step("Get button color.")
     public String getButtonColor() {
         wait.until(ExpectedConditions.visibilityOf(saveButton));
         return saveButton.getCssValue("background-color");
     }
 
+    @Step("Fill the input field with short phone number.")
     public void shortPhoneNumber() {
         phoneNumber.sendKeys(DELETE);
         phoneNumber.sendKeys(SHORT_PHONE_NUMBER);
     }
 
+    @Step("Fill the input field with invalid phone number.")
     public void invalidPhoneNumber() {
         phoneNumber.sendKeys(DELETE);
-        phoneNumber.sendKeys(INVALID_PHONE_NUMBER);
+        phoneNumber.sendKeys(INVALID_NUMBER);
     }
 
+    @Step("Fill the input field with invalid zip code.")
     public void invalidZipCode() {
         zipCode.sendKeys(DELETE);
-        zipCode.sendKeys(INVALID_PHONE_NUMBER);
+        zipCode.sendKeys(INVALID_NUMBER);
     }
 
+    @Step("Fill the input field with long zip code.")
     public void longZipCode() {
         zipCode.sendKeys(DELETE);
         zipCode.sendKeys(LONG_ZIPCODE);
     }
 
-//    public void navigateAccountDetails() {
-//        wait.until(ExpectedConditions.elementToBeClickable(accountDetailsLink)).click();
-//    }
-//
-//    public void navigateAccount() {
-//        wait.until(ExpectedConditions.elementToBeClickable(accountLeftItem)).click();
-//    }
-
+    @Step("Verify the button is disable with blank fields on the Account Details Page.")
     public void blankFields() {
         firstname.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         lastname.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -105,14 +106,25 @@ public class AccountDetailsPage extends AsTalentBasePage {
         action.moveToElement(careerClear).click().perform();
     }
 
+    @Step("Verify the button is disable with blank fields on the Account Page.")
     public void blankFieldsHireTalent() {
         name.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         action.moveToElement(countryOfIncorporationClear).click().perform();
     }
 
-    public String uploadImage() {
+    @Step("Verify the image is uploaded.")
+    public String uploadImageAccount() {
         final WebElement uploadFile = driver.findElement(By.cssSelector("input[type='file']"));
         uploadFile.sendKeys(FILE.getAbsolutePath());
         return uploadImage.getCssValue("background-image");
     }
+
+// nem tolti fel a kepet,mert nem működik
+
+//    @Step("Verify the image is uploaded.")
+//    public String uploadImage() {
+//        final WebElement uploadFile = driver.findElement(By.cssSelector(".aos-animate .MuiBox-root .MuiBox-root svg"));
+//        uploadFile.sendKeys(FILE.getAbsolutePath());
+//        return uploadImage.getCssValue("background-image");
+//    }
 }

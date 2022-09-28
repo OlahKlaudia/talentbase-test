@@ -1,6 +1,7 @@
 package pages.loginpage;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,7 +43,9 @@ public class ForgotPasswordPage extends InputElementsPage {
     @Step("Type valid email into the input field.")
     public void verifyValidEmail() {
         emailInput.sendKeys(EMAIL);
-        button.click();
+        navigateFooterLinksPage().scrollDown();
+        wait.until(ExpectedConditions.elementToBeClickable(button)).click();
+//        button.click();
         wait.until(ExpectedConditions.visibilityOf(popUpNextButton));
     }
 
@@ -57,8 +60,15 @@ public class ForgotPasswordPage extends InputElementsPage {
         button.click();
     }
     @Step("Click Reset password Link in the email message.")
-    public ResetPasswordPage navigateCreatePassword() {
+    public void navigateCreatePassword() {
         wait.until(ExpectedConditions.elementToBeClickable(resetPasswordEmailVerify)).click();
+//        wait.until(ExpectedConditions.visibilityOf(header));
+    }
+    @Step("Click Reset password Link in the email message.")
+    public ResetPasswordPage hee() throws InterruptedException {
+//        wait.until(ExpectedConditions.elementToBeClickable(resetPasswordEmailVerify)).click();
+        Thread.sleep(1000);
+//        wait.until(ExpectedConditions.visibilityOf(header));
         return new ResetPasswordPage(driver);
     }
 }

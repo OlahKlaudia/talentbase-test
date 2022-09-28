@@ -1,14 +1,19 @@
 package tests.astalenttest;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import mainbase.testbase.AsTalentTestBase;
 import mainbase.mainenum.LeftPanelElementsEnum;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.astalentleftpanel.AccountDetailsPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
+@Epic("Talentbase")
+@Feature("Talentbase Apply As Talent Site")
 public class AccountDetailTest extends AsTalentTestBase {
     public static final String SHORT_PHONE_NUMBER= "Number must be longer than 6 characters.";
     public static final String INVALID_PHONE_NUMBER = "Phone number format invalid.";
@@ -16,8 +21,8 @@ public class AccountDetailTest extends AsTalentTestBase {
     public static final String LONG_ZIPCODE = "Zipcode cannot be longer than 20 character.";
 
     @BeforeEach
-    public void navigateTalentbasePage() {
-        navigateHireTalentSite();
+    public void beforeAccountDetailsPage() {
+        navigateAsTalentSite();
         clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.accountDetails);
     }
 
@@ -25,37 +30,43 @@ public class AccountDetailTest extends AsTalentTestBase {
         return new AccountDetailsPage(getDriver());
     }
 
+    @DisplayName("Short phone number Test")
     @Test
     public void shortPhoneNumberTest() {
         accountDetailsPage().shortPhoneNumber();
         assertThat(accountDetailsPage().getShortPhoneNumberText(), containsString(SHORT_PHONE_NUMBER));
     }
 
+    @DisplayName("Invalid phone number Test")
     @Test
     public void invalidPhoneNumberTest() {
         accountDetailsPage().invalidPhoneNumber();
         assertThat(accountDetailsPage().getShortPhoneNumberText(), containsString(INVALID_PHONE_NUMBER));
     }
 
+    @DisplayName("Invalid Zip code Test")
     @Test
     public void invalidZipCodeTest() {
         accountDetailsPage().invalidZipCode();
         assertThat(accountDetailsPage().getZipCodeText(), containsString(INVALID_ZIPCODE));
     }
 
+    @DisplayName("Long zip code Test")
     @Test
     public void longZipCodeTest() {
         accountDetailsPage().longZipCode();
         assertThat(accountDetailsPage().getZipCodeText(), containsString(LONG_ZIPCODE));
     }
+    @DisplayName("Verify the button is disable Test")
     @Test
     public void buttonDisableTest() {
         accountDetailsPage().blankFields();
         assertThat(accountDetailsPage().getButtonColor(), containsString(GREY));
     }
-    @Test
-    public void uploadImageTest() {
-        accountDetailsPage().uploadImage();
-        assertThat("Image is not uploaded",accountDetailsPage().uploadImage(),containsString("talentbase.com"));
-    }
+//    @DisplayName("Upload Image visibility Test")
+//    @Test
+//    public void uploadImageTest() {
+//        accountDetailsPage().uploadImage();
+//        assertThat("Image is not uploaded",accountDetailsPage().uploadImage(),containsString("talentbase.com"));
+//    }
 }

@@ -4,10 +4,14 @@ import io.qameta.allure.Step;
 import mainbase.basepage.AsTalentBasePage;
 import mainbase.basepage.AsTalentLeftPanelBasePage;
 import mainbase.mainenum.LeftPanelElementsEnum;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.astalentleftpanel.*;
+
+import java.util.List;
 
 public class LeftPanelTalentLinksPage extends AsTalentLeftPanelBasePage {
 
@@ -26,6 +30,19 @@ public class LeftPanelTalentLinksPage extends AsTalentLeftPanelBasePage {
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(OVERVIEW);
     }
+    public String verifyStartIsVisible() { //TODO username változhat
+        List<WebElement> elements = driver.findElements(By.tagName("p"));
+        for (WebElement element : elements) {
+            if(element.getText().contains("TEST321")){
+                System.out.println("Left panel is nooot closed" );
+            }
+            else
+                System.out.println("Left panel is closed, and return null.");
+            return null;
+        }
+        return null;
+    }
+
 
 
     @Step("Click left panel elements,and return Page Object.")
@@ -77,17 +94,18 @@ public class LeftPanelTalentLinksPage extends AsTalentLeftPanelBasePage {
                 return new HobbiesPage(driver);
             case socialLinks:
                 action.sendKeys(Keys.PAGE_DOWN).perform();
-                action.moveToElement(socialLinksLink).perform();
+//                action.moveToElement(socialLinksLink).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(socialLinksLink)).click();
                 return new SocialLinksPage(driver);
             case userTerms:
                 action.sendKeys(Keys.PAGE_DOWN).perform();
-                action.moveToElement(userTermsLink).perform();
+//                action.moveToElement(userTermsLink).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(userTermsLink)).click();
+                userTermsLink.click();
                 return new UserTermsPage(driver);
             case evolution:
                 action.sendKeys(Keys.PAGE_DOWN).perform();
-                action.moveToElement(evolutionLink).perform();
+//                action.moveToElement(evolutionLink).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(evolutionLink)).click();
                 return new EvolutionPage(driver);
         }

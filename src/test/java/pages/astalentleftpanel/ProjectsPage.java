@@ -37,11 +37,7 @@ public class ProjectsPage extends AsTalentBasePage {
         super(driver);
     }
 
-    public void navigateProject() {
-//        projectsLink.click();
-        addPlus.click();
-    }
-
+    @Step("Fill with valid data.")
     public void fillProjects() {
         name.sendKeys(VALID_INPUT);
         linkToProject.sendKeys(PROJECT_URL);
@@ -50,26 +46,7 @@ public class ProjectsPage extends AsTalentBasePage {
         description.click();
     }
 
-    public void waitButton() throws InterruptedException {
-        int maxWait = 1000 / 200;
-        int i = 1;
-        do {
-            try {
-                wait.until(ExpectedConditions.elementToBeClickable(saveSubmit)).click();
-                i++;
-                System.out.println("how many times it goes through the do while" + i);
-                break;
-            } catch (Exception e) {
-                Thread.sleep(200);
-            }
-        } while (i < maxWait);
-    }
-
-    @Step("Get button background color.")
-    public String getColor() {
-        wait.until(ExpectedConditions.elementToBeClickable(saveSubmit));
-        return saveSubmit.getCssValue("background-color");
-    }
+    @Step("Verify button is disable with blank fields.")
     public void blankFields() {
         name.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         linkToProject.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));

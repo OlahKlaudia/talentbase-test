@@ -5,7 +5,11 @@ import mainbase.basepage.TalentbaseLandingPage;
 import mainbase.mainenum.HeaderElementsEnum;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.headerlinks.*;
+
+import java.time.Duration;
 
 public class HeaderSection extends TalentbaseLandingPage {
 
@@ -13,12 +17,23 @@ public class HeaderSection extends TalentbaseLandingPage {
         super(driver);
     }
 
-    @Step("Return header webelement,and assert header is visible.")
-    public WebElement getHeaderIsVisible() {
-        return headerIsVisible;
+    @Override
+    protected void load() {
+
     }
 
-    @Step("Click header menu item,return webelement,and assert header elements are visible.")
+    @Override
+    protected void isLoaded() throws Error {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOf(blogItem));
+    }
+
+    @Step("Return header webelement,and assert header is visible.")
+    public WebElement getHeaderIsVisible() {
+        return header;
+    }
+
+    @Step("Click header menu item,return Page object.")
     public TalentbaseLandingPage clickHeaderElements(HeaderElementsEnum element) {
         switch (element) {
             case home:
@@ -34,14 +49,57 @@ public class HeaderSection extends TalentbaseLandingPage {
                 lookingForWorkItem.click();
                 return new LookingForWorkPage(driver);
             case about:
-                aboutItem.click();
+                wait.until(ExpectedConditions.visibilityOf(header)).click();
+                action.moveToElement(aboutItem).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(aboutItem)).click();
                 return new AboutPage(driver);
             case contact:
-                contactItem.click();
+                wait.until(ExpectedConditions.visibilityOf(header)).click();
+                action.moveToElement(contactItem).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(contactItem)).click();
                 return new ContactPage(driver);
+            case salary:
+                wait.until(ExpectedConditions.visibilityOf(header)).click();
+                action.moveToElement(salaryItem).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(salaryItem)).click();
+                return new SalaryPage(driver);
             case blog:
-                blogItem.click();
+                wait.until(ExpectedConditions.visibilityOf(header)).click();
+                action.moveToElement(blogItem).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(blogItem)).click();
                 return new BlogPage(driver);
+            case notification:
+                notification.click();
+                wait.until(ExpectedConditions.elementToBeClickable(showAllNotification)).click();
+                return new NotificationPage(driver);
+            case profile:
+                profileItem.click();
+                return new ProfilePage(driver);
+            case base:
+                wait.until(ExpectedConditions.visibilityOf(header)).click();
+                action.moveToElement(baseItem).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(baseItem)).click();
+                return new BasePage(driver);
+            case signOut:
+                wait.until(ExpectedConditions.visibilityOf(header)).click();
+                action.moveToElement(signOut).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(signOut)).click();
+                return new HomePage(driver);
+            case applyAsTalent:
+                wait.until(ExpectedConditions.visibilityOf(header)).click();
+                action.moveToElement(applyAsTalentMenuItem).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(applyAsTalentMenuItem)).click();
+                return new ApplyAsTalentPage(driver);
+            case hireTalent:
+                wait.until(ExpectedConditions.visibilityOf(header)).click();
+                action.moveToElement(hireTalentMenuItem).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(hireTalentMenuItem)).click();
+                return new HireTalentPage(driver);
+            case signIn:
+                wait.until(ExpectedConditions.visibilityOf(header)).click();
+                action.moveToElement(loginMenuItem).perform();
+                wait.until(ExpectedConditions.elementToBeClickable(loginMenuItem)).click();
+                return new SignInPage(driver);
         }
         return null;
     }

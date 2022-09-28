@@ -1,5 +1,6 @@
 package pages.astalentpage;
 
+import io.qameta.allure.Step;
 import mainbase.basepage.AsTalentLeftPanelBasePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -23,9 +24,9 @@ public class WaitUntilLoadOverviewPage extends AsTalentLeftPanelBasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.elementToBeClickable(projectsLink));
     }
+    @Step("Wait until scroll down.")
     public void waitUntilScrollDown(){
         action.sendKeys(Keys.PAGE_DOWN).perform();
     }
-
 
 }

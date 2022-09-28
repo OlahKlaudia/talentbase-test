@@ -3,7 +3,6 @@ package pages.registrationpage;
 import io.qameta.allure.Step;
 import mainbase.basepage.TalentbaseLandingPage;
 import mainbase.mainenum.AsTalentLinksEnum;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -34,13 +33,13 @@ public class RegistrationApplyAsTalentPage extends InputElementsPage {
     public TalentbaseLandingPage verifyLinksFunctionality(AsTalentLinksEnum element) {
         switch (element) {
             case registerCorporation:
-                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+                navigateFooterLinksPage().scrollDown();
                 wait.until(ExpectedConditions.elementToBeClickable(registerCorporation)).click();
 //
 //                action.moveToElement(registerCorporation).click().perform();
                 return new HireTalentPage(driver);
             case signIn:
-                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+                navigateFooterLinksPage().scrollDown();
                 wait.until(ExpectedConditions.elementToBeClickable(signInLink)).click();
                 return new SignInPage(driver);
             case privacyPolicy:

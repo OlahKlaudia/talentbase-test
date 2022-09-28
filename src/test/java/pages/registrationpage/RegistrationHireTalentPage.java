@@ -123,17 +123,14 @@ public class RegistrationHireTalentPage extends InputElementsPage {
                 wait.until(ExpectedConditions.elementToBeClickable(signUpAsTalentLink)).click();
                 return new ApplyAsTalentPage(driver);
             case signIn:
-                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
+                navigateFooterLinksPage().scrollDown();
                 wait.until(ExpectedConditions.elementToBeClickable(signInLink)).click();
-//                action.moveToElement(signInLink).click().perform();
                 return new SignInPage(driver);
             case privacyPolicy:
                 wait.until(ExpectedConditions.elementToBeClickable(privacyPolicyLink)).click();
-//                action.moveToElement(privacyPolicyLink).click().perform();
                 return new OurPolicyPage(driver);
             case termsOfService:
                 wait.until(ExpectedConditions.elementToBeClickable(termsOfServiceLink)).click();
-//                action.moveToElement(termsOfServiceLink).click().perform();
                 return new WebsiteTermsPage(driver);
         }
         return null;

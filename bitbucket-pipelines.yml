@@ -15,11 +15,13 @@ pipelines:
             caches:
               - maven
             script:
+              - apt install google-chrome-stable -y
               - echo "Automated pipelines."
               - mvn -B verify --file pom.xml
-              - bash run_local.sh
+#              - bash run_local.sh
               # run tests
               - mvn -ntp clean test
+
             after-script:
               # Collect checkstyle results, if any, and convert to Bitbucket Code Insights.
               - pipe: atlassian/checkstyle-report:0.3.0
@@ -29,20 +31,22 @@ pipelines:
               # Run a security scan for sensitive data.
               # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
               - pipe: atlassian/git-secrets-scan:0.5.1
-              - mvn -B -Detest=TestAll verify
 
-    branches:
-       master:
-         - step:
-             name: Branches
-             script:
-               - mvn -ntp clean test
-               - mvn ci
-               - echo "Branch."
-         services:
-           - selenium-chrome
-         artifacts:
-           - target/test-output/**
+
+#              - mvn -B -Detest=TestAll verify
+#
+#    branches:
+#       master:
+#         - step:
+#             name: Branches
+#             script:
+#               - mvn -ntp clean test
+#               - mvn ci
+#               - echo "Branch."
+#         services:
+#           - selenium-chrome
+#         artifacts:
+#           - target/test-output/**
 
 #    pipelines:
 #      default:

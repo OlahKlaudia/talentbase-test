@@ -16,13 +16,21 @@ public class EdgeHeadlessFactory extends GenericFactory{
     public WebDriver createDriver() {
         WebDriverManager.edgedriver().setup();
         EdgeOptions edgeoptions = new EdgeOptions();
-        return maximize(new EdgeDriver(edgeoptions.setHeadless(true)));
+        return fullHDMaximize(new EdgeDriver(edgeoptions.setHeadless(true)));
     }
 
     @Override
-    public WebDriver createRemoteDriver(BrowserEnum browser, String url) throws MalformedURLException {
-        WebDriver driver;
-        driver = maximize(new RemoteWebDriver(new URL(url), new EdgeOptions().setHeadless(true)));
-        return driver;
+    public WebDriver createRemoteDriver(BrowserEnum browser, String url) {
+//        WebDriver driver;
+//        driver = fullHDMaximize(new RemoteWebDriver(new URL(url), new EdgeOptions().setHeadless(true)));
+//        return driver;
+        EdgeOptions edgeOptions = new EdgeOptions();
+        edgeOptions.addArguments("--headless","--window-size=1920,1200");
+        try {
+            return new RemoteWebDriver(new URL("http://" + url + "/wd/hub"), edgeOptions);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -19,9 +19,16 @@ public class EdgeFactory extends GenericFactory{
     }
 
     @Override
-    public WebDriver createRemoteDriver(BrowserEnum browser, String url) throws MalformedURLException {
-        WebDriver driver;
-        driver =maximize(new RemoteWebDriver(new URL(url), new EdgeOptions()));
-        return driver;
+    public WebDriver createRemoteDriver(BrowserEnum browser, String url) {
+//        WebDriver driver;
+//        driver =maximize(new RemoteWebDriver(new URL(url), new EdgeOptions()));
+//        return driver;
+        EdgeOptions edgeOptions = new EdgeOptions();
+        try {
+            return new RemoteWebDriver(new URL("http://" + url + "/wd/hub"), edgeOptions);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

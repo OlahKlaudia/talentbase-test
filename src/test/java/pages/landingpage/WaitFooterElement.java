@@ -27,7 +27,7 @@ public class WaitFooterElement extends TalentbaseLandingPage {
         wait.until(ExpectedConditions.visibilityOf(waitPartnersLink));
     }
     @Step("Scroll down to footer.")
-    public void waitFooterVisibility() {
+    public void scrollDown() {
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
     }
 }

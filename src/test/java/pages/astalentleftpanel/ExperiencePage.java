@@ -1,5 +1,6 @@
 package pages.astalentleftpanel;
 
+import io.qameta.allure.Step;
 import mainbase.basepage.AsTalentBasePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -45,38 +46,28 @@ public class ExperiencePage extends AsTalentBasePage {
         super(driver);
     }
 
-    public String getTitleErrorText() {
+    @Step("Verify get error message when type long title into the title input field.")
+    public String verifyLongTitle() {
+        inputTitle.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        inputTitle.sendKeys(LONG_CHAR);
         return titleError.getText();
     }
 
-    public String getLocationErrorText() {
+    @Step("Verify get error message when type long location into the location input field.")
+    public String verifyLongLocation() {
+        inputLocation.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        inputLocation.sendKeys(LONG_CHAR);
         return locationError.getText();
     }
 
-    public String getCompanyErrorText() {
+    @Step("Verify get error message when type long company name into the company name input field.")
+    public String verifyLongCompanyName() {
+        companyName.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        companyName.sendKeys(LONG_CHAR);
         return companyNameError.getText();
     }
 
-    public void navigateWorkingExperience() {
-//        experienceLink.click();
-        addExperience.click();
-    }
-
-    public void verifyLongTitle() {
-        inputTitle.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        inputTitle.sendKeys(LONG_CHAR);
-    }
-
-    public void verifyLongLocation() {
-        inputLocation.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        inputLocation.sendKeys(LONG_CHAR);
-    }
-
-    public void verifyLongCompanyName() {
-        companyName.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        companyName.sendKeys(LONG_CHAR);
-    }
-
+    @Step("Fill with valid data.")
     public void fillWorkingExperience() {
         inputTitle.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         inputLocation.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -97,6 +88,8 @@ public class ExperiencePage extends AsTalentBasePage {
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
         wait.until(ExpectedConditions.elementToBeClickable(saveSubmit)).click();
     }
+
+    @Step("Verify the button is disable with blank fields.")
     public void blankFieldsWorkingExperience() {
         inputTitle.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         inputLocation.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -106,8 +99,13 @@ public class ExperiencePage extends AsTalentBasePage {
         companyName.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         employmentType.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
     }
-    public WebElement verifyCheckbox() {
-        checkBox.click();
+    @Step("Click still work here checkbox,get checkbox color.")
+    public String verifyCheckbox() {
+        wait.until(ExpectedConditions.elementToBeClickable(checkBox)).click();
+        return checkBox.getCssValue("color");
+    }
+    @Step("Get end date webelement.")
+    public WebElement getEndDate(){
         return endDate;
     }
 }

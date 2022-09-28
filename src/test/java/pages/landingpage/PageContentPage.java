@@ -47,7 +47,7 @@ public class PageContentPage extends TalentbaseLandingPage {
         lowerHireTalentButton.click();
     }
     @Step("Scroll down and click scroll to the top button button.")
-    public void waitButton() throws InterruptedException {
+    public void waitScrollToTopButton() throws InterruptedException {
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
         int maxWait = 1000 / 200;
         int i = 1;

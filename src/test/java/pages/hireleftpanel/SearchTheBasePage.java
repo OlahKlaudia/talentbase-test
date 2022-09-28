@@ -1,5 +1,6 @@
 package pages.hireleftpanel;
 
+import io.qameta.allure.Step;
 import mainbase.basepage.HireTalentBasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -39,6 +40,8 @@ public class SearchTheBasePage extends HireTalentBasePage {
     //no
     @FindBy(css = ".MuiGrid-container:first-child svg")
     public WebElement bookmarkUser;
+    @FindBy(css = ".MuiGrid-container:first-child g")
+    public WebElement clickableBookmark;
     @FindBy(css = ".aos-init button:nth-child(1)")
     public WebElement hireButton;
     @FindBy(css = ".aos-init button:nth-child(2)")
@@ -70,7 +73,7 @@ public class SearchTheBasePage extends HireTalentBasePage {
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(SEARCH_THE_BASE);
     }
-
+    @Step("Get no result .")
     public WebElement getNoResult() {
         return cantFindWhatLookingForImage;
     }
@@ -84,6 +87,9 @@ public class SearchTheBasePage extends HireTalentBasePage {
         action.moveToElement(bookmarkUser).perform();
         return bookmarkUser.getCssValue("background-color");
     }
+    public WebElement getBookmark(){
+        return clickableBookmark;
+    }
     public String getExportColor() {
         return downloadExport.getCssValue("background-color");
     }
@@ -94,8 +100,9 @@ public class SearchTheBasePage extends HireTalentBasePage {
         return contactButton;
     }
     public String verifyCheckmarks() {
+        wait.until(ExpectedConditions.elementToBeClickable(checkmarks));
         action.moveToElement(checkmarks).build().perform();
-        wait.until(ExpectedConditions.elementToBeClickable(checkmarksHover));
+        wait.until(ExpectedConditions.visibilityOf(checkmarksHover));
         return checkmarksHover.getText();
     }
     public String verifyHoverSalary() {
@@ -159,7 +166,7 @@ public class SearchTheBasePage extends HireTalentBasePage {
     }
     public void hireTalentAlertsClick() {
         wait.until(ExpectedConditions.elementToBeClickable(nextButtonAlert)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(nextButtonAlert)).click();
+//        wait.until(ExpectedConditions.elementToBeClickable(nextButtonAlert)).click();
     }
     public void contactTalent() {
         wait.until(ExpectedConditions.elementToBeClickable(contactButton)).click();

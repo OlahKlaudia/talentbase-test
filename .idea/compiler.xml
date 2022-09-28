@@ -9,5 +9,6 @@
         <module name="Talentbase" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="18" />
   </component>
 </project>

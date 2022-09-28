@@ -63,20 +63,5 @@ public class AsTalentLeftPanelBasePage extends BasePage {
     public void closeLeftPanel() {
         closeLeftPanel.click();
     }
-    public String verifyStartIsVisible() { //TODO username változhat
-        List<WebElement> elements = driver.findElements(By.tagName("p"));
-        for (WebElement element : elements) {
-            if(element.getText().contains("TEST321")){
-                System.out.println("Left panel is nooot closed" );
-            }
-            else
-                System.out.println("Left panel is closed, and return null.");
-            return null;
-        }
-        return null;
-    }
 
-    public WebElement getUsername() {
-        return usernameParagraphLeftPanel;
-    }
 }

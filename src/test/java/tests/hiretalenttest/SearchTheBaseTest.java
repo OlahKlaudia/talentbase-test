@@ -1,8 +1,11 @@
 package tests.hiretalenttest;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import mainbase.testbase.HireTestBase;
 import mainbase.mainenum.LeftPanelElementsEnum;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.hiretalentpage.DownloadFile;
 import pages.hireleftpanel.MyBasePage;
@@ -11,6 +14,8 @@ import pages.hireleftpanel.SearchTheBasePage;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
+@Epic("Talentbase")
+@Feature("Talentbase Hire Talent Site")
 public class SearchTheBaseTest extends HireTestBase {
     public static final String GREEN = "rgba(0, 128, 0, 1)";
     public static final String BLACK = "rgba(0, 0, 0, 0)";
@@ -21,12 +26,12 @@ public class SearchTheBaseTest extends HireTestBase {
     public void beforeHireTalent() {
         navigateHireSite();
         clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.searchTheBase);
-        searchHireTalent();
+        searchTalent();
 
 //        searchHireTalent().navigateTheBase();
     }
 
-    public SearchTheBasePage searchHireTalent() {
+    public SearchTheBasePage searchTalent() {
         return new SearchTheBasePage(getDriver());
     }
 
@@ -38,50 +43,44 @@ public class SearchTheBaseTest extends HireTestBase {
         return new MyBasePage(getDriver());
     }
 
+    @DisplayName("Fill Valid data on the Search the base Page Test")
     @Test
     public void validSearchTheBaseTest() {
-        searchHireTalent().validSearch();
-        assertThat("There are no results for a search with a valid item", searchHireTalent().getNoResult().isDisplayed());
+        searchTalent().validSearch();
+        assertThat("There are no results for a search with a valid item", searchTalent().getNoResult().isDisplayed());
     }
 
+    @DisplayName("Fill invalid data on the Search the base Page Test")
     @Test
     public void invalidSearchTheBaseTest() {
-        searchHireTalent().invalidSearch();
-        assertThat("A search with a valid element has a result.", searchHireTalent().getNoResult().isDisplayed());
+        searchTalent().invalidSearch();
+        assertThat("A search with a valid element has a result.", searchTalent().getNoResult().isDisplayed());
     }
 
+    @DisplayName("Result like element on the Search the base Page Test")
     @Test
     public void verifyResultLikeElementsTest() {
-        if (searchHireTalent().getLikeColor().contains(GREEN)) {
-            assertThat("The item was not clicked.", searchHireTalent().getLikeColor(), containsString(GREEN));
+        if (searchTalent().getLikeColor().contains(GREEN)) {
+            assertThat("The item was not clicked.", searchTalent().getLikeColor(), containsString(GREEN));
 
         } else {
-            searchHireTalent().verifyResultLikeElement();
-            assertThat("The item was not clicked.", searchHireTalent().getLikeColor(), containsString(GREEN));
+            searchTalent().verifyResultLikeElement();
+            assertThat("The item was not clicked.", searchTalent().getLikeColor(), containsString(GREEN));
         }
     }
 
-    @Test
-    public void verifyResultBookmarkElementsTest() {
-        if (searchHireTalent().getBookmarkColor().contains(RESULT_BLACK)) {
-            assertThat("The item was not clicked.", searchHireTalent().getBookmarkColor(), containsString(RESULT_BLACK));
 
-        } else {
-            searchHireTalent().verifyResultBookmarkElement();
-            assertThat("The item was not clicked.", searchHireTalent().getBookmarkColor(), containsString(RESULT_BLACK));
-        }
-    }
-
+    @DisplayName("Result export element and download pdf on the Search the base Page Test")
     @Test
     public void resultExportSearchTheBaseTest() throws Exception {
-        if (searchHireTalent().getExportColor().contains(ORANGE)) {
-            assertThat("The item was not clicked.", searchHireTalent().getExportColor(), containsString(ORANGE));
+        if (searchTalent().getExportColor().contains(ORANGE)) {
+            assertThat("The item was not clicked.", searchTalent().getExportColor(), containsString(ORANGE));
 
         } else {
-            searchHireTalent().verifyResultExportElement();
-            assertThat("The item was not clicked.", searchHireTalent().getExportColor(), containsString(ORANGE));
+            searchTalent().verifyResultExportElement();
+            assertThat("The item was not clicked.", searchTalent().getExportColor(), containsString(ORANGE));
         }
-        searchHireTalent().verifyDownloadExport();
+        searchTalent().verifyDownloadExport();
         downloadFile().isFileDownloaded();
         downloadFile().getDownloadedFilesPath();
         downloadFile().isFileGreaterThanZero();
@@ -90,86 +89,98 @@ public class SearchTheBaseTest extends HireTestBase {
         downloadFile().cleanupDownloads();
     }
 
+    @DisplayName("Back button element on the Search the base Page Test")
     @Test
     public void backButtonTest() {
-        searchHireTalent().backButton();
+        searchTalent().backButton();
         assertThat("Not found Hobbies link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(SEARCH_THE_BASE_PAGE));
     }
+
+    @DisplayName("Verify hover visibility on the Search the base Page Test")
     @Test
     public void checkHoverTest() {
-        searchHireTalent().verifyCheckmarks();
-        assertThat("Not found Hobbies link in the Talentbase site.", searchHireTalent().verifyCheckmarks(), containsString("Grey checkmarks represent"));
+        searchTalent().verifyCheckmarks();
+        assertThat("Not found checkmark hover.", searchTalent().verifyCheckmarks(), containsString("Grey checkmarks represent"));
     }
+
+    @DisplayName("Verify salary hover visibility on the Search the base Page Test")
     @Test
     public void salaryHoverTest() {
-        searchHireTalent().resultUserClick();
-        searchHireTalent().verifyHoverSalary();
-        assertThat("Not found Hobbies link in the Talentbase site.", searchHireTalent().verifyHoverSalary(), containsString("Salary shown is after tax and with our 15% fee."));
+        searchTalent().resultUserClick();
+        searchTalent().verifyHoverSalary();
+        assertThat("Not found Hobbies link in the Talentbase site.", searchTalent().verifyHoverSalary(), containsString("Salary shown is after tax and with our 15% fee."));
     }
+
+    @DisplayName("Result bookmark element on the Search the base Page Test")
+    @Test
+    public void verifyResultBookmarkElementsTest() {
+        if (searchTalent().getBookmarkColor().contains(RESULT_BLACK)) {
+            assertThat("The item was not clicked.", searchTalent().getBookmarkColor(), containsString(RESULT_BLACK));
+
+        } else {
+            searchTalent().verifyResultBookmarkElement();
+            assertThat("The item was not clicked.", searchTalent().getBookmarkColor(), containsString(RESULT_BLACK));
+        }
+    }
+
+    @DisplayName("Verify bookmark element on the Talent Page Test")
     @Test
     public void bookmarkSearchTheBaseTest() {
-        searchHireTalent().resultUserClick();
-        if (searchHireTalent().getUserBookmarkColor().contains(BLACK)) {
-            assertThat("The item was not clicked.", searchHireTalent().getUserBookmarkColor(), containsString(BLACK));
+        searchTalent().resultUserClick();
 
+        if (searchTalent().getUserBookmarkColor().contains(BLACK)) {
+            assertThat("The item was not clicked.", searchTalent().getUserBookmarkColor(), containsString(BLACK));
         } else {
-            searchHireTalent().bookmarkAssertion();
-            assertThat("The item was not clicked.", searchHireTalent().getUserBookmarkColor(), containsString(BLACK));
+            searchTalent().bookmarkAssertion();
+            assertThat("The item was not clicked.", searchTalent().getUserBookmarkColor(), containsString(BLACK));
         }
-//        searchHireTalent().bookmarkAssertion();
-//        assertThat("The item was not clicked.", searchHireTalent().getUserBookmarkColor(),containsString(BLACK));
-//        searchHireTalent().bookmarkAssertion();
-    }
 
-    @Test
-    public void hireSearchTheBaseTest() {
-        searchHireTalent().resultUserClick();
-        searchHireTalent().hireTalentButton();
-        assertThat("The item was not clicked.", searchHireTalent().getNextButton().isDisplayed());
-        searchHireTalent().hireTalentAlertsClick();
-    }
-
-    @Test
-    public void contactSearchTheBaseTest() {
-        searchHireTalent().resultUserClick();
-        searchHireTalent().contactTalent();
-        assertThat("The item was not clicked.", searchHireTalent().getContactNextButton().isDisplayed());
-        searchHireTalent().sendMessage();
-    }
-
-    @Test
-    public void lowercaseSearchTheBaseTest() {
-        searchHireTalent().lowercaseSearch();
-        assertThat("There are no results for a search with a valid item", searchHireTalent().getNoResult().isDisplayed());
-    }
-
-    @Test
-    public void checkBookmarkTest() {
-        searchHireTalent().resultUserClick();
-        if (searchHireTalent().getUserBookmarkColor().contains(BLACK)) {
-            assertThat("The item was not clicked.", searchHireTalent().getUserBookmarkColor(), containsString(BLACK));
-        } else {
-            searchHireTalent().bookmarkAssertion();
-            assertThat("The item was not clicked.", searchHireTalent().getUserBookmarkColor(), containsString(BLACK));
-        }
-        myBasePage().navigateMyBasePage();
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.myBase);
+//        myBasePage().navigateMyBasePage();
         myBasePage().checkFavorites();
         assertThat("Favorite Talent is not here.", myBasePage().getTalentFavorites().isDisplayed());
         myBasePage().countTalents();
     }
 
+    @DisplayName("Navigate to Talent Page Test")
     @Test
     public void navigateTalentPageTest() {
-        searchHireTalent().resultUserClick();
-        if (searchHireTalent().getUserBookmarkColor().contains(BLACK)) {
-            assertThat("The item was not clicked.", searchHireTalent().getUserBookmarkColor(), containsString(BLACK));
+        searchTalent().resultUserClick();
+        if (searchTalent().getUserBookmarkColor().contains(BLACK)) {
+            assertThat("The item was not clicked.", searchTalent().getUserBookmarkColor(), containsString(BLACK));
         } else {
-            searchHireTalent().bookmarkAssertion();
-            assertThat("The item was not clicked.", searchHireTalent().getUserBookmarkColor(), containsString(BLACK));
+            searchTalent().bookmarkAssertion();
+            assertThat("The item was not clicked.", searchTalent().getUserBookmarkColor(), containsString(BLACK));
         }
-        myBasePage().navigateMyBasePage();
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.myBase);
+//        myBasePage().navigateMyBasePage();
         myBasePage().checkFavorites();
         myBasePage().navigateTalentPage();
         assertThat("Not the same.", getDriver().getCurrentUrl(), containsString("/user"));
+    }
+
+    @DisplayName("Hire button element on the Talent Page Test")
+    @Test
+    public void hireSearchTheBaseTest() {
+        searchTalent().resultUserClick();
+        searchTalent().hireTalentButton();
+        assertThat("The item was not clicked.", searchTalent().getNextButton().isDisplayed());
+        searchTalent().hireTalentAlertsClick();
+    }
+
+    @DisplayName("Contact button element on the Talent Page Test")
+    @Test
+    public void contactSearchTheBaseTest() {
+        searchTalent().resultUserClick();
+        searchTalent().contactTalent();
+        assertThat("The item was not clicked.", searchTalent().getContactNextButton().isDisplayed());
+        searchTalent().sendMessage();
+    }
+
+    @DisplayName("Search with lowercase on the Search the base Page Test")
+    @Test
+    public void lowercaseSearchTheBaseTest() {
+        searchTalent().lowercaseSearch();
+        assertThat("There are no results for a search with a valid item", searchTalent().getNoResult().isDisplayed());
     }
 }

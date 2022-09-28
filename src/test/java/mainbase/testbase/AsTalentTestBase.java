@@ -1,8 +1,8 @@
 package mainbase.testbase;
 
+import mainbase.mainenum.HeaderElementsEnum;
 import pages.astalentleftpanel.OverviewPage;
 import pages.astalentpage.LeftPanelTalentLinksPage;
-import pages.headerlinks.HomePage;
 import tests.logintest.SignInTest;
 
 public class AsTalentTestBase extends TalentbaseTestBase{
@@ -21,10 +21,11 @@ public class AsTalentTestBase extends TalentbaseTestBase{
     public static final String SOCIAL_LINK = "/profile/social";
     public static final String USER_TERMS = "/profile/terms";
     public static final String COLOR_RED = "rgba(211, 47, 47, 1)";
+    public static final String ORANGE = "rgba(241, 84, 18, 1)";
 
-    public void navigateHireTalentSite() {
-        HomePage homePage = navigateToTalentbasePage();
-        homePage.signInPage().navigateSignIn();
+    public void navigateAsTalentSite() {
+        navigateToTalentbasePage();
+        headerSection().clickHeaderElements(HeaderElementsEnum.signIn);
         loginAsTalent().loginAsTalentTest();
         overviewPage();
     }

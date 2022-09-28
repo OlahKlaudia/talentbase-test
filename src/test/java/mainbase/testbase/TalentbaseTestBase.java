@@ -1,6 +1,9 @@
 package mainbase.testbase;
 
 import pages.headerlinks.HomePage;
+import pages.landingpage.HeaderSection;
+
+import java.net.MalformedURLException;
 
 public class TalentbaseTestBase extends TestBase {
     public static final String TALENTBASE = "https://dev.thetalentbase.com/";
@@ -44,6 +47,10 @@ public class TalentbaseTestBase extends TestBase {
     public HomePage navigateToTalentbasePage(){
         getDriver().get(TALENTBASE);
         return new HomePage(getDriver());
+    }
+
+    public HeaderSection headerSection(){
+        return new HeaderSection(getDriver());
     }
 
 }

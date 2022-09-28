@@ -19,11 +19,12 @@ import java.util.Objects;
 public class TestBase {
     public static String browser = System.getProperty("browser");
     public static String driverType = System.getProperty("remote");
-    private static final String URL = "http://192.168.0.146:4444/wd/hub";
+    public static String ipAddress = System.getProperty("ip");
+    private static final String DEFAULT_IP_ADDRESS = "192.168.0.146:4444";
+//    private static final String DEFAULT_IP_ADDRESS = "http://192.168.0.146:4444/wd/hub";
     private static final BrowserEnum DEFAULT_BROWSER = BrowserEnum.CHROME;
 
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-
     protected static final Logger logger= LoggerFactory.getLogger(TestBase.class);
 
     @BeforeEach
@@ -46,9 +47,12 @@ public class TestBase {
         }
         return DEFAULT_BROWSER;
     }
-    private static WebDriver getDriverType(String driverString) throws MalformedURLException {
+    private static WebDriver getDriverType(String driverString) {
         if(Objects.equals(driverString, "true")) {
-            return DriverFactory.createRemoteWebDriver(getBrowserEnum(browser),URL);
+            if(ipAddress==null) {
+                ipAddress = DEFAULT_IP_ADDRESS;
+            }
+            return DriverFactory.createRemoteWebDriver(getBrowserEnum(browser),ipAddress);
         } else{
             return DriverFactory.createDriver(getBrowserEnum(browser));
         }

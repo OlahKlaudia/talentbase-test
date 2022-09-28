@@ -1,26 +1,27 @@
 package tests.registrationtest;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import mainbase.mainenum.HeaderElementsEnum;
 import mainbase.testbase.TalentbaseTestBase;
 import mainbase.mainenum.AsTalentLinksEnum;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pages.headerlinks.HomePage;
 import pages.registrationpage.RegistrationApplyAsTalentPage;
 import pages.registrationpage.RegistrationHireTalentPage;
-import pages.registrationpage.WaitLoadingPage;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 
+@Epic("Talentbase")
+@Feature("Talentbase registration")
 public class RegistrationApplyAsTalentTest extends TalentbaseTestBase {
 
     @BeforeEach
-    public void navigateApplyAsTalentPage() {
-        HomePage homePage = navigateToTalentbasePage();
-        homePage.applyAsTalentPage().navigateApplyTalentPage();
-        WaitLoadingPage waitLoadingPage = new WaitLoadingPage(getDriver());
-        waitLoadingPage.waitButtonVisibility();
+    public void beforeRegistrationAsTalent() {
+        navigateToTalentbasePage();
+        headerSection().clickHeaderElements(HeaderElementsEnum.applyAsTalent);
     }
 
     public RegistrationHireTalentPage registration() {
@@ -31,20 +32,20 @@ public class RegistrationApplyAsTalentTest extends TalentbaseTestBase {
         return new RegistrationApplyAsTalentPage(getDriver());
     }
 
+    @DisplayName("Registration as Talent with blank fields Test")
     @Test
-    public void registrationWithBlankFieldTest() {
-        //ALL BLANK FIELDS
+    public void registrationWithBlankFieldsTest() {
         registration().verifyUserIsAllBlank();
         assertThat(registration().getColor(), containsString(COLOR_GREY));
     }
-
+    @DisplayName("With selected Checkbox, the button is disable Test")
     @Test
     public void selectCheckboxButtonDisableTest() {
-        //checkbox selected and the button is disable
         registration().verifyCheckboxSelectedButtonDisable();
         assertThat(registration().getColor(), containsString(COLOR_GREY));
     }
 
+    @DisplayName("Registration as Talent with short username Test")
     @Test
     public void shortUsernameTest() {
         //USERNAME ERRORS
@@ -52,24 +53,28 @@ public class RegistrationApplyAsTalentTest extends TalentbaseTestBase {
         assertThat(registration().getUsernameErrorMessage(), equalToIgnoringCase(SHORT_USERNAME_ERROR));
     }
 
+    @DisplayName("Registration as Talent with long username Test")
     @Test
     public void longUsernameTest() {
         registration().verifyLongUsername();
         assertThat(registration().getUsernameErrorMessage(), equalToIgnoringCase(LONG_USERNAME_ERROR));
     }
 
+    @DisplayName("Registration as Talent with invalid username Test")
     @Test
     public void invalidUsernameTest() {
         registration().verifyInvalidUsername();
         assertThat(registration().getUsernameErrorMessage(), equalToIgnoringCase(INVALID_USERNAME_ERROR));
     }
 
+    @DisplayName("Registration as Talent with username without space Test")
     @Test
     public void usernameWithoutSpaceTest() {
         registration().verifyUsernameWithSpaces();
         assertThat(registration().getUsernameErrorMessage(), equalToIgnoringCase(INVALID_USERNAME_ERROR));
     }
 
+    @DisplayName("Registration as Talent with invalid email Test")
     @Test
     public void invalidEmailTest() {
         //EMAIL ERRORS
@@ -77,6 +82,7 @@ public class RegistrationApplyAsTalentTest extends TalentbaseTestBase {
         assertThat(registration().getEmailErrorMessage(), equalToIgnoringCase(INVALID_EMAIL_ERROR));
     }
 
+    @DisplayName("Registration as Talent with short password Test ")
     @Test
     public void shortPasswordTest() {
         //password
@@ -84,38 +90,44 @@ public class RegistrationApplyAsTalentTest extends TalentbaseTestBase {
         assertThat(registration().getPasswordErrorMessage(), equalToIgnoringCase(SHORT_PASSWORD_ERROR));
     }
 
+    @DisplayName("Registration as Talent with long password Test")
     @Test
     public void longPasswordTest() {
         registration().longPassword();
         assertThat(registration().getPasswordErrorMessage(), equalToIgnoringCase(LONG_PASSWORD_ERROR));
     }
 
+    @DisplayName("Registration as Talent Test")
     @Test
     public void registrationTest() {
         registration().registrationAsTalent();
     }
 
+    @DisplayName("Terms of Service Link Test")
     @Test
     public void termsOfServiceLinkTest() {
         registrationAsTalent().verifyLinksFunctionality(AsTalentLinksEnum.termsOfService);
-        assertThat("Not found Partners And Investor link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(WEBSITE_TERMS));
+        assertThat("Not found Partners And Investor link on the Apply as talent site.", getDriver().getCurrentUrl(), containsString(WEBSITE_TERMS));
     }
 
+    @DisplayName("Privacy Policy Link Test")
     @Test
     public void privacyPolicyLinkTest() {
         registrationAsTalent().verifyLinksFunctionality(AsTalentLinksEnum.privacyPolicy);
-        assertThat("Not found Our Policy link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(OUR_POLICY));
+        assertThat("Not found Our Policy link on the Apply as talent site.", getDriver().getCurrentUrl(), containsString(OUR_POLICY));
     }
 
+    @DisplayName("Register Corporation Link Test")
     @Test
     public void registerCorporationLinkTest() {
         registrationAsTalent().verifyLinksFunctionality(AsTalentLinksEnum.registerCorporation);
-        assertThat("Not found Register Corporation link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(HIRE_TALENT));
+        assertThat("Not found Register Corporation link on the Apply as talent site.", getDriver().getCurrentUrl(), containsString(HIRE_TALENT));
     }
 
+    @DisplayName("Sign in Link Test")
     @Test
     public void signInLinkTest() {
         registrationAsTalent().verifyLinksFunctionality(AsTalentLinksEnum.signIn);
-        assertThat("Not found Sign In link in the Talentbase site.", getDriver().getCurrentUrl(), equalToIgnoringCase(LOGIN));
+        assertThat("Not found Sign In link on the Apply as talent site.", getDriver().getCurrentUrl(), containsString(LOGIN));
     }
 }

@@ -38,10 +38,6 @@ public class ContactPage extends InputElementsPage {
     public ContactPage(WebDriver driver) {
         super(driver);
     }
-    @Step("Navigate to Contact Page.")
-    public void navigateContactPage() {
-        contactMenuItem.click();
-    }
 
     public String getEmailErrorMessageText() {
         return contactEmailErrorMessage.getText();
@@ -78,28 +74,5 @@ public class ContactPage extends InputElementsPage {
         nameInput.sendKeys(LONG_USERNAME);
         emailInput.sendKeys(LONG_USERNAME);
         textarea.sendKeys(LONG_USERNAME);
-    }
-
-    @Step("Click Talentbase mini menu icon links.")
-    public String clickAboutPageLinkElements(LinksEnum element) {
-        switch (element) {
-            case linkedIn:
-                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
-                wait.until(ExpectedConditions.elementToBeClickable(linkedInMenuIcon));
-                return linkedInMenuIcon.getAttribute("href");
-            case facebook:
-                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
-                wait.until(ExpectedConditions.elementToBeClickable(facebookMenuIcon));
-                return facebookMenuIcon.getAttribute("href");
-            case twitter:
-                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
-                wait.until(ExpectedConditions.elementToBeClickable(twitterMenuIcon));
-                return twitterMenuIcon.getAttribute("href");
-            case mail:
-                action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
-                wait.until(ExpectedConditions.elementToBeClickable(mailMenuItem));
-                return mailMenuItem.getAttribute("href");
-        }
-        return null;
     }
 }

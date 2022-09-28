@@ -1,5 +1,6 @@
 package pages.astalentleftpanel;
 
+import io.qameta.allure.Step;
 import mainbase.basepage.AsTalentBasePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -32,11 +33,7 @@ public class CertificatesPage extends AsTalentBasePage {
         super(driver);
     }
 
-    public void navigateCertificates() {
-//        certificatesLink.click();
-        wait.until(ExpectedConditions.elementToBeClickable(addPlus)).click();
-    }
-
+    @Step("Fill valid data on the Certificates Page.")
     public void fillCertificates() {
         nameOfCertificate.sendKeys(VALID_INPUT);
         institution.sendKeys(VALID_INPUT);
@@ -46,20 +43,8 @@ public class CertificatesPage extends AsTalentBasePage {
         wait.until(ExpectedConditions.elementToBeClickable(select2022)).click();
         wait.until(ExpectedConditions.elementToBeClickable(selectAug)).click();
     }
-    public void waitButton() throws InterruptedException {
-        int maxWait = 1000 / 200;
-        int i = 1;
-        do {
-            try {
-                wait.until(ExpectedConditions.elementToBeClickable(saveSubmit)).click();
-                i++;
-                System.out.println("how many times it goes through the do while" + i);
-                break;
-            } catch (Exception e) {
-                Thread.sleep(200);
-            }
-        } while (i < maxWait);
-    }
+
+    @Step("Verify the button is disable with blank fields.")
     public void blankFields() {
         nameOfCertificate.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         institution.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));

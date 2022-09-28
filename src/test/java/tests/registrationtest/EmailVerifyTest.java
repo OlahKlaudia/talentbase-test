@@ -1,7 +1,11 @@
 package tests.registrationtest;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import mainbase.mainenum.HeaderElementsEnum;
 import mainbase.testbase.TalentbaseTestBase;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.landingpage.EmailPage;
 import pages.headerlinks.HomePage;
@@ -9,11 +13,13 @@ import pages.headerlinks.HomePage;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
+@Epic("Talentbase")
+@Feature("Talentbase registration")
 public class EmailVerifyTest extends TalentbaseTestBase {
     @BeforeEach
-    public void registerAsTalent() {
-        HomePage homePage = navigateToTalentbasePage();
-        homePage.applyAsTalentPage().navigateApplyTalentPage();
+    public void beforeVerifyEmail() {
+        navigateToTalentbasePage();
+        headerSection().clickHeaderElements(HeaderElementsEnum.applyAsTalent);
         reg().registrationTest();
     }
 
@@ -25,10 +31,13 @@ public class EmailVerifyTest extends TalentbaseTestBase {
         return new RegistrationApplyAsTalentTest();
     }
 
+    @DisplayName("Verify that received an email message Test")
     @Test
     public void verifyGetEmailTest() {
         loginGmail();
     }
+
+    @DisplayName("Verify the Activation button navigate to the Home page Test")
     @Test
     public void verifyTheButtonNavigateHomePageTest() {
         loginGmail();
@@ -36,6 +45,7 @@ public class EmailVerifyTest extends TalentbaseTestBase {
         assertThat("Wrong creditials.", getDriver().getCurrentUrl(), containsString(HOME_PAGE));
         //  error message is displayed
     }
+
     public void loginGmail(){
         assertThat("Wrong creditials.",emailPage().getAlertButton().isDisplayed());
         emailPage().navigateGmailSite();

@@ -65,9 +65,11 @@ public class OverviewPage extends AsTalentBasePage {
         super(driver);
     }
 
-    public void clickExportProfile() throws Exception {
+    @Step("Click export profile.")
+    public void clickExportProfile() {
         exportProfileAsPdf.click();
     }
+    @Step("Wait until find the paragraph where contains /mo,and get salary hover text.")
     public String hoverSalary() {
         List<WebElement> elements = driver.findElements(By.tagName("p"));
         for (WebElement element : elements) {
@@ -79,12 +81,13 @@ public class OverviewPage extends AsTalentBasePage {
         action.moveToElement(salaryHover).click().perform();
         return salaryHover.getText();
     }
+    @Step("Get social network link.")
     public WebElement getSocialNetworkLink() {
        return getSocialNetworkLink;
     }
 
     public WaitUntilLoadOverviewPage scroll(){return new WaitUntilLoadOverviewPage(driver);}
-    @Step("Scroll down,wait left panel items visibility,return Page Object.")
+    @Step("Click Overview items,wait until the elements visible,and SSreturn Page Object.")
     public AsTalentBasePage clickOverviewElements(LeftPanelElementsEnum element) {
         switch (element) {
             case accountDetails:

@@ -19,7 +19,5 @@ public class AboutPage extends TalentbaseLandingPage {
     public AboutPage(WebDriver driver) {
         super(driver);
     }
-    public void navigateAboutPage(){
-        aboutItem.click();
-    }
+
 }

@@ -1,5 +1,8 @@
 package tests.registrationtest;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import mainbase.mainenum.HeaderElementsEnum;
 import mainbase.testbase.TalentbaseTestBase;
 import mainbase.mainenum.AsTalentLinksEnum;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,16 +15,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 
+@Epic("Talentbase")
+@Feature("Talentbase registration")
 public class RegistrationHireTalentTest extends TalentbaseTestBase {
     @BeforeEach
-    public void navigateTalentbasePage() {
+    public void beforeRegistrationAsHire() {
         navigateToTalentbasePage();
-        homePage().hireTalentPage().navigateHireTalentPage();
+        headerSection().clickHeaderElements(HeaderElementsEnum.hireTalent);
     }
 
-    public HomePage homePage() {
-        return new HomePage(getDriver());
-    }
 
     public RegistrationHireTalentPage registration() {
         return new RegistrationHireTalentPage(getDriver());
@@ -101,7 +103,7 @@ public class RegistrationHireTalentTest extends TalentbaseTestBase {
     @Test
     public void registerCorporationLinkTest() {
         registration().verifyLinksFunctionality(AsTalentLinksEnum.registerCorporation);
-        assertThat("Not found Register Corporation link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(HIRE_TALENT));
+        assertThat("Not found Register Corporation link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(SIGN_UP));
     }
 
     @Test

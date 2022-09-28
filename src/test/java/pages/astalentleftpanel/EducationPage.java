@@ -1,5 +1,6 @@
 package pages.astalentleftpanel;
 
+import io.qameta.allure.Step;
 import mainbase.basepage.AsTalentBasePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class EducationPage extends AsTalentBasePage {
-    public static final String EDUCATION = "/education";
 
     @FindBy(css = "[name=\"school\"]")
     public WebElement school;
@@ -18,6 +18,8 @@ public class EducationPage extends AsTalentBasePage {
     public WebElement employmentType;
     @FindBy(css = "ul li[data-value=\"Other\"]")
     public WebElement bachelor;
+    public static final String EDUCATION = "/education";
+
     @Override
     protected void load() {
 
@@ -32,11 +34,7 @@ public class EducationPage extends AsTalentBasePage {
         super(driver);
     }
 
-    public void navigateEducationPage() {
-//        educationLink.click();
-        addPlus.click();
-    }
-
+    @Step("Fill with valid data.")
     public void fillEducation() {
         school.sendKeys(VALID_INPUT);
         fieldOfStudy.sendKeys(VALID_INPUT);
@@ -48,20 +46,8 @@ public class EducationPage extends AsTalentBasePage {
         employmentType.click();
         bachelor.click();
     }
-    public void waitButton() throws InterruptedException {
-        int maxWait = 1000 / 200;
-        int i = 1;
-        do {
-            try {
-                wait.until(ExpectedConditions.elementToBeClickable(saveSubmit)).click();
-                i++;
-                System.out.println("how many times it goes through the do while" + i);
-                break;
-            } catch (Exception e) {
-                Thread.sleep(200);
-            }
-        } while (i < maxWait);
-    }
+
+    @Step("Verify the button is disable with blank fields.")
     public void blankFields() {
         school.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         fieldOfStudy.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
