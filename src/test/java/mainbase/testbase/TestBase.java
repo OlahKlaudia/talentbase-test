@@ -22,13 +22,15 @@ public class TestBase {
     public static String ipAddress = System.getProperty("ip");
     private static final String DEFAULT_IP_ADDRESS = "192.168.0.146:4444";
 //    private static final String DEFAULT_IP_ADDRESS = "http://192.168.0.146:4444/wd/hub";
-    private static final BrowserEnum DEFAULT_BROWSER = BrowserEnum.CHROME;
+    private static final BrowserEnum DEFAULT_BROWSER = BrowserEnum.CHROME_HEADLESS;
 
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     protected static final Logger logger= LoggerFactory.getLogger(TestBase.class);
 
     @BeforeEach
     public void beforeTest() throws MalformedURLException {
+        logger.info("Remote....+ "+getDriverType(driverType));
+        logger.info("Browser....+ "+getBrowserEnum(browser));
         driver.set(getDriverType(driverType));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         logger.info("Create 'Web Driver' for '{}' browser",getDriver());
