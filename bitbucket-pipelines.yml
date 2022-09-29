@@ -15,5 +15,5 @@ pipelines:
           - echo "Automated pipelines."
           #- mvn -B verify --file pom.xml
           # run tests
-          - mvn -ntp -Dproject.build.sourceEncoding=UTF-8 -Dbrowser='chromeheadless' -Dremote='false' clean test
+          - mvn -ntp -Dbrowser="chromeheadless" -Dremote=false test
 
