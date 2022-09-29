@@ -11,13 +11,13 @@ dist/
 *.py[cod]
 
 # Log files
-*.log
+#*.log
 
 # Maven
-target/
-dist/
-log/
-allure-report/
+#target/
+#dist/
+#log/
+#allure-report/
 
 # JetBrains IDE
 .idea/
