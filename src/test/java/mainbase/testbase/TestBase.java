@@ -29,8 +29,6 @@ public class TestBase {
 
     @BeforeEach
     public void beforeTest() throws MalformedURLException {
-        logger.info("Remote....+ "+getDriverType(driverType));
-        logger.info("Browser....+ "+getBrowserEnum(browser));
         driver.set(getDriverType(driverType));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         logger.info("Create 'Web Driver' for '{}' browser",getDriver());
