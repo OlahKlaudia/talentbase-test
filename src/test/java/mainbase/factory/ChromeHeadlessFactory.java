@@ -16,6 +16,9 @@ public class ChromeHeadlessFactory extends GenericFactory {
     public WebDriver createDriver() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless","--window-size=1920,1200");
+        chromeOptions.addArguments("--no-sandbox");
+        chromeOptions.addArguments("--disable-dev-shm-usage");
         return fullHDMaximize(new ChromeDriver(chromeOptions.setHeadless(true)));
     }
 
