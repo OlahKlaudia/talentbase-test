@@ -24,7 +24,10 @@ public class ChromeHeadlessFactory extends GenericFactory {
 //        ChromeOptions chromeOptions = new ChromeOptions();
 //        return fullHDMaximize(new RemoteWebDriver(new URL(url), chromeOptions.setHeadless(true)));
         ChromeOptions chromeOptions = new ChromeOptions();
+
         chromeOptions.addArguments("--headless","--window-size=1920,1200");
+        chromeOptions.addArguments("--no-sandbox");
+        chromeOptions.addArguments("--disable-dev-shm-usage");
         try {
             return new RemoteWebDriver(new URL("http://" + url + "/wd/hub"), chromeOptions);
         } catch (MalformedURLException e) {
