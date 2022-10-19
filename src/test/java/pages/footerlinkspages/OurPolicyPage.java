@@ -8,7 +8,6 @@ public class OurPolicyPage extends TalentbaseLandingPage {
 
     @Override
     protected void load() {
-
     }
 
     @Override

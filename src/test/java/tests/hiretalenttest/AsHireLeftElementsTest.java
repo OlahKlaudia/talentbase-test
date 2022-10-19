@@ -20,6 +20,7 @@ public class AsHireLeftElementsTest extends HireTestBase {
     public void beforeHireTalent() {
         navigateHireSite();
     }
+
     public LeftPanelLinkPage leftPanelLinksPage() {
         return new LeftPanelLinkPage(getDriver());
     }
@@ -27,30 +28,30 @@ public class AsHireLeftElementsTest extends HireTestBase {
     @DisplayName("Start Link Test")
     @Test
     public void startLinkTest() {
-        leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.start);
-        assertThat("Not found Start link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(START_PAGE));
+        leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.START);
+        assertThat("Not found Start link in the Hire Talent site.", getDriver().getCurrentUrl(), containsString(START_PAGE));
     }
 
     @DisplayName("Account Link Test")
     @Test
     public void accountLinkTest() {
-        leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.accountDetails);
-        assertThat("Not found Account Details link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(ACCOUNT_PAGE));
+        leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.ACCOUNT_DETAILS);
+        assertThat("Not found Account Details link in the Hire Talent site.", getDriver().getCurrentUrl(), containsString(ACCOUNT_PAGE));
     }
 
     @DisplayName("Search the base Link Test")
     @Test
     public void searchTheBaseLinkTest() {
-        leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.searchTheBase);
+        leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.SEARCH_THE_BASE);
         leftPanelLinksPage();
-        assertThat("Not found Search the base link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(SEARCH_THE_BASE_PAGE));
+        assertThat("Not found Search the base link in the Hire Talent site.", getDriver().getCurrentUrl(), containsString(SEARCH_THE_BASE_PAGE));
     }
 
     @DisplayName("My base Link Test")
     @Test
     public void myBaseLinkTest() {
-        leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.myBase);
-        assertThat("Not found My base link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(MY_BASE_PAGE));
+        leftPanelLinksPage().clickLeftPanelElements(LeftPanelElementsEnum.MY_BASE);
+        assertThat("Not found My base link in the Hire Talent site.", getDriver().getCurrentUrl(), containsString(MY_BASE_PAGE));
     }
 
     @DisplayName("Close Left panel Test")
@@ -58,6 +59,6 @@ public class AsHireLeftElementsTest extends HireTestBase {
     public void closeLeftPanelTest() {
         leftPanelLinksPage().verifyStartIsVisible();
         leftPanelLinksPage().closeLeftPanel();
-        assertThat("Left panel is not closed.", leftPanelLinksPage().verifyStartIsVisible()==null);
+        assertThat("Left panel is not closed.", leftPanelLinksPage().verifyStartIsVisible() == null);
     }
 }

@@ -18,7 +18,6 @@ public class RegistrationApplyAsTalentPage extends InputElementsPage {
     }
     @Override
     protected void load() {
-
     }
 
     @Override
@@ -32,20 +31,23 @@ public class RegistrationApplyAsTalentPage extends InputElementsPage {
     @Step("In Apply as Talent Page,navigate links.")
     public TalentbaseLandingPage verifyLinksFunctionality(AsTalentLinksEnum element) {
         switch (element) {
-            case registerCorporation:
+            case REGISTER_CORPORATION:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
                 wait.until(ExpectedConditions.elementToBeClickable(registerCorporation)).click();
-//
 //                action.moveToElement(registerCorporation).click().perform();
                 return new HireTalentPage(driver);
-            case signIn:
+            case SIGN_IN:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
                 wait.until(ExpectedConditions.elementToBeClickable(signInLink)).click();
                 return new SignInPage(driver);
-            case privacyPolicy:
+            case PRIVACY_POLICY:
+                logger.info(element.toString());
                 wait.until(ExpectedConditions.elementToBeClickable(privacyPolicyLink)).click();
                 return new OurPolicyPage(driver);
-            case termsOfService:
+            case TERMS_OF_SERVICE:
+                logger.info(element.toString());
                 wait.until(ExpectedConditions.elementToBeClickable(termsOfServiceLink)).click();
                 return new WebsiteTermsPage(driver);
         }

@@ -32,7 +32,8 @@ public class IntroDescriptionPage extends AsTalentBasePage {
 
     @Step("Verify to get error message when type short summary text.")
     public void shortSummary() {
-        summaryTextarea.sendKeys(Keys.chord(Keys.CONTROL,"a",Keys.DELETE));
+        logger.info("Fill the form with short summary.");
+        summaryTextarea.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         summaryTextarea.sendKeys(SHORT_SUMMARY);
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
 
@@ -40,6 +41,7 @@ public class IntroDescriptionPage extends AsTalentBasePage {
 
     @Step("Get error message color.")
     public String getColor() {
+        logger.info("Get error message color.");
         wait.until(ExpectedConditions.visibilityOf(errorMessage));
         return errorMessage.getCssValue("color");
     }

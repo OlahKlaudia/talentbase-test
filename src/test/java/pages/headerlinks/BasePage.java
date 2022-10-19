@@ -10,9 +10,7 @@ public class BasePage extends TalentbaseLandingPage {
     private static final String BASE_PAGE = "/base";
 
     @Override
-    protected void load() {
-
-    }
+    protected void load() {}
 
     @Override
     protected void isLoaded() throws Error {

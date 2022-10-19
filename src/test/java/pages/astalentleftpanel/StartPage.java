@@ -12,6 +12,7 @@ public class StartPage extends AsTalentBasePage {
     public StartPage(WebDriver driver) {
         super(driver);
     }
+
     @FindBy(css = ".MuiGrid-container:nth-child(3) .MuiGrid-root:nth-child(3) img:nth-child(2)")
     private WebElement accountDetailsPicture;
     @FindBy(css = " .MuiGrid-root:nth-child(3) img:nth-child(2)")
@@ -26,7 +27,6 @@ public class StartPage extends AsTalentBasePage {
 
     @Override
     protected void load() {
-
     }
 
     @Override
@@ -37,28 +37,33 @@ public class StartPage extends AsTalentBasePage {
 
     @Step("Wait until search the base picture is visible on the Start page.")
     public void waitStartPageLoad() {
+        logger.info("Wait until search the base picture is visible on the Start page.");
         wait.until(ExpectedConditions.visibilityOf(searchTheBasePicture)).isDisplayed();
     }
 
     @Step("Click the Search the base picture.")
-    public void searchTheBasePicture(){
-       wait.until(ExpectedConditions.visibilityOf(searchTheBasePicture)).click();
+    public void searchTheBasePicture() {
+        logger.info("Click the search the base picture.");
+        wait.until(ExpectedConditions.visibilityOf(searchTheBasePicture)).click();
     }
 
     @Step("Click the search the base button.")
-    public void searchTheBaseButton(){
-        scrollEnd();
+    public void searchTheBaseButton() {
+        logger.info("Click the search the base button.");
+        action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
         wait.until(ExpectedConditions.visibilityOf(searchTheBaseButton)).click();
     }
 
     @Step("Click the Details picture picture.")
-    public void accountDetailsPicture(){
+    public void accountDetailsPicture() {
+        logger.info("Click the Account Details picture.");
         wait.until(ExpectedConditions.visibilityOf(accountDetailsPicture)).click();
     }
 
     @Step("Click account details button.")
-    public void accountDetailsButton(){
-        scrollEnd();
+    public void accountDetailsButton() {
+        logger.info("Click the Account Details button.");
+        action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
         wait.until(ExpectedConditions.visibilityOf(accountDetailsButton)).click();
     }
 }

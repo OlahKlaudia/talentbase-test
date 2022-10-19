@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.landingpage.EmailPage;
-import pages.headerlinks.HomePage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
@@ -19,7 +18,7 @@ public class EmailVerifyTest extends TalentbaseTestBase {
     @BeforeEach
     public void beforeVerifyEmail() {
         navigateToTalentbasePage();
-        headerSection().clickHeaderElements(HeaderElementsEnum.applyAsTalent);
+        headerSection().clickHeaderElements(HeaderElementsEnum.APPLY_AS_TALENT);
         reg().registrationTest();
     }
 
@@ -42,20 +41,20 @@ public class EmailVerifyTest extends TalentbaseTestBase {
     public void verifyTheButtonNavigateHomePageTest() {
         loginGmail();
         emailPage().clickActivateAccountLink();
-        assertThat("Wrong creditials.", getDriver().getCurrentUrl(), containsString(HOME_PAGE));
+        assertThat("Home page is not visible.", getDriver().getCurrentUrl(), containsString(HOME_PAGE));
         //  error message is displayed
     }
 
-    public void loginGmail(){
-        assertThat("Wrong creditials.",emailPage().getAlertButton().isDisplayed());
+    public void loginGmail() {
+        assertThat("Alert is not display.", emailPage().getAlertButton().isDisplayed());
         emailPage().navigateGmailSite();
-        assertThat("Wrong creditials.",emailPage().getNextButton().isDisplayed());
+        assertThat("Next button is not display.", emailPage().getNextButton().isDisplayed());
         emailPage().typeEmailAddressToLoginGmail();
-        assertThat("Wrong creditials.",emailPage().getNextButton().isDisplayed());
+        assertThat("Second next button is not display.", emailPage().getNextButton().isDisplayed());
         emailPage().typePasswordToLoginGmail();
-        assertThat("Wrong creditials.", getDriver().getCurrentUrl(), containsString(GMAIL));
+        assertThat("The URL is not correct.", getDriver().getCurrentUrl(), containsString(GMAIL_URL));
         emailPage().verifyGetEmail();
-        assertThat("Wrong creditials.",emailPage().getActivateLink().isDisplayed());
+        assertThat("Activate link is not display.", emailPage().getActivateLink().isDisplayed());
     }
 
 }

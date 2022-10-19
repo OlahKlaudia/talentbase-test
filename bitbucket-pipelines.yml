@@ -16,4 +16,5 @@ pipelines:
           #- mvn -B verify --file pom.xml
           # run tests
           - mvn -ntp -Dbrowser="chromeheadless" -Dremote=false test
-
+        artifacts:
+          - target/test-results/**

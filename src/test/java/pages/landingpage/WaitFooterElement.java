@@ -19,7 +19,6 @@ public class WaitFooterElement extends TalentbaseLandingPage {
     }
     @Override
     protected void load() {
-
     }
     @Override
     protected void isLoaded() throws Error {
@@ -28,6 +27,7 @@ public class WaitFooterElement extends TalentbaseLandingPage {
     }
     @Step("Scroll down to footer.")
     public void scrollDown() {
+        logger.info("Scroll down to footer.");
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
     }
 }

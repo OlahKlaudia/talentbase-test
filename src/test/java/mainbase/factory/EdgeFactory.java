@@ -10,7 +10,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class EdgeFactory extends GenericFactory{
+public class EdgeFactory extends GenericFactory {
 
     @Override
     public WebDriver createDriver() {
@@ -20,9 +20,6 @@ public class EdgeFactory extends GenericFactory{
 
     @Override
     public WebDriver createRemoteDriver(BrowserEnum browser, String url) {
-//        WebDriver driver;
-//        driver =maximize(new RemoteWebDriver(new URL(url), new EdgeOptions()));
-//        return driver;
         EdgeOptions edgeOptions = new EdgeOptions();
         try {
             return new RemoteWebDriver(new URL("http://" + url + "/wd/hub"), edgeOptions);

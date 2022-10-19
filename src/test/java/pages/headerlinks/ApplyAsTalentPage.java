@@ -8,7 +8,6 @@ public class ApplyAsTalentPage extends TalentbaseLandingPage {
 
     @Override
     protected void load() {
-
     }
 
     @Override

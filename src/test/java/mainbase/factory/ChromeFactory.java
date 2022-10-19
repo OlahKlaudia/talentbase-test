@@ -10,7 +10,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class ChromeFactory extends GenericFactory{
+public class ChromeFactory extends GenericFactory {
 
     @Override
     public WebDriver createDriver() {
@@ -20,7 +20,6 @@ public class ChromeFactory extends GenericFactory{
 
     @Override
     public WebDriver createRemoteDriver(BrowserEnum browser, String url) {
-//        return maximize(new RemoteWebDriver(new URL(url), new ChromeOptions()));
         ChromeOptions chromeOptions = new ChromeOptions();
         try {
             return new RemoteWebDriver(new URL("http://" + url + "/wd/hub"), chromeOptions);

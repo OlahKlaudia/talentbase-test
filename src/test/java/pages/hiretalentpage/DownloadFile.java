@@ -13,8 +13,6 @@ public class DownloadFile extends HireTalentBasePage {
         super(driver);
     }
 
-    private static final String FILE_FOLDER = "C" + File.separator + "Users" + File.separator + "olahk" + File.separator + "Downloads" + File.separator;
-
     @Step("Get absolute Path.")
     public static String getAppPath(String relPath) {
         String path = new File(relPath).getAbsolutePath();
@@ -23,11 +21,13 @@ public class DownloadFile extends HireTalentBasePage {
 
     @Step("Get download Path.")
     public static String getDownloadPath() {
-        return getAppPath("C:\\Users\\olahk\\Downloads\\");
+        logger.info("Get download path.");
+        return getAppPath("C:"+ File.separator +"Users"+ File.separator +"olahk"+ File.separator + "Downloads"+ File.separator);
     }
 
     @Step("Wait and check the file downloaded.")
     public boolean isFileDownloaded() throws Exception {
+        logger.info("Verify the file is downloaded.");
         final int SLEEP_TIME_MILLIS = 100;
         File file = new File(getDownloadedFilesPath());
         final int timeout = 60 * SLEEP_TIME_MILLIS;
@@ -46,6 +46,7 @@ public class DownloadFile extends HireTalentBasePage {
 
     @Step("Get downloaded file.")
     public File[] getDownloadedFiles() {
+        logger.info("Get the download files.");
         File downloadPath = new File(getDownloadPath());
         File[] files = downloadPath.listFiles();
 //        System.out.println("get Downloads" + files);
@@ -54,6 +55,7 @@ public class DownloadFile extends HireTalentBasePage {
 
     @Step("Get last downloaded file.")
     public String getDownloadedFilesPath() {//párhuzamos futtatásnál problémába ütközhet
+        logger.info("Get the Downloaded Files, and return the last downloaded file.");
         File folder = new File(getDownloadPath());
         File[] listOfFiles = folder.listFiles();
         String fileName = "";
@@ -74,6 +76,7 @@ public class DownloadFile extends HireTalentBasePage {
 
     @Step("Verify the file size is greater than zero.")
     public boolean isFileGreaterThanZero() {
+        logger.info("Verify the file greater than zero.");
         long fileSize = getDownloadedFilesPath().length();
         if (fileSize > 0)
             System.out.println("File Greater than 0");
@@ -84,6 +87,7 @@ public class DownloadFile extends HireTalentBasePage {
 
     @Step("Clean up downloads.")
     public void cleanupDownloads() {
+        logger.info("Get download files and clean up.");
         for (File f : getDownloadedFiles()) {
             System.out.println("Delete" + f);
             f.delete();

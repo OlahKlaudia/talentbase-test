@@ -23,6 +23,7 @@ public class AsTalentHeaderTest extends AsTalentTestBase {
     public HeaderSection asTalentHeaderPage() {
         return new HeaderSection(getDriver());
     }
+
     @DisplayName("Header visibility Test")
     @Test
     public void headerVisibilityTest() {
@@ -32,70 +33,70 @@ public class AsTalentHeaderTest extends AsTalentTestBase {
     @DisplayName("On the as Talent site the Talentbase logo Link Test")
     @Test
     public void talentbaseLogoLinkTest() {
-        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.talentbaseLogo);
+        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.TALENTBASE_LOGO);
         assertThat("Not found Talentbase logo link on the Apply as Talent site.", getDriver().getCurrentUrl(), containsString(HOME_PAGE));
     }
 
     @DisplayName("On the as Talent site the Partners and Investors Link Test")
     @Test
     public void partnersAndInvestorsLinkTest() {
-        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.partnersAndInvestors);
+        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.PARTNERS_AND_INVESTORS);
         assertThat("Not found Partners And Investors link on the Apply as Talent site.", getDriver().getCurrentUrl(), containsString(PARTNERS_AND_INVESTORS_PAGE));
     }
 
     @DisplayName("On the as Talent site the Looking for Work Link Test")
     @Test
     public void lookingFotWorkLinkTest() {
-        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.lookingForWork);
+        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.LOOKING_FOR_WORK);
         assertThat("Not found Looking for Work link on the Apply as Talent site.", getDriver().getCurrentUrl(), containsString(LOOKING_FOR_WORK_PAGE));
     }
 
     @DisplayName("On the as Talent site the About us Link Test")
     @Test
     public void aboutLinkTest() {
-        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.about);
+        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.ABOUT);
         assertThat("Not found About link  on the Apply as Talent site.", getDriver().getCurrentUrl(), containsString(ABOUT_PAGE));
     }
 
     @DisplayName("On the as Talent site the Contact us Link Test")
     @Test
     public void contactLinkTest() {
-        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.contact);
+        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.CONTACT);
         assertThat("Not found Contact link on the Apply as Talent site", getDriver().getCurrentUrl(), containsString(CONTACT_PAGE));
     }
 
     @DisplayName("On the as Talent site the Salary Link Test")
     @Test
     public void salaryLinkTest() {
-        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.salary);
-        assertThat("Not found Salary link on the Apply as Talent site.", getDriver().getCurrentUrl(), containsString(SALARY));
+        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.SALARY);
+        assertThat("Not found Salary link on the Apply as Talent site.", getDriver().getCurrentUrl(), containsString(SALARY_PAGE));
     }
 
     @DisplayName("On the as Talent site the Blog Link Test")
     @Test
     public void blogLinkTest() {
-        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.blog);
+        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.BLOG);
         assertThat("Not found Blog link on the Apply as Talent site.", getDriver().getCurrentUrl(), containsString(BLOG_PAGE));
     }
 
     @DisplayName("On the as Talent site the Notification Link Test")
     @Test
     public void notificationLinkTest() {
-        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.notification);
+        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.NOTIFICATION);
         assertThat("Not found Blog link on the Apply as Talent site.", getDriver().getCurrentUrl(), containsString(NOTIFICATIONS_PAGE));
     }
 
     @DisplayName("On the as Talent site the Profile Link Test")
     @Test
     public void profileLinkTest() {
-        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.profile);
-        assertThat("Not found About link  on the Apply as Talent site.", getDriver().getCurrentUrl(), containsString(OVERVIEW));
+        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.PROFILE);
+        assertThat("Not found About link  on the Apply as Talent site.", getDriver().getCurrentUrl(), containsString(OVERVIEW_URL));
     }
 
     @DisplayName("On the as Talent site the Sign out Link Test")
     @Test
     public void signOutLinkTest() {
-        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.signOut);
-        assertThat("Not found Contact link on the Apply as Talent site", getDriver().getCurrentUrl(), containsString(HOME_PAGE));
+        asTalentHeaderPage().clickHeaderElements(HeaderElementsEnum.SIGN_OUT);
+        assertThat("Not found Sign out link on the Apply as Talent site", getDriver().getCurrentUrl(), containsString(HOME_PAGE));
     }
 }

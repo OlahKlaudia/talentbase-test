@@ -11,12 +11,10 @@ public class ProfilePage extends TalentbaseLandingPage {
 
     @Override
     protected void load() {
-
     }
 
     @Override
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(OVERVIEW);
     }
-
 }

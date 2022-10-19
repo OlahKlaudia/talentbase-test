@@ -11,12 +11,10 @@ public class SalaryPage extends TalentbaseLandingPage {
 
     @Override
     protected void load() {
-
     }
 
     @Override
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(SALARY_PAGE);
     }
-
 }

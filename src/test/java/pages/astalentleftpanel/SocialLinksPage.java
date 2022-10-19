@@ -15,6 +15,7 @@ public class SocialLinksPage extends AsTalentBasePage {
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(SOCIAL_LINK);
     }
+
     public SocialLinksPage(WebDriver driver) {
         super(driver);
     }

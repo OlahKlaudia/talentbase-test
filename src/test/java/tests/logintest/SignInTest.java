@@ -39,7 +39,7 @@ public class SignInTest extends TalentbaseTestBase {
     @BeforeEach
     public void beforeSignIn() {
         navigateToTalentbasePage();
-        headerSection().clickHeaderElements(HeaderElementsEnum.signIn);
+        headerSection().clickHeaderElements(HeaderElementsEnum.SIGN_IN);
     }
 
     @DisplayName("Blank Input Field on the Sign in Page Test")
@@ -77,7 +77,7 @@ public class SignInTest extends TalentbaseTestBase {
     @Test
     public void signUpLinkTest() {
         loginPage().signUpLink();
-        assertThat("Login failed.", getDriver().getCurrentUrl(), containsString(SIGN_UP));
+        assertThat("Login failed.", getDriver().getCurrentUrl(), containsString(SIGN_UP_PAGE));
     }
 
     @DisplayName("Login as Talent Test")
@@ -85,7 +85,7 @@ public class SignInTest extends TalentbaseTestBase {
     public void loginAsTalentTest() {
         loginPage().login();
         overviewPage();
-        assertThat("Login failed.", getDriver().getCurrentUrl(), containsString(OVERVIEW));
+        assertThat("Login failed.", getDriver().getCurrentUrl(), containsString(OVERVIEW_PAGE));
     }
 }
 

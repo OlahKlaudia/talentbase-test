@@ -18,8 +18,9 @@ public class UserTermsTest extends AsTalentTestBase {
     @BeforeEach
     public void beforeUserTerms() {
         navigateAsTalentSite();
-        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.userTerms);
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.USER_TERMS);
     }
+
     public UserTermsPage userTermsPage() {
         return new UserTermsPage(getDriver());
     }
@@ -35,6 +36,6 @@ public class UserTermsTest extends AsTalentTestBase {
     @Test
     public void blankFieldUserTermsTest() {
         userTermsPage().blankFields();
-        assertThat("Button is able.",userTermsPage().getColor(), equalToIgnoringCase(GREY));
+        assertThat("Button is able.", userTermsPage().getColor(), equalToIgnoringCase(GREY));
     }
 }

@@ -19,8 +19,9 @@ public class IntroDescriptionTest extends AsTalentTestBase {
     @BeforeEach
     public void beforeIntroDescription() {
         navigateAsTalentSite();
-        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.introDescription);
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.INTRO_DESCRIPTION);
     }
+
     public IntroDescriptionPage introDescriptionPage() {
         return new IntroDescriptionPage(getDriver());
     }
@@ -29,6 +30,6 @@ public class IntroDescriptionTest extends AsTalentTestBase {
     @Test
     public void introDescriptionTest() {
         introDescriptionPage().shortSummary();
-        assertThat("Not found error message link in the Intro Description page.", introDescriptionPage().getColor(), equalToIgnoringCase(COLOR_RED));
+        assertThat("Didn't get the summary error message text,and verify the user is not able to save with short summary.", introDescriptionPage().getColor(), equalToIgnoringCase(COLOR_RED));
     }
 }

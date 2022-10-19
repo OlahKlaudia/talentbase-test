@@ -16,7 +16,7 @@ public class ScreenshotExtension implements TestWatcher {
     @Override
     public void testSuccessful(ExtensionContext context) {
 //        TestBase testbase = (TestBase) context.getRequiredTestInstance();
-        TestBase.getDriver().close();
+        TestBase.getDriver().quit();
         TestBase.removeDriver();
     }
 
@@ -29,14 +29,12 @@ public class ScreenshotExtension implements TestWatcher {
     public void testFailed(ExtensionContext context, Throwable cause) {
 //        new CreateScreenshot().createScreenshot(testbase.getDriver(), context.getDisplayName());
         try {
-            new CreateScreenshot().createScreenshotWhenFailTest(TestBase.getDriver(),context.getTestMethod().get().getName());
+            new CreateScreenshot().createScreenshotWhenFailTest(TestBase.getDriver(), context.getTestMethod().get().getName());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            TestBase.getDriver().close();
             TestBase.getDriver().quit();
             TestBase.removeDriver();
         }
-
     }
 }

@@ -8,13 +8,13 @@ public class EvolutionPage extends AsTalentBasePage {
 
     @Override
     protected void load() {
-
     }
 
     @Override
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(EVOLUTION);
     }
+
     public EvolutionPage(WebDriver driver) {
         super(driver);
     }

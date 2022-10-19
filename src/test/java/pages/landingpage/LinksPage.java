@@ -30,6 +30,7 @@ public class LinksPage extends TalentbaseLandingPage {
     public LinksPage(WebDriver driver) {
         super(driver);
     }
+
     @Override
     protected void load() {
 
@@ -43,41 +44,50 @@ public class LinksPage extends TalentbaseLandingPage {
     @Step("Click Talentbase mini menu icon links in footer.")
     public String clickFooterElements(LinksEnum element) {
         switch (element) {
-            case linkedIn:
+            case LINKED_IN:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
                 wait.until(ExpectedConditions.elementToBeClickable(linkedInFooterMenuIcon));
                 return linkedInFooterMenuIcon.getAttribute("href");
-            case facebook:
+            case FACEBOOK:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
                 wait.until(ExpectedConditions.elementToBeClickable(facebookFooterMenuIcon));
                 return facebookFooterMenuIcon.getAttribute("href");
-            case twitter:
+            case TWITTER:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
                 wait.until(ExpectedConditions.elementToBeClickable(twitterFooterMenuIcon));
                 return twitterFooterMenuIcon.getAttribute("href");
-            case mail:
+            case MAIL:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
                 wait.until(ExpectedConditions.elementToBeClickable(mailFooterMenuItem));
                 return mailFooterMenuItem.getAttribute("href");
         }
         return null;
     }
+
     @Step("Click Talentbase mini menu icon links.")
     public String clickAboutPageLinkElements(LinksEnum element) {
         switch (element) {
-            case linkedIn:
+            case LINKED_IN:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
                 wait.until(ExpectedConditions.elementToBeClickable(linkedInMenuIcon));
                 return linkedInMenuIcon.getAttribute("href");
-            case facebook:
+            case FACEBOOK:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
                 wait.until(ExpectedConditions.elementToBeClickable(facebookMenuIcon));
                 return facebookMenuIcon.getAttribute("href");
-            case twitter:
+            case TWITTER:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
                 wait.until(ExpectedConditions.elementToBeClickable(twitterMenuIcon));
                 return twitterMenuIcon.getAttribute("href");
-            case mail:
+            case MAIL:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
                 wait.until(ExpectedConditions.elementToBeClickable(mailMenuItem));
                 return mailMenuItem.getAttribute("href");

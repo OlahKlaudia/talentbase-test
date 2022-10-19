@@ -25,10 +25,8 @@ public class SearchTheBaseTest extends HireTestBase {
     @BeforeEach
     public void beforeHireTalent() {
         navigateHireSite();
-        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.searchTheBase);
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.SEARCH_THE_BASE);
         searchTalent();
-
-//        searchHireTalent().navigateTheBase();
     }
 
     public SearchTheBasePage searchTalent() {
@@ -54,7 +52,7 @@ public class SearchTheBaseTest extends HireTestBase {
     @Test
     public void invalidSearchTheBaseTest() {
         searchTalent().invalidSearch();
-        assertThat("A search with a valid element has a result.", searchTalent().getNoResult().isDisplayed());
+        assertThat("Get search results with a valid item.", searchTalent().getNoResult().isDisplayed());
     }
 
     @DisplayName("Result like element on the Search the base Page Test")
@@ -62,7 +60,6 @@ public class SearchTheBaseTest extends HireTestBase {
     public void verifyResultLikeElementsTest() {
         if (searchTalent().getLikeColor().contains(GREEN)) {
             assertThat("The item was not clicked.", searchTalent().getLikeColor(), containsString(GREEN));
-
         } else {
             searchTalent().verifyResultLikeElement();
             assertThat("The item was not clicked.", searchTalent().getLikeColor(), containsString(GREEN));
@@ -72,7 +69,7 @@ public class SearchTheBaseTest extends HireTestBase {
 
     @DisplayName("Result export element and download pdf on the Search the base Page Test")
     @Test
-    public void resultExportSearchTheBaseTest() throws Exception {
+    public void resultExportSearchTheBaseTest() throws Exception { //todo headlessbe nem tölti le a file-t
         if (searchTalent().getExportColor().contains(ORANGE)) {
             assertThat("The item was not clicked.", searchTalent().getExportColor(), containsString(ORANGE));
 
@@ -80,13 +77,13 @@ public class SearchTheBaseTest extends HireTestBase {
             searchTalent().verifyResultExportElement();
             assertThat("The item was not clicked.", searchTalent().getExportColor(), containsString(ORANGE));
         }
+
         searchTalent().verifyDownloadExport();
         downloadFile().isFileDownloaded();
         downloadFile().getDownloadedFilesPath();
         downloadFile().isFileGreaterThanZero();
-
         assertThat("Downloaded file not found.", downloadFile().getDownloadedFilesPath(), containsString(".pdf"));
-        downloadFile().cleanupDownloads();
+//        downloadFile().cleanupDownloads();
     }
 
     @DisplayName("Back button element on the Search the base Page Test")
@@ -135,7 +132,7 @@ public class SearchTheBaseTest extends HireTestBase {
             assertThat("The item was not clicked.", searchTalent().getUserBookmarkColor(), containsString(BLACK));
         }
 
-        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.myBase);
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.MY_BASE);
 //        myBasePage().navigateMyBasePage();
         myBasePage().checkFavorites();
         assertThat("Favorite Talent is not here.", myBasePage().getTalentFavorites().isDisplayed());
@@ -152,7 +149,7 @@ public class SearchTheBaseTest extends HireTestBase {
             searchTalent().bookmarkAssertion();
             assertThat("The item was not clicked.", searchTalent().getUserBookmarkColor(), containsString(BLACK));
         }
-        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.myBase);
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.MY_BASE);
 //        myBasePage().navigateMyBasePage();
         myBasePage().checkFavorites();
         myBasePage().navigateTalentPage();

@@ -10,7 +10,6 @@ public class TalentPage  extends HireTalentBasePage {
     public static final String TALENT = "/user";
     @Override
     protected void load() {
-
     }
 
     @Override

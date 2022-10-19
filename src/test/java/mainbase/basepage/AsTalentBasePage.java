@@ -36,26 +36,30 @@ public class AsTalentBasePage extends BasePage {
 
     @Step("Get button background color.")
     public String getColor() {
+        logger.info("Get button background color, and verify the button is disable.");
         wait.until(ExpectedConditions.visibilityOf(saveSubmit));
         return saveSubmit.getCssValue("background-color");
     }
 
-    @Step("click to add plus element.")
+    @Step("Click to add plus element.")
     public void addNew() throws InterruptedException {
-            wait.until(ExpectedConditions.elementToBeClickable(addPlus));
-            pageDown();
-            Thread.sleep(200);
-            addPlus.click();
+        logger.info("Add new element.");
+        wait.until(ExpectedConditions.elementToBeClickable(addPlus));
+        action.sendKeys(Keys.PAGE_DOWN);
+        Thread.sleep(200);
+        addPlus.click();
     }
 
-    @Step("click to delete element.")
+    @Step("Click to delete element.")
     public void delete() {
+        logger.info("Click to delete the element,then click to option yes.");
         wait.until(ExpectedConditions.elementToBeClickable(deleteButton)).click();
         wait.until(ExpectedConditions.elementToBeClickable(yesButtonDeleteAlert)).click();
     }
 
     @Step("Wait until the button is clickable.")
     public void waitButton() throws InterruptedException {
+        logger.info("Wait until the button is clickable.");
         int maxWait = 1000 / 200;
         int i = 1;
         do {

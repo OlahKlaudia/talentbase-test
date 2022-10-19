@@ -27,26 +27,28 @@ public class VerifyPageContentTest extends TalentbaseTestBase {
     @Test
     public void upperHireTalentButtonTest() {
         pageContent().navigateUpperHireTalentPage();
-        assertThat("Not found Hire Talent page in the Talentbase site.",getDriver().getCurrentUrl(), containsString(HIRE_TALENT));
+        assertThat("Not found Hire Talent page in the Talentbase site.", getDriver().getCurrentUrl(), containsString(HIRE_TALENT_PAGE));
     }
 
     @DisplayName("Why us Page content Link Test")
     @Test
     public void whyUsLinkTest() {
         pageContent().navigateWhyUsPage();
-        assertThat("Not found Why us page in the Talentbase site.",getDriver().getCurrentUrl(), containsString(ABOUT_PAGE));
+        assertThat("Not found Why us page in the Talentbase site.", getDriver().getCurrentUrl(), containsString(ABOUT_PAGE));
 
     }
+
     @DisplayName("Hire Talent Page content Link Test")
     @Test
     public void lowerHireTalentButtonTest() {
         pageContent().navigateLowerHireTalentPage();
-        assertThat("Not found Hire Talent page in the Talentbase site",getDriver().getCurrentUrl(), containsString(HIRE_TALENT));
+        assertThat("Not found Hire Talent page in the Talentbase site", getDriver().getCurrentUrl(), containsString(HIRE_TALENT_PAGE));
     }
+
     @DisplayName("Scroll to Top button Test")
     @Test
     public void scrollToTopButtonTest() throws InterruptedException {
         pageContent().waitScrollToTopButton();
-        assertThat("Not found Hire Talent page in the Talentbase site",pageContent().getHeader().isDisplayed());
+        assertThat("Not found Hire Talent page in the Talentbase site", pageContent().getHeader().isDisplayed());
     }
 }

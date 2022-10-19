@@ -22,16 +22,18 @@ public class ForgotPasswordTest extends TalentbaseTestBase {
     @BeforeEach
     public void beforeForgotPassword() {
         navigateToTalentbasePage();
-        headerSection().clickHeaderElements(HeaderElementsEnum.signIn);
+        headerSection().clickHeaderElements(HeaderElementsEnum.SIGN_IN);
         signInPage().forgotPasswordLink().navigateForgotPasswordLink();
     }
 
     public SignInPage signInPage() {
         return new SignInPage(getDriver());
     }
+
     public ResetPasswordPage resetPasswordPage() {
         return new ResetPasswordPage(getDriver());
     }
+
     public EmailVerifyTest emailVerifyTest() {
         return new EmailVerifyTest();
     }
@@ -63,24 +65,24 @@ public class ForgotPasswordTest extends TalentbaseTestBase {
         assertThat("Button is able.", signInPage().forgotPasswordLink().getColor(), equalToIgnoringCase(COLOR_GREY));
     }
 
+    //todo headlessbe nem fut le
     @DisplayName("Navigate Reset password Test")
     @Test
-    public void navigateResetPasswordTest() throws InterruptedException {
+    public void navigateResetPasswordTest() {
         navigateResetPasswordPage();
     }
 
     @DisplayName("Create new Password Test")
     @Test
     public void createNewPasswordTest() {
-//        navigateResetPasswordPage();
+        navigateResetPasswordPage();
         resetPasswordPage().createNewPassword();
     }
 
-    public void navigateResetPasswordPage() throws InterruptedException { //todo wait until Reset password poge is visible
+    public void navigateResetPasswordPage() {
         signInPage().forgotPasswordLink().verifyValidEmail();
         assertTrue(signInPage().forgotPasswordLink().getPopUpButton().isDisplayed(), "Pop-up button is not visible");
         emailVerifyTest().loginGmail();
-        signInPage().forgotPasswordLink().hee();
         signInPage().forgotPasswordLink().navigateCreatePassword();
         assertThat("Wrong creditials.", getDriver().getCurrentUrl(), containsString(RESET_PASSWORD_PAGE));
     }

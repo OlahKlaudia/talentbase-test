@@ -25,12 +25,11 @@ public class TestBase {
     private static final BrowserEnum DEFAULT_BROWSER = BrowserEnum.CHROME_HEADLESS;
 
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
     protected static final Logger logger= LoggerFactory.getLogger(TestBase.class);
 
     @BeforeEach
     public void beforeTest() throws MalformedURLException {
-        logger.info("Remote....+ "+getDriverType(driverType));
-        logger.info("Browser....+ "+getBrowserEnum(browser));
         driver.set(getDriverType(driverType));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         logger.info("Create 'Web Driver' for '{}' browser",getDriver());
@@ -50,12 +49,12 @@ public class TestBase {
         return DEFAULT_BROWSER;
     }
     private static WebDriver getDriverType(String driverString) {
-        if(Objects.equals(driverString, "true")) {
+        if (Objects.equals(driverString, "true")) {
             if(ipAddress==null) {
                 ipAddress = DEFAULT_IP_ADDRESS;
             }
             return DriverFactory.createRemoteWebDriver(getBrowserEnum(browser),ipAddress);
-        } else{
+        } else {
             return DriverFactory.createDriver(getBrowserEnum(browser));
         }
     }

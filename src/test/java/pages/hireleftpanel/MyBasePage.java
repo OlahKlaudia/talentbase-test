@@ -15,8 +15,6 @@ public class MyBasePage extends HireTalentBasePage {
         super(driver);
     }
 
-    @FindBy(css = "a[href=\"/corp/talent/\"]")
-    public WebElement myBasePage;
     @FindBy(css = "button:nth-child(3)")
     public WebElement favoritesButton;
     @FindBy(css = ".MuiGrid-root div:nth-child(4) .iconify--bi")
@@ -29,16 +27,12 @@ public class MyBasePage extends HireTalentBasePage {
 
     @Override
     protected void load() {
-
     }
 
     @Override
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(TALENT);
     }
-//    public void navigateMyBasePage(){
-//        wait.until(ExpectedConditions.elementToBeClickable(myBasePage)).click();
-//    }
 
     @Step("Click Favorites.")
     public void checkFavorites(){

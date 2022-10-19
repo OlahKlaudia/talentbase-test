@@ -56,8 +56,6 @@ public class TalentbaseLandingPage extends BasePage {
     @FindBy(css = " a[href='/']:nth-child(3)")
     public WebElement signOut;
 
-    //footer links
-
     public static final String TALENTBASE_URL = "https://dev.thetalentbase.com/";
     public TalentbaseLandingPage(WebDriver driver) {
         super(driver);

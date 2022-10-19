@@ -15,6 +15,7 @@ public class HobbiesPage extends AsTalentBasePage {
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(HOBBIES);
     }
+
     public HobbiesPage(WebDriver driver) {
         super(driver);
     }

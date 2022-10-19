@@ -14,6 +14,7 @@ public class WaitUntilLoadOverviewPage extends AsTalentLeftPanelBasePage {
     public WaitUntilLoadOverviewPage(WebDriver driver) {
         super(driver);
     }
+
     @Override
     protected void load() {
 
@@ -24,8 +25,10 @@ public class WaitUntilLoadOverviewPage extends AsTalentLeftPanelBasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.elementToBeClickable(projectsLink));
     }
+
     @Step("Wait until scroll down.")
-    public void waitUntilScrollDown(){
+    public void waitUntilScrollDown() {
+        logger.info("Wait until scroll down.");
         action.sendKeys(Keys.PAGE_DOWN).perform();
     }
 

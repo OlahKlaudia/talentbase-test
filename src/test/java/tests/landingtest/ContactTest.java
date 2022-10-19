@@ -22,12 +22,13 @@ public class ContactTest extends TalentbaseTestBase {
     @BeforeEach
     public void beforeContactPage() {
         navigateToTalentbasePage();
-        headerSection().clickHeaderElements(HeaderElementsEnum.contact);
+        headerSection().clickHeaderElements(HeaderElementsEnum.CONTACT);
     }
 
     public ContactPage contactUsPage() {
         return new ContactPage(getDriver());
     }
+
     public LinksPage linksPage() {
         return new LinksPage(getDriver());
     }
@@ -53,28 +54,28 @@ public class ContactTest extends TalentbaseTestBase {
     @DisplayName("Linked In Link Test")
     @Test
     public void linkedInLinkTest() {
-        linksPage().clickAboutPageLinkElements(LinksEnum.linkedIn);
-        assertThat("Wrong linkedin url.", linksPage().clickAboutPageLinkElements(LinksEnum.linkedIn), containsString(LINKEDIN));
+        linksPage().clickAboutPageLinkElements(LinksEnum.LINKED_IN);
+        assertThat("Wrong linkedin url.", linksPage().clickAboutPageLinkElements(LinksEnum.LINKED_IN), containsString(LINKEDIN_URL));
     }
 
     @DisplayName("Facebook Link Test")
     @Test
     public void facebookLinkTest() {
-        linksPage().clickAboutPageLinkElements(LinksEnum.facebook);
-        assertThat("Wrong facebook url.", linksPage().clickAboutPageLinkElements(LinksEnum.facebook), containsString(FACEBOOK));
+        linksPage().clickAboutPageLinkElements(LinksEnum.FACEBOOK);
+        assertThat("Wrong facebook url.", linksPage().clickAboutPageLinkElements(LinksEnum.FACEBOOK), containsString(FACEBOOK_URL));
     }
 
     @DisplayName("Twitter Link Test")
     @Test
     public void twitterLinkTest() {
-        linksPage().clickAboutPageLinkElements(LinksEnum.twitter);
-        assertThat("Wrong twitter url.", linksPage().clickAboutPageLinkElements(LinksEnum.twitter), containsString(TWITTER));
+        linksPage().clickAboutPageLinkElements(LinksEnum.TWITTER);
+        assertThat("Wrong twitter url.", linksPage().clickAboutPageLinkElements(LinksEnum.TWITTER), containsString(TWITTER_URL));
     }
 
     @DisplayName("Mail Link Test")
     @Test
     public void mailLinkTest() {
-        linksPage().clickAboutPageLinkElements(LinksEnum.mail);
-        assertThat("Wrong mail url.", linksPage().clickAboutPageLinkElements(LinksEnum.mail), containsString(MAIL));
+        linksPage().clickAboutPageLinkElements(LinksEnum.MAIL);
+        assertThat("Wrong mail url.", linksPage().clickAboutPageLinkElements(LinksEnum.MAIL), containsString(MAIL_URL));
     }
 }

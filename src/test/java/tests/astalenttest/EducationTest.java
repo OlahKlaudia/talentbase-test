@@ -18,9 +18,10 @@ public class EducationTest extends AsTalentTestBase {
     @BeforeEach
     public void beforeEducation() throws InterruptedException {
         navigateAsTalentSite();
-        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.education);
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.EDUCATION);
         educationPage().addNew();
     }
+
     public EducationPage educationPage() {
         return new EducationPage(getDriver());
     }
@@ -30,12 +31,14 @@ public class EducationTest extends AsTalentTestBase {
     public void educationTest() throws InterruptedException {
         educationPage().fillEducation();
         educationPage().waitButton();
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.EDUCATION);
         educationPage().delete();
     }
+
     @DisplayName("Blank fields on the Education Page Test")
     @Test
     public void blankFieldEducationTest() {
-       educationPage().blankFields();
-        assertThat("Button is able.",educationPage().getColor(), equalToIgnoringCase(GREY));
+        educationPage().blankFields();
+        assertThat("Button is able.", educationPage().getColor(), equalToIgnoringCase(GREY));
     }
 }

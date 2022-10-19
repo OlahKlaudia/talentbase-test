@@ -17,13 +17,13 @@ import static org.hamcrest.Matchers.equalToIgnoringCase;
 @Feature("Talentbase Apply As Talent Site")
 public class ProjectsTest extends AsTalentTestBase {
 
-
     @BeforeEach
     public void beforeProject() throws InterruptedException {
         navigateAsTalentSite();
-        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.projects);
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.PROJECTS);
         projectsPage().addNew();
     }
+
     public ProjectsPage projectsPage() {
         return new ProjectsPage(getDriver());
     }
@@ -34,6 +34,7 @@ public class ProjectsTest extends AsTalentTestBase {
         projectsPage().fillProjects();
         assertThat("Button is disable.", projectsPage().getColor(), containsString(ORANGE));
         projectsPage().waitButton();
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.PROJECTS);
         projectsPage().delete();
     }
 
@@ -41,6 +42,6 @@ public class ProjectsTest extends AsTalentTestBase {
     @Test
     public void blankFieldsProjectTest() {
         projectsPage().blankFields();
-        assertThat("Button is able.",projectsPage().getColor(), equalToIgnoringCase(GREY));
+        assertThat("Button is able.", projectsPage().getColor(), equalToIgnoringCase(GREY));
     }
 }

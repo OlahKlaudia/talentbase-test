@@ -16,13 +16,18 @@ public class FirefoxHeadlessFactory extends GenericFactory {
     public WebDriver createDriver() {
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.addArguments("--headless");
+        firefoxOptions.addArguments("--no-sandbox");
+        firefoxOptions.addArguments("--disable-dev-shm-usage");
         return fullHDMaximize(new FirefoxDriver(firefoxOptions.setHeadless(true)));
     }
 
     @Override
     public WebDriver createRemoteDriver(BrowserEnum browser, String url) {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.addArguments("--headless","--window-size=1920,1200");
+        firefoxOptions.addArguments("--headless", "--window-size=1920,1200");
+        firefoxOptions.addArguments("--no-sandbox");
+        firefoxOptions.addArguments("--disable-dev-shm-usage");
         try {
             return new RemoteWebDriver(new URL("http://" + url + "/wd/hub"), firefoxOptions);
         } catch (MalformedURLException e) {

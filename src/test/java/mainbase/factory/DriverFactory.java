@@ -12,7 +12,7 @@ public class DriverFactory {
             case CHROME:
                 return new ChromeFactory().createDriver();
             case EDGE:
-                return new  EdgeFactory().createDriver();
+                return new EdgeFactory().createDriver();
             case FIREFOX:
                 return new FirefoxFactory().createDriver();
             case EDGE_HEADLESS:
@@ -25,7 +25,7 @@ public class DriverFactory {
         throw new UnsupportedOperationException("Browser type is not supported!");
     }
 
-    public static WebDriver createRemoteWebDriver(BrowserEnum browser, String url)  {
+    public static WebDriver createRemoteWebDriver(BrowserEnum browser, String url) {
         switch (browser) {
             case CHROME:
                 return new ChromeFactory().createRemoteDriver(browser, url);

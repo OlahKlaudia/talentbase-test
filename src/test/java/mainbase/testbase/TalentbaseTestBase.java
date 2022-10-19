@@ -3,8 +3,6 @@ package mainbase.testbase;
 import pages.headerlinks.HomePage;
 import pages.landingpage.HeaderSection;
 
-import java.net.MalformedURLException;
-
 public class TalentbaseTestBase extends TestBase {
     public static final String TALENTBASE = "https://dev.thetalentbase.com/";
     public static final String HOME_PAGE = "thetalentbase.com/";
@@ -12,26 +10,26 @@ public class TalentbaseTestBase extends TestBase {
     public static final String LOOKING_FOR_WORK_PAGE = "/work";
     public static final String ABOUT_PAGE = "/about";
     public static final String CONTACT_PAGE = "/contact";
-    public static final String SALARY = "/calculator";
-    public static final String BASE = "/corp/base";
+    public static final String SALARY_PAGE = "/calculator";
+    public static final String BASE_PAGE = "/corp/base";
     public static final String BLOG_PAGE = "/blog";
     public static final String NOTIFICATIONS_PAGE = "/notifications";
     public static final String START_PAGE = "/corp/start";
     public static final String ACCOUNT_PAGE = "/corp/account";
     public static final String SEARCH_THE_BASE_PAGE = "/corp/base";
     public static final String MY_BASE_PAGE = "/corp/talent/";
-    public static final String HIRE_TALENT = "/hire-talent";
-    public static final String SIGN_UP = "/register";
-    public static final String LOGIN = "/login";
-    public static final String OVERVIEW = "/profile";
-    public static final String OUR_POLICY = "/privacyPolicy";
-    public static final String WEBSITE_TERMS = "/termsOfService";
+    public static final String HIRE_TALENT_PAGE = "/hire-talent";
+    public static final String SIGN_UP_PAGE = "/register";
+    public static final String LOGIN_PAGE = "/login";
+    public static final String OVERVIEW_PAGE = "/profile";
+    public static final String OUR_POLICY_PAGE = "/privacyPolicy";
+    public static final String WEBSITE_TERMS_PAGE = "/termsOfService";
     public static final String RESET_PASSWORD_PAGE = "/account/reset";
-    public static final String LINKEDIN = "https://www.linkedin.com/company/talentbasesavicsoft";
-    public static final String FACEBOOK = "https://www.facebook.com/TalentBase-";
-    public static final String TWITTER = "https://twitter.com/TalentBase2022";
-    public static final String MAIL = "info@thetalentbase.com";
-    public static final String GMAIL = "/mail/";
+    public static final String LINKEDIN_URL = "https://www.linkedin.com/company/talentbasesavicsoft";
+    public static final String FACEBOOK_URL = "https://www.facebook.com/TalentBase-";
+    public static final String TWITTER_URL = "https://twitter.com/TalentBase2022";
+    public static final String MAIL_URL = "info@thetalentbase.com";
+    public static final String GMAIL_URL = "/mail/";
 
     public static final String COLOR_GREY = "rgba(189, 189, 189, 1)";
     public static final String GREY = "rgba(0, 0, 0, 0.12)";
@@ -45,6 +43,7 @@ public class TalentbaseTestBase extends TestBase {
     public static final String ERROR_MESSAGE = "is required";
 
     public HomePage navigateToTalentbasePage(){
+        logger.info("Navigate to Talentbase site, and return Home page.");
         getDriver().get(TALENTBASE);
         return new HomePage(getDriver());
     }

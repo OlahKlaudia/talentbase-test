@@ -7,10 +7,11 @@ public class NotificationPage extends TalentbaseLandingPage {
     public NotificationPage(WebDriver driver) {
         super(driver);
     }
+
     public static final String NOTIFICATIONS = "/notifications";
+
     @Override
     protected void load() {
-
     }
 
     @Override

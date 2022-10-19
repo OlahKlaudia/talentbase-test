@@ -24,6 +24,7 @@ public class ResetPasswordPage extends InputElementsPage {
 
     @Step("Create new password.")
     public void createNewPassword() {
+        logger.info("Create new password.");
         wait.until(ExpectedConditions.visibilityOf(password));
         password.sendKeys(PASSWORD);
         confirmPassword.sendKeys(PASSWORD);

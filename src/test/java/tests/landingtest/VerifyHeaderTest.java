@@ -24,6 +24,7 @@ public class VerifyHeaderTest extends TalentbaseTestBase {
     public HeaderSection headerSection() {
         return new HeaderSection(getDriver());
     }
+
     @DisplayName("Header visibility Test")
     @Test
     public void headerVisibilityTest() {
@@ -33,48 +34,49 @@ public class VerifyHeaderTest extends TalentbaseTestBase {
     @DisplayName("Home Link Test")
     @Test
     public void homeLinkTest() {
-        headerSection().clickHeaderElements(HeaderElementsEnum.home);
+        headerSection().clickHeaderElements(HeaderElementsEnum.HOME);
         assertThat(getDriver().getCurrentUrl(), containsString(HOME_PAGE));
     }
+
     @DisplayName("Talentbase logo Link Test")
     @Test
     public void talentbaseLogoLinkTest() {
-        headerSection().clickHeaderElements(HeaderElementsEnum.talentbaseLogo);
+        headerSection().clickHeaderElements(HeaderElementsEnum.TALENTBASE_LOGO);
         assertThat("Not found Talentbase logo link on the Talentbase site.", getDriver().getCurrentUrl(), containsString(HOME_PAGE));
     }
 
     @DisplayName("Partners and Investors Header Link Test")
     @Test
     public void partnersAndInvestorsLinkTest() {
-        headerSection().clickHeaderElements(HeaderElementsEnum.partnersAndInvestors);
+        headerSection().clickHeaderElements(HeaderElementsEnum.PARTNERS_AND_INVESTORS);
         assertThat("Not found Partners And Investors link on the Talentbase site.", getDriver().getCurrentUrl(), containsString(PARTNERS_AND_INVESTORS_PAGE));
     }
 
     @DisplayName("Looking for Work Header Link Test")
     @Test
     public void lookingFotWorkLinkTest() {
-        headerSection().clickHeaderElements(HeaderElementsEnum.lookingForWork);
+        headerSection().clickHeaderElements(HeaderElementsEnum.LOOKING_FOR_WORK);
         assertThat("Not found Looking for Work link on the Talentbase site.", getDriver().getCurrentUrl(), containsString(LOOKING_FOR_WORK_PAGE));
     }
 
     @DisplayName("About Link Header Test")
     @Test
     public void aboutLinkTest() {
-        headerSection().clickHeaderElements(HeaderElementsEnum.about);
+        headerSection().clickHeaderElements(HeaderElementsEnum.ABOUT);
         assertThat("Not found About link  on the Talentbase site.", getDriver().getCurrentUrl(), containsString(ABOUT_PAGE));
     }
 
     @DisplayName("Contact us Header Link Test")
     @Test
     public void contactLinkTest() {
-        headerSection().clickHeaderElements(HeaderElementsEnum.contact);
+        headerSection().clickHeaderElements(HeaderElementsEnum.CONTACT);
         assertThat("Not found Contact link on the Talentbase site", getDriver().getCurrentUrl(), containsString(CONTACT_PAGE));
     }
 
     @DisplayName("Blog Header Link Test")
     @Test
     public void blogLinkTest() {
-        headerSection().clickHeaderElements(HeaderElementsEnum.blog);
+        headerSection().clickHeaderElements(HeaderElementsEnum.BLOG);
         assertThat("Not found Blog link on the Talentbase site.", getDriver().getCurrentUrl(), containsString(BLOG_PAGE));
     }
 }

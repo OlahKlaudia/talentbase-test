@@ -17,12 +17,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Epic("Talentbase")
 @Feature("Talentbase Apply As Talent Site")
 public class ExperienceTest extends AsTalentTestBase {
+
     @BeforeEach
     public void beforeExperience() throws InterruptedException {
         navigateAsTalentSite();
-        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.experience);
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.EXPERIENCE);
         experiencePage().addNew();
     }
+
     public ExperiencePage experiencePage() {
         return new ExperiencePage(getDriver());
     }
@@ -31,27 +33,28 @@ public class ExperienceTest extends AsTalentTestBase {
     @Test
     public void longTitleTest() {
         experiencePage().verifyLongTitle();
-        assertTrue(experiencePage().verifyLongTitle().contains(LONG_CHAR_ERROR), "Not found error message under the Title input field.");
+        assertTrue(experiencePage().verifyLongTitle().contains(LONG_CHAR_ERROR), "Didn't get the title error message text,and verify the user is not able to save with long title.");
     }
 
     @DisplayName("Long location on the Experience Page Test")
     @Test
     public void longLocationTest() {
         experiencePage().verifyLongLocation();
-        assertTrue(experiencePage().verifyLongLocation().contains(LONG_CHAR_ERROR), "Not found error message under the Location input field.");
+        assertTrue(experiencePage().verifyLongLocation().contains(LONG_CHAR_ERROR), "Didn't get the location error message text,and verify the user is not able to save with long location.");
     }
 
     @DisplayName("Long company name on the Experience Page Test")
     @Test
     public void longCompanyNameTest() {
         experiencePage().verifyLongCompanyName();
-        assertTrue(experiencePage().verifyLongCompanyName().contains(LONG_CHAR_ERROR), "Not found error message under the Company Name input field.");
+        assertTrue(experiencePage().verifyLongCompanyName().contains(LONG_CHAR_ERROR), "Didn't get the company name error message text,and verify the user is not able to save with long company name.");
     }
 
     @DisplayName("Valid input fields on the Experience Page Test")
     @Test
     public void workingExperienceTest() {
         experiencePage().fillWorkingExperience();
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.EXPERIENCE);
         experiencePage().delete();
     }
 
@@ -59,16 +62,15 @@ public class ExperienceTest extends AsTalentTestBase {
     @Test
     public void blankFieldWorkingExperienceTest() {
         experiencePage().blankFieldsWorkingExperience();
-        assertThat("Button is able.",experiencePage().getColor(), equalToIgnoringCase(GREY));
+        assertThat("Button is able.", experiencePage().getColor(), equalToIgnoringCase(GREY));
     }
 
     @DisplayName("Verify checkbox on the Experience Page Test")
     @Test
     public void clickStillWorkHereCheckboxTest() {
-        if (experiencePage().verifyCheckbox().contains(ORANGE)){
+        if (experiencePage().verifyCheckbox().contains(ORANGE)) {
             assertFalse(experiencePage().getEndDate().isEnabled(), "End date is disable");
-        }
-        else{
+        } else {
             experiencePage().verifyCheckbox();
             assertFalse(experiencePage().getEndDate().isEnabled(), "End date is disable");
         }

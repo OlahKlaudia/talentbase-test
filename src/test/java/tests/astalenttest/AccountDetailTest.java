@@ -23,7 +23,7 @@ public class AccountDetailTest extends AsTalentTestBase {
     @BeforeEach
     public void beforeAccountDetailsPage() {
         navigateAsTalentSite();
-        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.accountDetails);
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.ACCOUNT_DETAILS);
     }
 
     public AccountDetailsPage accountDetailsPage() {
@@ -34,35 +34,36 @@ public class AccountDetailTest extends AsTalentTestBase {
     @Test
     public void shortPhoneNumberTest() {
         accountDetailsPage().shortPhoneNumber();
-        assertThat(accountDetailsPage().getShortPhoneNumberText(), containsString(SHORT_PHONE_NUMBER));
+        assertThat("Get phone number error message text,and verify the user is not able to save with short phone number.", accountDetailsPage().getShortPhoneNumberText(), containsString(SHORT_PHONE_NUMBER));
     }
 
     @DisplayName("Invalid phone number Test")
     @Test
     public void invalidPhoneNumberTest() {
         accountDetailsPage().invalidPhoneNumber();
-        assertThat(accountDetailsPage().getShortPhoneNumberText(), containsString(INVALID_PHONE_NUMBER));
+        assertThat("Get phone number error message text,and verify the user is not able to save with short phone number.", accountDetailsPage().getShortPhoneNumberText(), containsString(INVALID_PHONE_NUMBER));
     }
 
     @DisplayName("Invalid Zip code Test")
     @Test
     public void invalidZipCodeTest() {
         accountDetailsPage().invalidZipCode();
-        assertThat(accountDetailsPage().getZipCodeText(), containsString(INVALID_ZIPCODE));
+        assertThat("Get zip code error message text,and verify the user is not able to save with invalid zip code.", accountDetailsPage().getZipCodeText(), containsString(INVALID_ZIPCODE));
     }
 
     @DisplayName("Long zip code Test")
     @Test
     public void longZipCodeTest() {
         accountDetailsPage().longZipCode();
-        assertThat(accountDetailsPage().getZipCodeText(), containsString(LONG_ZIPCODE));
+        assertThat("Get zip code error message text,and verify the user is not able to save with invalid zip code.", accountDetailsPage().getZipCodeText(), containsString(LONG_ZIPCODE));
     }
     @DisplayName("Verify the button is disable Test")
     @Test
     public void buttonDisableTest() {
         accountDetailsPage().blankFields();
-        assertThat(accountDetailsPage().getButtonColor(), containsString(GREY));
+        assertThat("Get button color,and verify the button is disable.", accountDetailsPage().getButtonColor(), containsString(GREY));
     }
+    //nem jo az oldalon
 //    @DisplayName("Upload Image visibility Test")
 //    @Test
 //    public void uploadImageTest() {

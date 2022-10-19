@@ -36,6 +36,7 @@ public class EducationPage extends AsTalentBasePage {
 
     @Step("Fill with valid data.")
     public void fillEducation() {
+        logger.info("Fill the forms with valid data.");
         school.sendKeys(VALID_INPUT);
         fieldOfStudy.sendKeys(VALID_INPUT);
         checkBox.click();
@@ -49,6 +50,7 @@ public class EducationPage extends AsTalentBasePage {
 
     @Step("Verify the button is disable with blank fields.")
     public void blankFields() {
+        logger.info("Clear the input fields.");
         school.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         fieldOfStudy.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
     }

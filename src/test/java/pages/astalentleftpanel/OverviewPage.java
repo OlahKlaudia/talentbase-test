@@ -10,7 +10,7 @@ import pages.astalentpage.WaitUntilLoadOverviewPage;
 
 import java.util.List;
 
-public class OverviewPage extends AsTalentBasePage {
+public class OverviewPage extends AsTalentBasePage { //todo rename
     @FindBy(css = ".css-16khe3f svg")
     private WebElement contractAdministratorOverview;
     @FindBy(css = ".MuiGrid-item div:nth-child(3) svg g")
@@ -61,19 +61,23 @@ public class OverviewPage extends AsTalentBasePage {
         wait.until(ExpectedConditions.visibilityOf(contractAdministratorOverview));
 
     }
+
     public OverviewPage(WebDriver driver) {
         super(driver);
     }
 
     @Step("Click export profile.")
     public void clickExportProfile() {
+        logger.info("Click the Export Profile.");
         exportProfileAsPdf.click();
     }
-    @Step("Wait until find the paragraph where contains /mo,and get salary hover text.")
+
+    @Step("Wait until find the paragraph where contains /mo, and get salary hover text.")
     public String hoverSalary() {
+        logger.info("Move to salary element, and the hover is appear.");
         List<WebElement> elements = driver.findElements(By.tagName("p"));
         for (WebElement element : elements) {
-            if(element.getText().contains("/mo")){
+            if (element.getText().contains("/mo")) {
                 System.out.println("Paragraph text:" + element.getText());
                 wait.until(ExpectedConditions.elementToBeClickable(element)).click();
             }
@@ -81,58 +85,76 @@ public class OverviewPage extends AsTalentBasePage {
         action.moveToElement(salaryHover).click().perform();
         return salaryHover.getText();
     }
+
     @Step("Get social network link.")
     public WebElement getSocialNetworkLink() {
-       return getSocialNetworkLink;
+        logger.info("Get social network link.");
+        return getSocialNetworkLink;
     }
 
-    public WaitUntilLoadOverviewPage scroll(){return new WaitUntilLoadOverviewPage(driver);}
-    @Step("Click Overview items,wait until the elements visible,and SSreturn Page Object.")
+    public WaitUntilLoadOverviewPage scroll() {
+        return new WaitUntilLoadOverviewPage(driver);
+    }
+
+    @Step("Click Overview items, wait until the elements visible, and return Page Object.")
     public AsTalentBasePage clickOverviewElements(LeftPanelElementsEnum element) {
         switch (element) {
-            case accountDetails:
+            case ACCOUNT_DETAILS:
+                logger.info(element.toString());
                 wait.until(ExpectedConditions.elementToBeClickable(contractAdministratorOverview)).click();
                 return new AccountDetailsPage(driver);
-            case introDescription:
+            case INTRO_DESCRIPTION:
+                logger.info(element.toString());
                 wait.until(ExpectedConditions.elementToBeClickable(aboutMeOverview)).click();
                 return new IntroDescriptionPage(driver);
-            case experience:
+            case EXPERIENCE:
+                logger.info(element.toString());
                 scroll().waitUntilScrollDown();
                 wait.until(ExpectedConditions.elementToBeClickable(workingExperienceOverview)).click();
                 return new ExperiencePage(driver);
-            case education:
+            case EDUCATION:
+                logger.info(element.toString());
                 scroll().waitUntilScrollDown();
                 wait.until(ExpectedConditions.elementToBeClickable(educationOverview)).click();
                 return new EducationPage(driver);
-            case skills:
+            case SKILLS:
+                logger.info(element.toString());
                 wait.until(ExpectedConditions.elementToBeClickable(skillsOverview)).click();
                 return new SkillsPage(driver);
-            case language:
+            case LANGUAGE:
+                logger.info(element.toString());
                 scroll().waitUntilScrollDown();
                 wait.until(ExpectedConditions.visibilityOf(languageOverview)).click();
                 return new LanguagePage(driver);
-            case certificates:
+            case CERTIFICATES:
+                logger.info(element.toString());
                 scroll().waitUntilScrollDown();
                 wait.until(ExpectedConditions.visibilityOf(certificatesOverview)).click();
                 return new CertificatesPage(driver);
-            case projects:
+            case PROJECTS:
+                logger.info(element.toString());
                 action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
                 wait.until(ExpectedConditions.visibilityOf(projectsOverview)).click();
                 return new ProjectsPage(driver);
-            case hobbies:
+            case HOBBIES:
+                logger.info(element.toString());
                 scroll().waitUntilScrollDown();
                 wait.until(ExpectedConditions.visibilityOf(hobbiesOverview)).click();
                 return new HobbiesPage(driver);
-            case socialLinks:
+            case SOCIAL_LINKS:
+                logger.info(element.toString());
                 wait.until(ExpectedConditions.elementToBeClickable(socialNetworkLinksOverview)).click();
                 return new SocialLinksPage(driver);
-            case click:
+            case CLICK:
+                logger.info(element.toString());
                 wait.until(ExpectedConditions.elementToBeClickable(clickToSeeOverview)).click();
                 return new OverviewPage(driver);
-            case userTerms:
+            case USER_TERMS:
+                logger.info(element.toString());
                 wait.until(ExpectedConditions.elementToBeClickable(userTermsOverview)).click();
                 return new UserTermsPage(driver);
-            case evolution:
+            case EVOLUTION:
+                logger.info(element.toString());
                 wait.until(ExpectedConditions.elementToBeClickable(locationOverview)).click();
                 return new AccountDetailsPage(driver);
         }

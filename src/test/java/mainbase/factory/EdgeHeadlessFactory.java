@@ -10,22 +10,24 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class EdgeHeadlessFactory extends GenericFactory{
+public class EdgeHeadlessFactory extends GenericFactory {
 
     @Override
     public WebDriver createDriver() {
         WebDriverManager.edgedriver().setup();
-        EdgeOptions edgeoptions = new EdgeOptions();
-        return fullHDMaximize(new EdgeDriver(edgeoptions.setHeadless(true)));
+        EdgeOptions edgeOptions = new EdgeOptions();
+        edgeOptions.addArguments("--headless");
+        edgeOptions.addArguments("--no-sandbox");
+        edgeOptions.addArguments("--disable-dev-shm-usage");
+        return fullHDMaximize(new EdgeDriver(edgeOptions.setHeadless(true)));
     }
 
     @Override
     public WebDriver createRemoteDriver(BrowserEnum browser, String url) {
-//        WebDriver driver;
-//        driver = fullHDMaximize(new RemoteWebDriver(new URL(url), new EdgeOptions().setHeadless(true)));
-//        return driver;
         EdgeOptions edgeOptions = new EdgeOptions();
-        edgeOptions.addArguments("--headless","--window-size=1920,1200");
+        edgeOptions.addArguments("--headless", "--window-size=1920,1200");
+        edgeOptions.addArguments("--no-sandbox");
+        edgeOptions.addArguments("--disable-dev-shm-usage");
         try {
             return new RemoteWebDriver(new URL("http://" + url + "/wd/hub"), edgeOptions);
         } catch (MalformedURLException e) {

@@ -20,7 +20,7 @@ public class HomePage extends TalentbaseLandingPage {
         super(driver);
     }
 
-    public WaitFooterElement scrollDown(){
+    public WaitFooterElement scrollDown() {
         return new WaitFooterElement(driver);
     }
 

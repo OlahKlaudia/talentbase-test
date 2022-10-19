@@ -24,23 +24,29 @@ public class PageContentPage extends TalentbaseLandingPage {
     public PageContentPage(WebDriver driver) {
         super(driver);
     }
+    @Step("Get header element.")
+    public WebElement getHeader(){
+        return header;
+    }
 
     @Step("Click upper Hire Talent button.")
     public void navigateUpperHireTalentPage(){
-
+        logger.info("Click upper Hire Talent button.");
         action.sendKeys(Keys.PAGE_DOWN).build().perform();
         wait.until(ExpectedConditions.visibilityOf(upperHireTalentButton));
         action.moveToElement(upperHireTalentButton).click().perform();
 
     }
-    @Step("Click why Us link")
+    @Step("Scroll down and click why Us link.")
     public void navigateWhyUsPage(){
+        logger.info("Scroll down and click why Us link");
         action.sendKeys(Keys.PAGE_DOWN).build().perform();
         wait.until(ExpectedConditions.visibilityOf(whyUsLink));
         action.moveToElement(whyUsLink).click().perform();
     }
     @Step("Scroll down and click lower Hire Talent button.")
     public void navigateLowerHireTalentPage(){
+        logger.info("Scroll down and click lower Hire Talent button.");
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
 
         wait.until(ExpectedConditions.visibilityOf(lowerHireTalentButton));
@@ -48,6 +54,7 @@ public class PageContentPage extends TalentbaseLandingPage {
     }
     @Step("Scroll down and click scroll to the top button button.")
     public void waitScrollToTopButton() throws InterruptedException {
+        logger.info( "Scroll down and click scroll to the top button button.");
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
         int maxWait = 1000 / 200;
         int i = 1;
@@ -55,14 +62,12 @@ public class PageContentPage extends TalentbaseLandingPage {
             try {
                 wait.until(ExpectedConditions.elementToBeClickable(scrollTop)).click();
                 i++;
-                System.out.println("how many times it goes through the do while" + i);
+                System.out.println("How many times it goes through the do while" + i);
                 break;
             } catch (Exception e) {
                 Thread.sleep(200);
             }
         } while (i < maxWait);
     }
-    public WebElement getHeader(){
-        return header;
-    }
+
 }

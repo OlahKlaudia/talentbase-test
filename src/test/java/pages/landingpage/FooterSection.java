@@ -72,37 +72,44 @@ public class FooterSection extends TalentbaseLandingPage {
 //                return developersFooterLink;
 //            case financialExperts:
 //                return financialExpertsFooterLink;
-            case whyUsLink:
+            case WHY_US_LINK:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
 //                action.moveToElement(whyUsFooterLink).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(whyUsFooterLink)).click();
                 return new AboutPage(driver);
-            case blog:
+            case BLOG:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
 //                action.moveToElement(blogFooterLink).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(blogFooterLink)).click();
                 return new BlogPage(driver);
-            case partnersAndInvestors:
+            case PARTNERS_AND_INVESTORS:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
 //                action.moveToElement(partnersAndInvestorsFooterLink).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(partnersAndInvestorsFooterLink)).click();
                 return new PartnersAndInvestorsPage(driver);
-            case contactus:
+            case CONTACT_US:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
 //                action.moveToElement(contactUsFooterLink).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(contactUsFooterLink)).click();
                 return new ContactPage(driver);
-            case lookingForWork:
+            case LOOKING_FOR_WORK:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
 //                action.moveToElement(lookingForWorkFooterLink).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(lookingForWorkFooterLink)).click();
                 return new LookingForWorkPage(driver);
-            case ourPolicy:
+            case OUR_POLICY:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
 //                action.moveToElement(ourPolicyFooterLink).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(ourPolicyFooterLink)).click();
                 return new OurPolicyPage(driver);
-            case websiteTerms:
+            case WEBSITE_TERMS:
+                logger.info(element.toString());
                 navigateFooterLinksPage().scrollDown();
 //                action.moveToElement(websiteTermsFooterLink).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(websiteTermsFooterLink)).click();

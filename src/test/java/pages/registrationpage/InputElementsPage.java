@@ -78,10 +78,12 @@ public class InputElementsPage extends TalentbaseLandingPage {
     }
     @Step("Get pop-up next button element.")
     public WebElement getPopUpButton() {
+        logger.info("Get pop-up next button element.");
         return popUpNextButton;
     }
     @Step("Get button background color.")
     public String getColor() {
+        logger.info("Get button background color.");
         wait.until(ExpectedConditions.visibilityOf(button));
         return button.getCssValue("background-color");
     }

@@ -15,6 +15,7 @@ public class SkillsPage extends AsTalentBasePage {
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(SKILLS);
     }
+
     public SkillsPage(WebDriver driver) {
         super(driver);
     }

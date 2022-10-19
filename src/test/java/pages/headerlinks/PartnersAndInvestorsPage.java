@@ -21,7 +21,6 @@ public class PartnersAndInvestorsPage extends InputElementsPage {
 
     @Override
     protected void load() {
-
     }
 
     @Override
@@ -35,17 +34,21 @@ public class PartnersAndInvestorsPage extends InputElementsPage {
 
     @Step("Click contact us button.")
     public void clickContactUsButton() {
+        logger.info("Click contact us button.");
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
         wait.until(ExpectedConditions.elementToBeClickable(contactUsButton)).click();
-
     }
-    @Step("Click contact us button.")
+
+    @Step("Click become a partner button.")
     public void clickBecomeAPartnerButton() {
+        logger.info("Click become a partner button.");
         action.sendKeys(Keys.PAGE_DOWN).perform();
         wait.until(ExpectedConditions.elementToBeClickable(becomeAPartnerButton)).click();
     }
-    @Step("Click contact us button.")
+
+    @Step("Click become an investor button.")
     public void clickBecomeAnInvestorButton() {
+        logger.info("Click become an investor button.");
         action.sendKeys(Keys.CONTROL).sendKeys(Keys.END).perform();
         wait.until(ExpectedConditions.elementToBeClickable(becomeAnInvestorButton)).click();
     }

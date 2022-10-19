@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
 public class CertificatesPage extends AsTalentBasePage {
     public static final String CERTIFICATES = "/certificates";
     @FindBy(css = "[name=\"name\"]")
@@ -21,7 +22,6 @@ public class CertificatesPage extends AsTalentBasePage {
 
     @Override
     protected void load() {
-
     }
 
     @Override
@@ -35,6 +35,7 @@ public class CertificatesPage extends AsTalentBasePage {
 
     @Step("Fill valid data on the Certificates Page.")
     public void fillCertificates() {
+        logger.info("Fill the forms with valid data.");
         nameOfCertificate.sendKeys(VALID_INPUT);
         institution.sendKeys(VALID_INPUT);
         field.sendKeys(VALID_INPUT);
@@ -46,6 +47,7 @@ public class CertificatesPage extends AsTalentBasePage {
 
     @Step("Verify the button is disable with blank fields.")
     public void blankFields() {
+        logger.info("Clear the input fields.");
         nameOfCertificate.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         institution.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         field.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));

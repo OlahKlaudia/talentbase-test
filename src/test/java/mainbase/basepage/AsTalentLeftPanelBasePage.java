@@ -1,5 +1,6 @@
 package mainbase.basepage;
 
+import io.qameta.allure.Step;
 import mainbase.basepage.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +15,6 @@ public class AsTalentLeftPanelBasePage extends BasePage {
         super(driver);
     }
 
-    //leftpanel
     @FindBy(css = "a[href='/Profile/start']")
     public WebElement startLink;
 
@@ -55,13 +55,12 @@ public class AsTalentLeftPanelBasePage extends BasePage {
     @FindBy(css = "a[href='/profile/education']")
     public WebElement educationLink;
 
-    @FindBy(css = ".MuiBox-root:nth-child(3) .MuiTypography-root")
-    public WebElement usernameParagraphLeftPanel;
     @FindBy(css = ".MuiBox-root:nth-child(1) svg[viewBox=\"0 0 24 24\"]")
     public WebElement closeLeftPanel;
 
+    @Step("Close the left panel.")
     public void closeLeftPanel() {
+        logger.info("Close the left panel.");
         closeLeftPanel.click();
     }
-
 }

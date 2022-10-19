@@ -8,13 +8,13 @@ public class LanguagePage extends AsTalentBasePage {
 
     @Override
     protected void load() {
-
     }
 
     @Override
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains(LANGUAGE);
     }
+
     public LanguagePage(WebDriver driver) {
         super(driver);
     }

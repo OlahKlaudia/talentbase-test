@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.registrationpage.RegistrationApplyAsTalentPage;
 import pages.registrationpage.RegistrationHireTalentPage;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
@@ -21,7 +22,7 @@ public class RegistrationApplyAsTalentTest extends TalentbaseTestBase {
     @BeforeEach
     public void beforeRegistrationAsTalent() {
         navigateToTalentbasePage();
-        headerSection().clickHeaderElements(HeaderElementsEnum.applyAsTalent);
+        headerSection().clickHeaderElements(HeaderElementsEnum.APPLY_AS_TALENT);
     }
 
     public RegistrationHireTalentPage registration() {
@@ -38,6 +39,7 @@ public class RegistrationApplyAsTalentTest extends TalentbaseTestBase {
         registration().verifyUserIsAllBlank();
         assertThat(registration().getColor(), containsString(COLOR_GREY));
     }
+
     @DisplayName("With selected Checkbox, the button is disable Test")
     @Test
     public void selectCheckboxButtonDisableTest() {
@@ -106,28 +108,28 @@ public class RegistrationApplyAsTalentTest extends TalentbaseTestBase {
     @DisplayName("Terms of Service Link Test")
     @Test
     public void termsOfServiceLinkTest() {
-        registrationAsTalent().verifyLinksFunctionality(AsTalentLinksEnum.termsOfService);
-        assertThat("Not found Partners And Investor link on the Apply as talent site.", getDriver().getCurrentUrl(), containsString(WEBSITE_TERMS));
+        registrationAsTalent().verifyLinksFunctionality(AsTalentLinksEnum.TERMS_OF_SERVICE);
+        assertThat("Not found Partners And Investor link on the Apply as talent site.", getDriver().getCurrentUrl(), containsString(WEBSITE_TERMS_PAGE));
     }
 
     @DisplayName("Privacy Policy Link Test")
     @Test
     public void privacyPolicyLinkTest() {
-        registrationAsTalent().verifyLinksFunctionality(AsTalentLinksEnum.privacyPolicy);
-        assertThat("Not found Our Policy link on the Apply as talent site.", getDriver().getCurrentUrl(), containsString(OUR_POLICY));
+        registrationAsTalent().verifyLinksFunctionality(AsTalentLinksEnum.PRIVACY_POLICY);
+        assertThat("Not found Our Policy link on the Apply as talent site.", getDriver().getCurrentUrl(), containsString(OUR_POLICY_PAGE));
     }
 
     @DisplayName("Register Corporation Link Test")
     @Test
     public void registerCorporationLinkTest() {
-        registrationAsTalent().verifyLinksFunctionality(AsTalentLinksEnum.registerCorporation);
-        assertThat("Not found Register Corporation link on the Apply as talent site.", getDriver().getCurrentUrl(), containsString(HIRE_TALENT));
+        registrationAsTalent().verifyLinksFunctionality(AsTalentLinksEnum.REGISTER_CORPORATION);
+        assertThat("Not found Register Corporation link on the Apply as talent site.", getDriver().getCurrentUrl(), containsString(HIRE_TALENT_PAGE));
     }
 
     @DisplayName("Sign in Link Test")
     @Test
     public void signInLinkTest() {
-        registrationAsTalent().verifyLinksFunctionality(AsTalentLinksEnum.signIn);
-        assertThat("Not found Sign In link on the Apply as talent site.", getDriver().getCurrentUrl(), containsString(LOGIN));
+        registrationAsTalent().verifyLinksFunctionality(AsTalentLinksEnum.SIGN_IN);
+        assertThat("Not found Sign In link on the Apply as talent site.", getDriver().getCurrentUrl(), containsString(LOGIN_PAGE));
     }
 }

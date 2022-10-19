@@ -9,9 +9,7 @@ public class SignInPage extends TalentbaseLandingPage {
     private static final String SIGN_IN_PAGE = "/login";
 
     @Override
-    protected void load() {
-
-    }
+    protected void load(){}
 
     @Override
     protected void isLoaded() throws Error {
@@ -21,9 +19,12 @@ public class SignInPage extends TalentbaseLandingPage {
     public SignInPage(WebDriver driver) {
         super(driver);
     }
-    public LoginPage loginPage(){return new LoginPage(driver);}
 
-    public ForgotPasswordPage forgotPasswordLink(){
+    public LoginPage loginPage() {
+        return new LoginPage(driver);
+    }
+
+    public ForgotPasswordPage forgotPasswordLink() {
         return new ForgotPasswordPage(driver);
     }
 }

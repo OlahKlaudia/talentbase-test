@@ -7,7 +7,6 @@ import mainbase.testbase.TalentbaseTestBase;
 import mainbase.mainenum.AsTalentLinksEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pages.headerlinks.HomePage;
 import pages.registrationpage.RegistrationHireTalentPage;
 
 
@@ -21,7 +20,7 @@ public class RegistrationHireTalentTest extends TalentbaseTestBase {
     @BeforeEach
     public void beforeRegistrationAsHire() {
         navigateToTalentbasePage();
-        headerSection().clickHeaderElements(HeaderElementsEnum.hireTalent);
+        headerSection().clickHeaderElements(HeaderElementsEnum.HIRE_TALENT);
     }
 
 
@@ -90,25 +89,25 @@ public class RegistrationHireTalentTest extends TalentbaseTestBase {
 
     @Test
     public void termsOfServiceLinkTest() {
-        registration().verifyLinksFunctionality(AsTalentLinksEnum.termsOfService);
-        assertThat("Not found Partners And Investor link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(WEBSITE_TERMS));
+        registration().verifyLinksFunctionality(AsTalentLinksEnum.TERMS_OF_SERVICE);
+        assertThat("Not found Partners And Investor link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(WEBSITE_TERMS_PAGE));
     }
 
     @Test
     public void privacyPolicyLinkTest() {
-        registration().verifyLinksFunctionality(AsTalentLinksEnum.privacyPolicy);
-        assertThat("Not found Our Policy link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(OUR_POLICY));
+        registration().verifyLinksFunctionality(AsTalentLinksEnum.PRIVACY_POLICY);
+        assertThat("Not found Our Policy link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(OUR_POLICY_PAGE));
     }
 
     @Test
     public void registerCorporationLinkTest() {
-        registration().verifyLinksFunctionality(AsTalentLinksEnum.registerCorporation);
-        assertThat("Not found Register Corporation link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(SIGN_UP));
+        registration().verifyLinksFunctionality(AsTalentLinksEnum.REGISTER_CORPORATION);
+        assertThat("Not found Register Corporation link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(SIGN_UP_PAGE));
     }
 
     @Test
     public void signInLinkTest() {
-        registration().verifyLinksFunctionality(AsTalentLinksEnum.signIn);
-        assertThat("Not found Sign In link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(LOGIN));
+        registration().verifyLinksFunctionality(AsTalentLinksEnum.SIGN_IN);
+        assertThat("Not found Sign In link in the Talentbase site.", getDriver().getCurrentUrl(), containsString(LOGIN_PAGE));
     }
 }

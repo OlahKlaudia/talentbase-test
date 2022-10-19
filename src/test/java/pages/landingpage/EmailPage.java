@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfWindowsToBe;
+
 public class EmailPage extends TalentbaseLandingPage {
     public EmailPage(WebDriver driver) {
         super(driver);
@@ -37,29 +39,41 @@ public class EmailPage extends TalentbaseLandingPage {
     protected void isLoaded() throws Error {
         driver.getCurrentUrl().contains("mail");
     }
+
+    @Step("Get next button element.")
     public WebElement getNextButton(){
+        logger.info("Get next button element.");
         return nextButton;
     }
+
+    @Step("Get activate link element.")
     public WebElement getActivateLink(){
+        logger.info("Get activate link element.");
         return activateAccountLink;
     }
+
+    @Step("Get alert button element.")
     public WebElement getAlertButton(){
+        logger.info("Get alert button element.");
         return alertVerifyButton;
     }
     @Step("Click the verify Button.")
     public void navigateGmailSite() {
+        logger.info("Click the verify Button, and get gmail url.");
         alertVerifyButton.click();
         driver.get(GMAIL_URL);
     }
 
     @Step("Type email into the input field and click next button.")
     public void typeEmailAddressToLoginGmail(){
+        logger.info("Type email into the input field and click next button.");
         email.sendKeys(EMAIL);
         nextButton.click();
     }
 
     @Step("Type password into the input field and click next button.")
     public void typePasswordToLoginGmail(){
+        logger.info("Type password into the input field and click next button.");
         wait.until(ExpectedConditions.visibilityOf(psw));
         psw.sendKeys(PASSWORD);
         pswNext.click();
@@ -67,13 +81,23 @@ public class EmailPage extends TalentbaseLandingPage {
     }
     @Step("Click last email.")
     public void verifyGetEmail(){
+        logger.info("Click last email.");
         wait.until(ExpectedConditions.visibilityOf(lastEmail));
         wait.until(ExpectedConditions.elementToBeClickable(lastEmail)).click();
     }
     @Step("Click activate Account Link.")
     public void clickActivateAccountLink(){
+        logger.info("Click activate Account Link, and switch to the new tab.");
+        assert driver.getWindowHandles().size() == 1;
         wait.until(ExpectedConditions.elementToBeClickable(activateAccountLink)).click();
-        wait.until(ExpectedConditions.visibilityOf(header));
-    }
+        String originalWindow = driver.getWindowHandle();
+        wait.until(numberOfWindowsToBe(2));
 
+        for (String windowHandle : driver.getWindowHandles()) {
+            if (!originalWindow.contentEquals(windowHandle)) {
+                driver.switchTo().window(windowHandle);
+                break;
+            }
+        }
+    }
 }

@@ -39,6 +39,7 @@ public class ProjectsPage extends AsTalentBasePage {
 
     @Step("Fill with valid data.")
     public void fillProjects() {
+        logger.info("Fill the forms with valid data.");
         name.sendKeys(VALID_INPUT);
         linkToProject.sendKeys(PROJECT_URL);
         additionalLinkName.sendKeys(VALID_INPUT);
@@ -48,6 +49,7 @@ public class ProjectsPage extends AsTalentBasePage {
 
     @Step("Verify button is disable with blank fields.")
     public void blankFields() {
+        logger.info("Clear the input fields.");
         name.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         linkToProject.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         additionalLinkUrl.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));

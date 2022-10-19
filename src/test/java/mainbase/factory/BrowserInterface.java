@@ -7,5 +7,6 @@ import java.net.MalformedURLException;
 
 public interface BrowserInterface {
     WebDriver createDriver();
+
     WebDriver createRemoteDriver(BrowserEnum browser, String url) throws MalformedURLException;
 }

@@ -30,51 +30,63 @@ public class LoginHeaderPage extends TalentbaseLandingPage {
     @Step("Click header menu item,return webelement,and assert header elements are visible.")
     public TalentbaseLandingPage clickHeaderElements(HeaderElementsEnum element) {
         switch (element) {
-            case home:
+            case HOME:
+                logger.info(element.toString());
                 homeMenuItem.click();
                 return new HomePage(driver);
-            case talentbaseLogo:
+            case TALENTBASE_LOGO:
+                logger.info(element.toString());
                 talentbaseLogoMenuItem.click();
                 return new HomePage(driver);
-            case partnersAndInvestors:
+            case PARTNERS_AND_INVESTORS:
+                logger.info(element.toString());
                 partnersAndInvestorItem.click();
                 return new PartnersAndInvestorsPage(driver);
-            case lookingForWork:
+            case LOOKING_FOR_WORK:
+                logger.info(element.toString());
                 lookingForWorkItem.click();
                 return new LookingForWorkPage(driver);
-            case about:
+            case ABOUT:
+                logger.info(element.toString());
                 wait.until(ExpectedConditions.visibilityOf(header)).click();
                 action.moveToElement(aboutItem).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(aboutItem)).click();
                 return new AboutPage(driver);
-            case contact:
+            case CONTACT:
+                logger.info(element.toString());
                 wait.until(ExpectedConditions.visibilityOf(header)).click();
                 action.moveToElement(contactItem).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(contactItem)).click();
                 return new ContactPage(driver);
-            case salary:
+            case SALARY:
+                logger.info(element.toString());
                 wait.until(ExpectedConditions.visibilityOf(header)).click();
                 action.moveToElement(salaryItem).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(salaryItem)).click();
                 return new SalaryPage(driver);
-            case blog:
+            case BLOG:
+                logger.info(element.toString());
                 wait.until(ExpectedConditions.visibilityOf(header)).click();
                 action.moveToElement(blogItem).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(blogItem)).click();
                 return new BlogPage(driver);
-            case notification:
+            case NOTIFICATION:
+                logger.info(element.toString());
                 notification.click();
                 wait.until(ExpectedConditions.elementToBeClickable(showAllNotification)).click();
                 return new NotificationPage(driver);
-            case profile:
+            case PROFILE:
+                logger.info(element.toString());
                 profileItem.click();
                 return new ProfilePage(driver);
-            case base:
+            case BASE:
+                logger.info(element.toString());
                 wait.until(ExpectedConditions.visibilityOf(header)).click();
                 action.moveToElement(baseItem).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(baseItem)).click();
                 return new BasePage(driver);
-            case signOut:
+            case SIGN_OUT:
+                logger.info(element.toString());
                 wait.until(ExpectedConditions.visibilityOf(header)).click();
                 action.moveToElement(signOut).perform();
                 wait.until(ExpectedConditions.elementToBeClickable(signOut)).click();

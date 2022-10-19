@@ -18,9 +18,9 @@ public class AccountTest extends HireTestBase {
     @BeforeEach
     public void beforeHireTalent() {
         navigateHireSite();
-        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.accountDetails);
-//        accountDetailsPage().navigateAccount();
+        clickLeftPanelItems().clickLeftPanelElements(LeftPanelElementsEnum.ACCOUNT_DETAILS);
     }
+
     public AccountDetailsPage accountDetailsPage() {
         return new AccountDetailsPage(getDriver());
     }
@@ -28,7 +28,7 @@ public class AccountTest extends HireTestBase {
     @DisplayName("On the Account page button is disable Test")
     @Test
     public void buttonDisableTest() {
-        accountDetailsPage().blankFieldsHireTalent();
+        accountDetailsPage().blankFieldsInHireTalent();
         assertThat(accountDetailsPage().getButtonColor(), containsString(GREY));
     }
 
@@ -36,6 +36,6 @@ public class AccountTest extends HireTestBase {
     @Test
     public void uploadImageTest() {
         accountDetailsPage().uploadImageAccount();
-        assertThat("Image is not uploaded",accountDetailsPage().uploadImageAccount(),containsString("talentbase.com"));
+        assertThat("Image is not uploaded", accountDetailsPage().uploadImageAccount(), containsString("talentbase.com"));
     }
 }

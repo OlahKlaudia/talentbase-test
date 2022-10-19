@@ -48,8 +48,9 @@ public class UserTermsPage extends AsTalentBasePage {
         super(driver);
     }
 
-    @Step("Fill with valid data.")
+    @Step("Fill the forms with valid data.")
     public void fillUserTerms() {
+        logger.info("Fill the forms with valid data.");
         daysPerWeek.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         hoursPerDay.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         vacationDays.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -72,6 +73,7 @@ public class UserTermsPage extends AsTalentBasePage {
 
     @Step("Verify the button is disable with blank fields.")
     public void blankFields() {
+        logger.info("Clear the input fields.");
         daysPerWeek.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         hoursPerDay.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         vacationDays.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));

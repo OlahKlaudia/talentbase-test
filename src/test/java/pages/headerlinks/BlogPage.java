@@ -11,7 +11,6 @@ public class BlogPage extends TalentbaseLandingPage {
 
     @Override
     protected void load() {
-
     }
 
     @Override

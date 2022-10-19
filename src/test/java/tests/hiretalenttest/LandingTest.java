@@ -22,27 +22,27 @@ public class LandingTest extends HireTestBase {
     @Test
     public void searchTheBasePictureLinkTest() {
         startPage().searchTheBasePicture();
-        assertThat("Not found Start link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(SEARCH_THE_BASE_PAGE));
+        assertThat("Wrong url.",getDriver().getCurrentUrl(), containsString(SEARCH_THE_BASE_PAGE));
     }
 
     @DisplayName("Search the base button Link Test")
     @Test
     public void searchTheBaseButtonLinkTest() {
         startPage().searchTheBaseButton();
-        assertThat("Not found Start link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(SEARCH_THE_BASE_PAGE));
+        assertThat("Wrong url.",getDriver().getCurrentUrl(), containsString(SEARCH_THE_BASE_PAGE));
     }
 
     @DisplayName("Account details picture Link Test")
     @Test
     public void accountDetailsPictureLinkTest() {
         startPage().accountDetailsPicture();
-        assertThat("Not found Start link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(ACCOUNT_PAGE));
+        assertThat("Wrong url.",getDriver().getCurrentUrl(), containsString(ACCOUNT_PAGE));
     }
 
     @DisplayName("Account details button Link Test")
     @Test
     public void accountDetailsButtonLinkTest() {
         startPage().accountDetailsButton();
-        assertThat("Not found Start link in the Talentbase site.",getDriver().getCurrentUrl(), containsString(ACCOUNT_PAGE));
+        assertThat("Wrong url.",getDriver().getCurrentUrl(), containsString(ACCOUNT_PAGE));
     }
 }
